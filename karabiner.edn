@@ -630,8 +630,9 @@
 	
 		[:d [:open "https://www.notion.so/loudog/LOU-DASHBOARD-2af984c519f8474a8632893fd5482eba"] ] ;;• l+d for  Lou's Dashboard (Notion) ✨ new
 		[:t [:open "https://roamresearch.com/#/app/loutodo" ]] ;;• l+t for loutodo
-		[:g [:open "https://roamresearch.com/#/app/lous-greenhouse" ]] ;;• l+g for loutodo
-	
+		[:g [:open "https://roamresearch.com/#/app/Lous-Greenhouse" ]] ;;• l+g for loutodo
+		[:h [:open "https://roamresearch.com/#/app/THFKG" ]] ;;• l+g for loutodo
+
 		;; PURGE
 			;; [:q [ [:open "kmtrigger://macro=1E23BF77-ADC0-43F1-97E3-66F279C05769"]] ] ;;• l+q for log Bear Queit
 			;; [:s [:km "bear-log: show work log" ]] ;;• l+s Bear Log: show work log
