@@ -1,47 +1,35 @@
-;;= montereySync.edn .9 mxb copy 7/31/24 ==============================================
+{:profiles
+ {:Default {:default true
+        :sim     50
+        :delay   50
+        :alone   100
+        :held    50}}
+    :templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
+        :run "%s"
+        :open "open \"%s\"" ; open filef jj
+        :wait "sleep 250" ; pause 250 ms
+        :shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
+        :km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
+        :btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
+        :ray "open \"raycast://extensions/raycast/%s\""	
+        ;; :goku "goku"
+        
+        ;; Sounds and Audio Feedback invokded by calling `afplay`, used to use emojis to make it more readable but would throw an error after a KE update
+            :SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
+            :SPKR1 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
+            :SPKR2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
+            :SPKR3 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
+            ;; :🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerOpening.aiff"
+            :Focus2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Focus2.aiff"
+            :beep "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/WindowActivated.aiff"
+            :Morse "afplay /System/Library/Sounds/Morse.aiff" ;; don't really like this 1 as much...
+            :Pop "afplay /System/Library/Sounds/Pop.aiff"
+            :tink "afplay /System/Library/Sounds/Tink.aiff"
+            :soundOn "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
+            :soundOff "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
+        }   
 
-;; 📓 LOG/NOTES ======================================================
-	;; 2024-08-20 figuring out whats wrong ⌘+return 
-		;; - sanity check on adding config.files/.DS_Store to git ignore...
-	;; #todo fix line 13 context and fn stuff (need to evaluate globe key, and what i want, also ⌥+space )
-	;; 2024-08-21 changed Contexts command to right-alt and ⌃⌥⇧+w
-	;; 2024-08-27
-		;; purged [:n [:open "https://notion.new"]] ;;• quote+n for New Notion via URL
-		;; make ⌃⌥⇧⌘+' right alt on 
-
-		
-
-{ ;;+ DEFINITIONS =================================================== for templates (aliases for frequently used CLI strings), layers, simlayers
-	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
-		;; :run "%s"
-		:open "open \"%s\"" ; open filef jj
-		:wait "sleep 250" ; pause 250 ms
-
-		:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
-		:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
-		:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
-		:ray "open \"raycast://extensions/raycast/%s\""	
-		;; :goku "goku"
-
-
-
-		;; Sounds and Audio Feedback invokded by calling `afplay`, used to use emojis to make it more readable but would throw an error after a KE update
-		:SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
-		:SPKR1 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
-		:SPKR2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
-		:SPKR3 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
-		;; :🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerOpening.aiff"
-		:Focus2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Focus2.aiff"
-		:beep "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/WindowActivated.aiff"
-		:Morse "afplay /System/Library/Sounds/Morse.aiff" ;; don't really like this 1 as much...
-		:Pop "afplay /System/Library/Sounds/Pop.aiff"
-		:tink "afplay /System/Library/Sounds/Tink.aiff"
-		:soundOn "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
-		:soundOff "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
-		;; :gokurl "goku" ;; trying to add load goku
-		}
-
-	:layers { ;;=............................................................................................................................. basic layers like spacemode
+    :layers { ;;=............................................................................................................................. basic layers like spacemode
 		; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
 		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD]} ; prevents space mode from overiding F and D modes
 		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}
@@ -51,8 +39,7 @@
 		:backslash-mode {:key :backslash}
 		;; :rare-key-mode {:key :backslash :condi ["in-rkm" 1]}
 		}
-
-	:simlayers { ;;=........................................................................................................................advanced layers that act as vairables
+    :simlayers { ;;=........................................................................................................................advanced layers that act as vairables
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
 		:a& {:key :a}
 		:b& {:key :b}
@@ -87,11 +74,33 @@
 		:return& {:key :return_or_enter}
 		:quote& {:key :quote}
 		:1& {:key :1}
-		
-
+		} 
+    :devices {    
+        :macbook-internal [{:product_id 631 :vendor_id 1452}]
+        :uhk [{:product_id 24866 :vendor_id 7504}]
+        :uhk-2 [{:product_id 24868 :vendor_id 7504}]
+        :logitech-mouse [{:product_id 49738 :vendor_id 1133}]
+        ;; TODO add other gaming mouse, 
+        }
+	:applications {
+		;; template  
+		;; drafts com.agiletortoise.Drafts-OSX
+		:dynalist ["^io\\.dynalist$"]
+		:Chromes      ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
+		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
+		:Finder           ["^com\\.apple\\.finder$"]
+		:Debuggers   ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
+		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
 		}
+    :input-sources {
+        :squirrel {:input_mode_id   "com.googlecode.rimeime.inputmethod.Squirrel"
+            :input_source_id "com.googlecode.rimeime.inputmethod.Squirrel.Rime"
+            :language        "zh-Hans"}
+        :us {:input_mode_id   ""
+            :input_source_id "com.apple.keylayout.US"
+            :language        "en"}
+        }
 
-;;+ MAIN ============================================================
 :main [ ;;+ =========================================================
 
 ;;• Templates and testing ==================================================
@@ -873,7 +882,7 @@
 			;; [:2 [[:SPKR3] [:open "obsidian://open?vault=vault2"]]] ;;• v+2 for open Obsidian vault 2 ✨ new 7/30/23
 	]}
 ;;============================ W MODE =============================
-	{	:des "w-mode" :rules [ :w& ;;• ––––––––––––––––––––––––––––––––––––––––––––
+	{	:des "w-mode" :rules [ :w& ;;• –––––––––––––––––––––––––––––––p–––––––––––––
 
 		;; workspaces
 		;; [:spacebar [[:SPKR3] :!SOCf3] ] ;;• w+spacebar for Expose  (via ⌃⌥⌘+f3) ->
@@ -995,7 +1004,7 @@
 
 	]}
 ;;============================ (FORWARD) SLASH MODE ==========================
-		{	:des "slash-mode  for..." :rules [
+{	:des "slash-mode  for..." :rules [
 		:slash& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
 		;; [:spacebar [:!CSslash [:SPKR3]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
@@ -1017,80 +1026,5 @@
 		
 		;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search "]] ] ;;• /+r to search Roam notes vvis raycast 
 		;; kmtrigger://macro=Dynalist%3A%20Search
-
-
-
 	]}
-;;============================ OTHER MODE ========================== ⭕ TODO [ ] \ /
-] ;;
-:simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
-	;! seems to create obsene delay on  on key up
-;;* Devices, Applications and Input Sources  ==================================
-	:devices {
-			:macbook-internal [{:product_id 631 :vendor_id 1452}]
-			:uhk [{:product_id 24866 :vendor_id 7504}]
-			:uhk-2 [{:product_id 24868 :vendor_id 7504}]
-			:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
-			;; TODO add other gaming mouse, 
-			}
-	:applications {
-		;; template  
-		;; drafts com.agiletortoise.Drafts-OSX
-		:dynalist ["^io\\.dynalist$"]
-		:Chromes      ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
-		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
-		:Finder           ["^com\\.apple\\.finder$"]
-		:Debuggers   ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
-		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
-		}
-		:input-sources {
-	 		:squirrel {:input_mode_id   "com.googlecode.rimeime.inputmethod.Squirrel"
-						:input_source_id "com.googlecode.rimeime.inputmethod.Squirrel.Rime"
-						:language        "zh-Hans"}
-			:us {:input_mode_id   ""
-					:input_source_id "com.apple.keylayout.US"
-					:language        "en"}
-			}
-;;*============================ END ===============================
-}
-
-;;* protocol ======================================================
-;; ☰ new entry PROTOCOL:
-	;; add line with prepend date and description to change log
-	;; save, stage, commit with short&good description, push... be sure to pull next time opening up other mbp
-;;* templates ======================================================
-;; working ke rule with sound template: [:KEYA [<KEYSEQUENCE> [:SPKR3] [:km "MACRONAME"]]  ] ;;• COMMENT
-;; [:KeyA [[:SPKR2] [:alf "ALFREDWORKFLOWNAME" "BUNDLEID"]] ] ;;• KeyA+Keyb for WORKFLOW NAME via Alfred
-		;; [:INSERTKEY [[:SPKR3] [:open "INSERT_URL"]] ] ;;• slash+INSERTKEY for ✳️ NEW RULE TO COPY
-
-;; find a home for 👇
-	;; [ [:d :s] [:km "Display (settings)"]] ;;* d+s for Display (settings) test
-	;; :open "osascript -e open \"%s\" "
-;; ℹ️ REFERENCE
-	;; C T O S and Q W E R (KE modifier abreviations for reference)
-	;; :alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
-	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
-
-;; New Template TEMPLATE ()
-	;;✳️ NEW sim mode rule template
-	;; [ [:KeyA :KeyB :KeyC] [:open "URL"] ] ;;• KeyAKeyBKeyC simultaneously for TriggerCommand
-	;; ✨ TEMPLATE to maybe use: [:<INSERT 2nd key> [:km "<INSERT MACRO NAME>"]] ;;• <INSERT 1st key>+<INSERT 2nd key> for <INSERT MACRO NAME>
-
-
-;; --- 🕰 HISTORY -----
-;; OLD: w+m wb menu| f+n floatnotes| j+p jump palette | j+d jump to daily 
-;;❌  fd to float log daily
-;; k+/ for ⌥⇧⌘+/ select menu
-;; a+d append to obsidian daily note
-;; d+0 for raycast Todo via raycast-todo-menuapp
-;; r+0 for raycast-reminders-menuapp
-
-;; `l+w` log workbench, `w+m` workbench menu, `f+n` float notes, `j+p` jump to palette, new palette
-;; a+d append to obsidian daily note, j+d Jump to Obs daily, (fj) hover log-daily,(jd) should be...
-;; /+r search Roam, /+e search Evernote, TODO /+o search,s
-;; k+/ select menu by name (via ⌥⇧⌘+/), k+p app conflict palette (via ⌥⇧⌘+p)
-;; d+0 RC manage Todos, r+0 rc reminders, return+...
-;; altx3 for km picklist now, FN*2 launchbar
-;; changed: vc to vs for visual studio code
-;; added rnm for Rename
-;; adding f+p for float palette
+]
