@@ -1,6 +1,6 @@
 ;; karabiner.edn 1.0 2024-09-24
 ;; 📓 LOG/NOTES =====================================================
-		;; 2024-09-25 g+k to run goku (used :run)
+		;; ✔ 2024-09-25 g+k to run goku (used :run)
 
 { ;;+ DEFINITIONS =================================================== for templates (aliases for frequently used CLI strings), layers, simlayers
 	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
@@ -12,17 +12,23 @@
 		:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
 		:ray "open \"raycast://extensions/raycast/%s\""	
 
-		;; Sounds and Audio Feedback invokded by calling `afplay`, used to use emojis to make it more readable but would throw an error after a KE update
+		;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		:SPKR1 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
 		:SPKR2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
 		:SPKR3 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
-		:🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerOpening.aiff"
-		:Focus2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Focus2.aiff"
-		:beep "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/WindowActivated.aiff"
-		:Morse "afplay /System/Library/Sounds/Morse.aiff" ;; don't really like this 1 as much...
-		:Pop "afplay /System/Library/Sounds/Pop.aiff"
-		:tink "afplay /System/Library/Sounds/Tink.aiff"
+		:🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
+		:🔉 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
+		:🔊 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
+		:📢 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff" 
+		:🛎 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Focus2.aiff" ;; high-pitched click
+		:🔔 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/WindowActivated.aiff" ;; nice sounding soft beep
+		;; 🛎🔔📯
+		:Focus2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Focus2.aiff" ;; high-pitched click
+		:beep "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/WindowActivated.aiff" ;; nice sounding soft beep
+		:morse "afplay /System/Library/Sounds/morse.aiff" ;; don't really like this 1 as much...
+		:pop "afplay /System/Library/Sounds/Pop.aiff"
+		:tink "afplay /System/Library/Sounds/Tink.aiff"	
 		:soundOn "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
 		:soundOff "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		;; :gokurl "goku" ;; trying to add load goku
@@ -67,13 +73,13 @@
 		:x& {:key :x}
 		:y& {:key :y}
 		:z& {:key :z}
-		:equal_sign& {:key :equal_sign}
-		;; :backslash& {:key :backslash}
-		:slash& {:key :slash}
-		:period& {:key :period}
-		:return& {:key :return_or_enter}
-		:quote& {:key :quote}
 		:1& {:key :1}
+		:equal_sign& {:key :equal_sign}
+		:quote& {:key :quote}
+		:return& {:key :return_or_enter}
+		:period& {:key :period}
+		:slash& {:key :slash}
+		;; :backslash& {:key :backslash}
 		}
 
 ;;+ MAIN ============================================================
@@ -99,68 +105,25 @@
 		[:8 :!TOCf18] ;;• \+t slidepad loustodos via
 		[:d :!TOCf18] ;;• \+8 slidepad loustodos via
 
-		]}
-;;• Rare Key Mode ==================================================
-;; USAGE: 
-	;; jkl ON sdf OFF toggles in-rkm variable to = 1 (set in Simultanous section )
-	;; there is a line in :layers for rare-key-mode :key backslash :condi... disabled and not sure how it works
-	;;  backlash& is currently disabled but backslash mode is mode (:layer)
-
-{:des "sdf to turn rkm on":rules [
-	;; [[:s :d :f] ["in-rkm" 1]]
-	[[:s :d :f] ["in-rkm" 0] ["in-rkm" 1] ]
-	]}
-{:des "sdf to toggle rkm":rules [
-	[[:s :d :f] ["in-rkm" 1] ["in-rkm" 0] ]
-	[[:j :k :l] ["in-rkm" 0]]
-	[:1 :help ["in-rkm" 1] ] ; worked
-
-]}
-
-
-;; rare-key-mode is a disabled :layer 
-	{:des "rare-key-mode"
-	  :rules [:rare-key-mode
-			[:##1 :help] ; worked
-			[:##2 :application] ; is context menu it seems
-			[:##3 :print_screen,]
-			[:##4 :f14]
-			[:##5 :f15]
-			[:##6 :f16]
-			[:##7 :f17]
-			[:##8 :f18]
-			[:##8 :f19]
-			[:##0 :f20]
-			[:##comma :keypad_comma]
-			[:##period :keypad_period]
-			[:##equal_sign :keypad_equal_sign]
-			[:##hyphen :keypad_hyphen]
-			[:##slash :keypad_slash]
-			[:##p :keypad_plus]
-			[:##return_or_enter :keypad_enter]
-			[:##i :insert]
-			;; ❌ didn't work: find, 
-
-			;; [:!Sspacebar :!Shyphen] ;;- left_shift+spacebar for underscore "_"
-			;; [:!Rright_control :hyphen] [:!Sright_control :!Shyphen] ;;- UHK compatability
+		[:!TCw [:tink]]
 		]}
 
-
-	 ;;* double press ⌘+q to quit to prevent accidental
+	;;* double press ⌘+q to quit to prevent accidental
 		{:des "double press ⌘+q to quit,  " :rules[ [:!C#Pq [ :!Cq ["⌘q" 0]] ["⌘q" 1]] [:!C#Pq ["⌘q" 1] nil {:delayed {:invoked ["⌘q" 0] :canceled ["⌘q" 0]}}] ]}
 	
-	{:des "⇧+␣ for underscore/dash":rules[
+ 	;;* left_shift+spacebar for underscore/dash and right_control+spacebar for hyphen 
+		{:des "⇧+␣ for underscore/dash":rules[
 		[:!Rspacebar :hyphen] ;;- right_shift+spacebar for hyphen "-" (aka dash)
 		[:!Sspacebar :!Shyphen] ;;- left_shift+spacebar for underscore "_"
+    	;; NOTE on UHK spacebar key is split and the right spacebar key is mapped to right_control in UHK agent for "reason"
 		[:!Rright_control :hyphen] [:!Sright_control :!Shyphen] ;;- UHK compatability
 			;; TODO add device filter
-			;; NOTE on UHK spacebar key is split and the right spacebar key is mapped to right_control in UHK agent for "reason"
+                                     			 
 		]}
 
 ;;• SlMULTANEOUS KEY RULES ==============================================
 	{:des "Simultaneous Keys":rules [
-
-	;; see purged code here vscode://file/Users/loudog/vaults/obs-git-config/config.files/karabiner/2024-08 purging.md:34
+	;; see purged code here vscode://file/Users/loudog/vaults/obs-git-config/config.files/karabiner/2024-08 purging.md:34 
 	[ [:n :v] [:km "nvUltra: Activate"] ] ;;* km activate Keyboard Maestro
 	[ [:k :m] [:km "Activate Keyboard Maestro"] ] ;;* km activate Keyboard Maestro
 	[ [:o :b :s]  [:open "obsidian://advanced-uri?vault=reference-vault&commandid=obsidian-global-hotkeys%253Ashow"] ] ;;* [obs] for Show Obsidian (via command URI)
@@ -502,7 +465,7 @@
 			[:spacebar :!CSOspacebar] ;;• k+spacebar for to Trigger Macro by Name (via hotkey) 👈 this is faster than triggering by km: alias
 			
 	
-			[:b :!STCk ]  ;;* k+bdii for Helping Friendly Database NEW keysmith!!!
+			;; [:b :!STCk ]  ;;* k+bdii for Helping Friendly Database NEW keysmith!!!
 	
 			;;• k+left-⌘ "Trigger Macro by Name" km alias - 🔴 SLOW ❗ 
 			[:left_gui [:km "Trigger Macro by Name"]] ;;• by km alias
@@ -521,8 +484,8 @@
 			;; 🐿 KY STUFF: l for roam log, d for dashboard)
 			[:y [:open "https://roamresearch.com/#/app/myoldkyhome"]] ;;• k+y for 🐿📓 KY House Log
 			[:d [:open "https://www.notion.so/my-old-ky-home/My-Old-Kentucky-Notion-c9ffb2a6aa6540e1b3e80a34e5db2d72?p=226804d32b084480a53b9c5ec4bde45f&showMoveTo=true)"]] ;;• k+d for ky house dashboard Notion
-			[:l [:open "https://roamresearch.com/#/app/myoldkyhome)"]] ;;• k+l for 🐿📓 KY House Log
-			[:g [:open "https://roamresearch.com/#/app/thfkg)"]] ;;• k+l for 🐿📓 KY House Log
+			[:l [:open "https://roamresearch.com/#/app/myoldkyhome)"]] ;;• k+l ky house log roam graph
+			[:g [:open "https://roamresearch.com/#/app/thfkg"]] ;;• k+g for 🐿📓 KY House Log
 			[:w [:open "kmtrigger://macro=08A820FF-1597-4884-A501-F57DF15D43D8"]] ;;• k+w for 🐿🧰 KY Workbench via marked
 			[:j [:open "https://www.notion.so/my-old-ky-lakehouse/JOURNAL-666e38a11fc04a48b9893fc57bbd2c5e"]] ;;• k+j for 📓 KY RUNNING JOURNAL (Notion)
 		
@@ -746,6 +709,8 @@
 		[:equal_sign [:open "raycast://extensions/maggie/todo-list/index"] ] ;;• t+= for raycast todo-list via raycasut URL
 		;; [:return_or_enter [:open "raycast://extensions/maggie/todo-list/index"] ] ;;• t+= for open raycast todo-list
 		;; raycastbtt://trigger_named/?trigger_name=clickMenu ;; todo-list menubar
+	
+		[:r [:soundOn]] ;;• TEST  t+r for test rule (🔈 worked) 🔉🔊🛎🔔📢📯
 	]}
 ;;============================ U MODE ==============================
 ;;TODO ⭕ lot of potential here because not used up...
@@ -920,7 +885,7 @@
 	 	[:n [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]] ] ;;• /+n for Search Notion via raycast
 		[:8 [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+d to search Dynalist (via km)
 		[:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/logsearch"]] ] ;;• /+l to search logdeq (via Raycast)
-		[:left_gui [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+left_gui to seek Superkey
+		;; [:left_gui [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+left_gui to seek Superkey
 		
 		;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search "]] ] ;;• /+r to search Roam notes vvis raycast 
 		;; kmtrigger://macro=Dynalist%3A%20Search
