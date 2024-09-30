@@ -1,6 +1,7 @@
 ;; karabiner.edn 1.0 2024-09-24
 ;; 📓 LOG/NOTES =====================================================
 		;; ✔ 2024-09-25 g+k to run goku (used :run)
+		;; 2024-09-27 [ ] fixing k+e,
 
 { ;;+ DEFINITIONS =================================================== for templates (aliases for frequently used CLI strings), layers, simlayers
 	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
@@ -477,7 +478,8 @@
 			[:right_gui [:open "kmtrigger://macro=791BDFF3-638B-4201-BDED-4D457748A972"]] ;;• select macro 
 			[:p :!SOCp]  ;;• k+p for kyper (Keyboard Maestro app conflict palette) (via ⇧⌥⌘+p)
 	
-			[:e [:km "picklist config-files"]] ;;• k+e pick config-files #✨ updated 2024-08-23
+			[:e [:km "edit karabiner config"]] ;;• k+e pick config-files #✨ updated 2024-08-23
+			;; [:e [:km "picklist config-files"]] ;;• k+e pick config-files #✨ updated 2024-08-23
 			;; [:v [:km "Activate Karabiner EventViewer"]] ;;• k+v for "Activate Karabiner EventViewer" #purge
 		
 
