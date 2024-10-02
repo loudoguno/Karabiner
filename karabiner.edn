@@ -107,24 +107,24 @@
 
 
 
-;;• 1& mode ==================================================
+;;• 1& mode SUPERSECTION==================================================
 	{:des "1&":rules [:1&
 	[:p :!OSTp] ;;• 1passp1sword
 	]}
 
-;;• grave mode ==================================================
+;;• grave mode SUPERSECTION==================================================
 	{:des "grave-mode":rules [:grave-mode
 	[:1 :f11] ;;• `+1
 	]}
-;;• quote mode ==================================================
+;;• quote mode SUPERSECTION==================================================
 	{:des "quote-mode for wrapper things":rules [:quote-mode
 	[:#TCw [:km "common command"]] ;;• Open in New Window
 	
 	
 	]} 
-;;• backslash mode ==================================================
-	
+;;• backslash mode SUPERSECTION==================================================
 	{:des "backslash-mode":rules [:backslash-mode
+		
 		;; [:!Rright_control :hyphen] [:!Sright_control :!Shyphen] ;;- UHK compatability
 		[:l :!TOCf11] ;;• \+l slidepad lousgreenhouse via 
 		[:1 :!TOCf11] ;;• \+1 slidepad lousgreenhouse via 
@@ -143,9 +143,7 @@
 		[:8 :!TOCf18] ;;• \+t slidepad loustodos via
 		[:d :!TOCf18] ;;• \+8 slidepad loustodos via
 		
-
 		[:!TCw [:tink]]
-	
 		[:!Ca [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ;;• \+ slidepad loustodos via
 
 		]}
@@ -905,7 +903,6 @@
 	[:r [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ;;• return+r for raycast reminders
 	;; [:slash [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]] ;;• r+= raycast my reminders
 
-
 	]}
 	    ;; !  | means mandatory
     ;; #  | means optional
@@ -942,18 +939,18 @@
 		
 
 		;;• Notion
-		;; https://notion.new
-		;; raycast://extensions/reckoning-dev/search-notion/commandSearchNotion 
-		;; raycast://extensions/notion/notion/quick-capture
-		;; raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D
+		;; 
+		;; 
+		;
+		;;
 	 	
 		[:n [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n for Search Notion via raycast
 		[:#Cn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
-		[:#Sn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
-		[:#Tn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
-		[:#On [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page  
+		[:#Sn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+		[:#Tn [[:SPKR3] [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
+		[:#On [[:SPKR3] [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page  
 
-		[:#SCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page 
+		[:#SCn [[:SPKR3] [:open "raycast://extensions/reckoning-dev/search-notion/commandSearchNotion "]]] ;;• /+⌘n create Notion database page 
 		[:#TCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
 		[:#OCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
 		[:#TOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
@@ -968,7 +965,7 @@
 
 		[:#Qm [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
 		[:#RScomma [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
-				
+
 
 				
 
