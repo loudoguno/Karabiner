@@ -2,6 +2,22 @@
 ;; 📓 LOG/NOTES =====================================================
 		;; ✔ 2024-09-25 g+k to run goku (used :run)
 		;; 2024-09-27 [ ] fixing k+e,
+    ;; here's the definition
+
+    ;; !  | means mandatory
+    ;; #  | means optional
+    ;; C  | left_command
+    ;; T  | left_control
+    ;; O  | left_option
+    ;; S  | left_shift
+    ;; F  | fn
+    ;; Q  | right_command
+    ;; W  | right_control
+    ;; E  | right_option
+    ;; R  | right_shift
+    ;; P  | caps_lock
+    ;; !! | mandatory command + control + optional + shift (hyper)
+    ;; ## | optional any
 
 { ;;+ DEFINITIONS =================================================== for templates (aliases for frequently used CLI strings), layers, simlayers
 	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
@@ -43,7 +59,11 @@
 		:numrow-mode {:key :f20}
 		:symrow-mode {:key :f20}
 		:backslash-mode {:key :backslash}
+		:quote-mode {:key :quote}
 		;; :rare-key-mode {:key :backslash :condi ["in-rkm" 1]}
+		:grave-mode {:key :grave_accent_and_tilde}
+		:slash& {:key :slash}
+		
 		}
 
 	:simlayers { ;;=........................................................................................................................advanced layers that act as vairables
@@ -76,17 +96,34 @@
 		:z& {:key :z}
 		:1& {:key :1}
 		:equal_sign& {:key :equal_sign}
-		:quote& {:key :quote}
+		
 		:return& {:key :return_or_enter}
 		:period& {:key :period}
-		:slash& {:key :slash}
 		;; :backslash& {:key :backslash}
 		}
 
 ;;+ MAIN ============================================================
 :main [ ;;+ =========================================================
 
+
+
+;;• 1& mode ==================================================
+	{:des "1&":rules [:1&
+	[:p :!OSTp] ;;• 1passp1sword
+	]}
+
+;;• grave mode ==================================================
+	{:des "grave-mode":rules [:grave-mode
+	[:1 :f11] ;;• `+1
+	]}
+;;• quote mode ==================================================
+	{:des "quote-mode for wrapper things":rules [:quote-mode
+	[:#TCw [:km "common command"]] ;;• Open in New Window
+	
+	
+	]} 
 ;;• backslash mode ==================================================
+	
 	{:des "backslash-mode":rules [:backslash-mode
 		;; [:!Rright_control :hyphen] [:!Sright_control :!Shyphen] ;;- UHK compatability
 		[:l :!TOCf11] ;;• \+l slidepad lousgreenhouse via 
@@ -105,8 +142,12 @@
 		[:7 :!TOCf17] ;;• \+7 slidepad loustodos via
 		[:8 :!TOCf18] ;;• \+t slidepad loustodos via
 		[:d :!TOCf18] ;;• \+8 slidepad loustodos via
+		
 
 		[:!TCw [:tink]]
+	
+		[:!Ca [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ;;• \+ slidepad loustodos via
+
 		]}
 
 	;;* double press ⌘+q to quit to prevent accidental
@@ -148,26 +189,9 @@
 	;;TODO fn is used with Contexts for quick witching
 	{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
 	[:##semicolon :##fn nil {:alone :semicolon}] ]}
-	;; {:des "Semicolon as right_option" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
-	;; [:##semicolon :##right_option nil {:alone :semicolon}] ]}
-	;; {:des "Semicolon as Menu key" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
-	;; [:##semicolon :##menu nil {:alone :semicolon}] ]}
-	;; {:des "Semicolon as F16 key" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
-	;; [:##semicolon :##caps_lock nil {:alone :semicolon}] ]}
-	
-	;; {:des "open_bracket as right option..." :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
-	;; [:##open_bracket :##right_option nil {:alone :open_bracket}] ]}
-	;; {:des "open_bracket as capslock..." :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
-	;; [:#]#open_bracket :##caps_loc[[[[[k nil {:alone :open_bracket}] ]}
 	
 	{:des "FN from UHK" :rules [[:#SOCTf24 :fn [:uhk] ]]} ;;* UHK FN as mac fn via UHK hardcoded f24 > fn in KE but only for uhk
 	{:des "FN from UHK 2" :rules [[:#SOCTf24 :fn [:uhk-2] ]]} ;;* for V2
-
-	;; {:des "Tab as :right_option" :rules [ [:condi :!space-mode :!Rctrl-mode :!f&] ;! got it to stop sending fn
-		;; [:##tab :caps_lock nil {:alone :tab} ] ] }
-
-	;; {:des "left arrow key as as (left) control (for emacs)" :rules [ [:condi :!space-mode :!Rctrl-mode :!f&] ;✨ changed from quate to left_arrow
-	;; [:##left_arrow :##left_control nil {:alone :left_arrow} ] ] }
 
 
 ;;=========================== SPACE MODE ============================ bread and butter space + all sorts of awesome things
@@ -228,6 +252,8 @@
 		;; [:!Treturn_or_enter [[:SPKR3] [:btt "Show Context Menu for Selected Item"]]] ;;• ⌃+return for context menu #??? did i add this before new Seqoia 
 		;; [:!Treturn_or_enter [[:SPKR3] :insert]] ;;• ⌃+return for context menu
 		;; [:m [[:SPKR3] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
+
+	
 
 	]}
 ;;============================ logitech MOUSEPAD MODE ======================
@@ -295,6 +321,11 @@
 			[:period [[:SPKR3] :!STOperiod]] ;;• c+period for Switch Active Workspace Right (via System Hotkeys
 
 	[:s [:km "picklist cheatsheet"] ] ;;• c+s to for cheatsheet picklist
+	
+	[:1 [:km "copy clipboard 1"] ] ;;• c+1 copy to clipboard 1
+	[:2 [:km "copy clipboard 2"] ] ;;• c+2 copy to clipboard 2
+	[:3 [:km "copy clipboard 3"] ] ;;• c+3 copy to clipboard 3
+
 	]}
 ;;============================ D MODE ==============================
 	{:des "d-mode for d things" :rules [ :d& ;;================================== D MODE
@@ -577,6 +608,9 @@
 	[:l [:km "picklist master"] ] ;;•
 	[:w [[:SPKR3] [:km "Activate 1Password"] ]] ;;• p+w for search 1password... ;; edited12/05/23 > edited 3/15/24  
 
+	[:1 :!OSTp] ;;• 1passsword
+
+
 	]}
 ;;============================ Q MODE ============================= ;;
 	{:des "q-mode" :rules [ :q&
@@ -726,6 +760,11 @@
 ;;============================ V MODE ==============================
 	{	:des "v-mode for..." :rules [ :v& ;;* ––––––––––––––––––––––––––––––––––––––––-
 
+	[:1 [:km "paste clipboard 1"] ] ;;• c+1 paste to clipboard 1
+	[:2 [:km "paste clipboard 2"] ] ;;• c+2 paste to clipboard 2
+	[:3 [:km "paste clipboard 3"] ] ;;• c+3 paste to clipboard 3
+
+
 	;;* New Vault Commends (REFERENCE Vault) 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟
 	[:p [[:SPKR3] [:open "raycast://confetti"]]]  ;;• v+p AVAILABLE
 	[:spacebar [[:SPKR3] [:km "Clipboard: Paste by Name"]]]  ;;• v+spacebar for Clipboard: Paste by Name
@@ -868,6 +907,20 @@
 
 
 	]}
+	    ;; !  | means mandatory
+    ;; #  | means optional
+    ;; C  | left_command
+    ;; T  | left_control
+    ;; O  | left_option
+    ;; S  | left_shift
+    ;; F  | fn
+    ;; Q  | right_command
+    ;; W  | right_control
+    ;; E  | right_option
+    ;; R  | right_shift
+    ;; P  | caps_lock
+    ;; !! | mandatory command + control + optional + shift (hyper)
+    ;; ## | optional any
 ;;============================ (FORWARD) SLASH MODE ==========================
 		{	:des "slash-mode  for..." :rules [
 		:slash& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -884,7 +937,41 @@
 	 	[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam notes vvis raycast 
 		[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/searchNoteCommand"]] ] ;;• /+o to search obsidian via searchnote command (raycast)
 		[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/index"]] ] ;;• /+b to search Bear (raycast)
-	 	[:n [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]] ] ;;• /+n for Search Notion via raycast
+	 	
+		;;• Roam
+		
+
+		;;• Notion
+		;; https://notion.new
+		;; raycast://extensions/reckoning-dev/search-notion/commandSearchNotion 
+		;; raycast://extensions/notion/notion/quick-capture
+		;; raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D
+	 	
+		[:n [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n for Search Notion via raycast
+		[:#Cn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+		[:#Sn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+		[:#Tn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+		[:#On [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page  
+
+		[:#SCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page 
+		[:#TCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#OCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#TOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#STn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#SOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#SCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+
+		[:#SOCn [[:SPKR3] [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
+		[:#TOCn [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n create Notion database page
+		[:#STOn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+		[:#STCn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+
+		[:#Qm [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+		[:#RScomma [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+				
+
+				
+
 		[:8 [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+d to search Dynalist (via km)
 		[:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/logsearch"]] ] ;;• /+l to search logdeq (via Raycast)
 		;; [:left_gui [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+left_gui to seek Superkey
