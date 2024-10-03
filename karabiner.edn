@@ -3,33 +3,31 @@
 		;; ✔ 2024-09-25 g+k to run goku (used :run)
 		;; 2024-09-27 [ ] fixing k+e,
     ;; here's the definition
-
-    ;; !  | means mandatory
-    ;; #  | means optional
-    ;; C  | left_command
-    ;; T  | left_control
-    ;; O  | left_option
-    ;; S  | left_shift
-    ;; F  | fn
-    ;; Q  | right_command
-    ;; W  | right_control
-    ;; E  | right_option
-    ;; R  | right_shift
-    ;; P  | caps_lock
-    ;; !! | mandatory command + control + optional + shift (hyper)
-    ;; ## | optional any
+;; REFERENCE
+	    ;; ! mandatory, # optional
+    ;;• S  | left_shift
+    ;;• C | left_command
+    ;;• T | left_control
+	;;• O  | left_option
+    ;;• F  | fn
+    ;;• Q  | right_command
+	;;• W  | right_control
+    ;;• E  | right_option
+	;;• R  | right_shift
+    ;;• P  | caps_lock
+    ;;• "!" mandatory command + control + optional + shift (hyper)
 
 { ;;+ DEFINITIONS =================================================== for templates (aliases for frequently used CLI strings), layers, simlayers
 	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
 		:run "%s"
-		:open "open \"%s\"" ; open filef j
+		:open "open \"%s\"" ; open file
 		:wait "sleep 250" ; pause 250 ms
 		:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
 		:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
 		:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
 		:ray "open \"raycast://extensions/raycast/%s\""	
 
-		;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
+	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		:SPKR1 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
 		:SPKR2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
@@ -935,12 +933,13 @@
 		[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/searchNoteCommand"]] ] ;;• /+o to search obsidian via searchnote command (raycast)
 		[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/index"]] ] ;;• /+b to search Bear (raycast)
 	 	
-		;;• Roam
-		
-
-		;;• Notion
+		;;• Roam Commands
+		;;• Bear
+		;;• Obsidian
+		;;• APN
+		;;• Notion Commands
 		;; 
-		;; 
+		;; 	
 		;
 		;;
 	 	
