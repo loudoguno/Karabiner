@@ -37,7 +37,7 @@
 		}
 
 	:layers { ;;=............................................................................................................................. basic layers like spacemode
-		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD]} ; prevents space mode from overiding F and D modes
+		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!quote-mode :!slash-mode :!period-mode :!return-mode]} ; prevents space mode from overiding F and D modes 
 		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}
 		; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
 		
@@ -46,19 +46,19 @@
 		:symrow-mode {:key :f20}
 		
 	;;* Supermodes
-		:grave-mode {:key :grave_accent_and_tilde}
-		:1& {:key :1}
+		:grave-mode {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		;; :1& {:key :1}
 		;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
-		:backslash-mode {:key :backslash}
-		:quote-mode {:key :quote}
-		:slash& {:key :slash}
-		:equal_sign& {:key :equal_sign}
-		:return& {:key :return_or_enter}
+		:backslash-mode {:key :backslash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		:quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		:slash-mode {:key :slash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		:equal_sign& {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		:return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode :!space-mode]}
+		:period-mode {:key :period :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
 		}
 
 	:simlayers { ;;=........................................................................................................................advanced layers that act as vairables
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
-		:period& {:key :period}
 		:a& {:key :a}
 		:b& {:key :b}
 		:c& {:key :c}
@@ -106,14 +106,35 @@
 
 ;;• 1 supermode ==================================================
 	{:des "1&":rules [:1&
-	[:p :!OSTp] ;;• 1password Quick Access
-	[:!Cp :!STCp] ;;• 1password Quick Access;
+	[:p :!OSTp] ;;• 1+p for 1password Quick Access
+	[:!Cp :!STCp] ;;• 1+⌘p for 1password Quick Access;
 	;; 1Password Autofill 
 	]}
 
 ;;• grave supermode ===============================================
-	{:des "grave-mode":rules [:grave-mode
-	[:1 :f11] ;;• `+1
+;;! ❗ issue bc doesn't seem to be working
+	{:des "grave-mode":rules[:grave-mode
+	
+		[:spacebar [[:🛎] :!TOCf11]] ;;• grave+1 slidepad 1
+		[:backslash [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+1 slidepad 1
+		;; [:q [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+q 
+		[:1 [[:🛎] :!TOCf11]] ;;• grave+1 slidepad 1
+		[:2 [[:🛎] :!TOCf12]] ;;• grave+2 slidepad 2
+		[:3 [[:🛎] :!TOCf13]] ;;• grave+3 slidepad 3
+		[:4 [[:🛎] :!TOCf14]] ;;• grave+4 slidepad 4
+		[:5 [[:🛎] :!TOCf15]] ;;• grave+5 slidepad 5
+	;;  STARTED trying to fix return+spacebar not activating bartender
+	[:d [[:🛎] :!COTS4]] ;;• grave+6 Drafts Quick Capture
+	[:!Cd [[:🛎] :!COTS5]] ;;• grave+7` slidepad 7
+	
+	[:s [[:🛎] :!COSs]] ;;• grave+7` Sidenotes7
+	
+	;; [:8 [[:🛎] :!TOCf18]] ;;• grave+8 slidepad 8
+	;; [:9 [[:🛎] :!TOCf19]] ;;• grave+9 slidepad 9
+	;; [:10 [[:🛎] :!TOCf20]] ;;• grave+10 slidepad 10
+	;; [:11 [[:🛎] :!TOCf21]] ;;• grave+11 slidepad 11\
+
+	 
 	]}
 ;;• quote supermode==================================================
 	{:des "quote-mode for wrapper things":rules [:quote-mode
@@ -845,7 +866,7 @@
 
 ;;========================= PERIOD MODE ===========================
 	{:des " period-mode for typinator and autocomplete":rules [
-    :period& ;;• –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+    :period-mode ;;• –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 		[:left_shift [[:SPKR3] :!SCTt] ] ;;• period+spacebar for Typinator Quick Search (via ⌃⇧⌘+T hotkey set in app pref.)
 		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
 	]}
@@ -893,9 +914,16 @@
 ]}
 
 ;;========================== RETURN MODE ==========================
-{	:des "return-mode for..." :rules [:return& ;;* return mode as "new" complimaent to /-mode search. if it exists in / it should have a counter part. 
+{	:des "return-mode for..." :rules [:return-mode
 		[:delete_or_backspace :!Tdelete_or_backspace] ;;• return+delete for dismiss notification (via ⌃↩) 💡  could also just use ⭕to purge
 		[:spacebar [[:SPKR3] :!COSTreturn_or_enter]] ;;• return+spacebar for focus menubard (via bartender hotkey)
+
+	[:!SCc [[:🛎] [:open "raycast://confetti"]]]
+	
+	
+	;; [:t [:km "Master.Taskpaper"]]
+	[:t [:km "Master.Taskpaper"]]
+	[:g [:km "Master.Taskpaper"]]
 
 	;;* Menubar
 	[:r [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ;;• return+r for raycast reminders
@@ -905,7 +933,7 @@
 
 ;;============================ (FORWARD) SLASH MODE ==========================
 		{	:des "slash-mode  for..." :rules [
-		:slash& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+		:slash-mode ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
 		;; [:spacebar [:!CSslash [:SPKR3]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
 		;; [:spacebar [:open "kmtrigger://macro=F02A9897-43EA-42E6-89DD-33644529F73A"] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
@@ -923,8 +951,9 @@
 		;;• Roam and Reminders commands
 		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam 🟢
 		[:!Cr [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• /+r to capture to Roam 🟢
-		[:#Sn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
-		[:#Tn [[:SPKR3] [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
+		[:#Sr [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+		[:#Tr [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]]] ;;• /+⌘n create Notion database page 
+		[:#TCr [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]]] ;;• /+⌘n create Notion database page 
 
 
 		;;• Bear
@@ -983,25 +1012,26 @@
 			:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
 			;; TODO add other gaming mouse, 
 			;;? i wonder if you can filter for universal control and fix some of those problems
+
 			}
+;;* APPLICATIONS
 	:applications {
-		;;template ["^com\\.app\\.name$"]
-		;; add Sidenotes, menubar X, tot...
-		
-		;; overlays
 		;; :vscode
-						;; ["^com\\.app\\.name$"]
+					;; ["^com\\.app\\.name$"]
 		:draftsApp     ["^com\\.agilet ortoise\\.Drafts\\-OSX"]
 		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"]
 		:slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
 		:dynalist      ["^io\\.dynalist$"]
-		:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
-		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
 		:Finder        ["^com\\.apple\\.finder$"]
+;; ------------- groups
+		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
 		:Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
 		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
+		:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
 		}
-	:input-sources {
+	
+	
+:input-sources {
 		:squirrel {:input_mode_id   "com.googlecode.rimeime.inputmethod.Squirrel"
 					:input_source_id "com.googlecode.rimeime.inputmethod.Squirrel.Rime"
 					:language        "zh-Hans"}
