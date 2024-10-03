@@ -89,10 +89,18 @@
 
 :main [
 
+;;* App Filtering ====================
+;; {:des "app-mode":rules[[condi :appname]
+;; [:#Cj [:open "something"]]
+;; ]}
+;; {:des "bear-mode":rules[[condi :Bear]
+;; [:#Cj [:open "something"]]
+;; ]}
+
 {:des "drafts-mode":rules[
-	;; [:condi :draftsApp]
+	[:condi :draftsApp]
 	[:condi :drafts]
-	;; [:!TCw [:open "raycast://confetti"]] ;;• /+q to Search Quick Links via Raycast
+	[:!TCw [:open "raycast://confetti"]] ;;• /+q to Search Quick Links via Raycast
 	[:!TCw [:km "© Open in New Window"]] ;;• /+q to Search Quick Links via Raycast
 	]}
 
@@ -100,8 +108,8 @@
 	[:condi :Browsers]
 	;; [:c [:open "raycast://confetti"]]
 	;; [:!TCw [ ] ;;• /+q to Search Quick Links via Raycast
-	;; ]}
-]}
+	]}
+;; ]}
 
 
 ;;• 1 supermode ==================================================
@@ -125,7 +133,7 @@
 		[:5 [[:🛎] :!TOCf15]] ;;• grave+5 slidepad 5
 	;;  STARTED trying to fix return+spacebar not activating bartender
 	[:d [[:🛎] :!COTS4]] ;;• grave+6 Drafts Quick Capture
-	[:!Cd [[:🛎] :!COTS5]] ;;• grave+7` slidepad 7
+	[:!Cd [[:🛎] :!COTS5]] ;; • grave+7` slidepad 7
 	
 	[:s [[:🛎] :!COSs]] ;;• grave+7` Sidenotes7
 	
@@ -555,7 +563,7 @@
 		;; PURGE
 			;; [:q [ [:open "kmtrigger://macro=1E23BF77-ADC0-43F1-97E3-66F279C05769"]] ] ;;• l+q for log Bear Queit
 			;; [:s [:km "bear-log: show work log" ]] ;;• l+s Bear Log: show work log
-			;; bear://x-callback-url/open-note?id=FF34A15D-4C43-4C77-AE5A-94A06A96D831&header=TODAY&new_window=yes&selected=no&float=yes&show_window=no&open_note=yes&edit=yes
+			;; bear://x-callback-url/oden-note?id=FF34A15D-4C43-4C77-AE5A-94A06A96D831&header=TODAY&new_window=yes&selected=no&float=yes&show_window=no&open_note=yes&edit=yes
 		;; ;; logs master to reference vault 
 		;; [:m [ [:SPKR3] [:open "obsidian://advanced-uri?vault=reference-vault&commandid=quickadd%253Achoice%253Ab01dce33-74de-4033-83ff-83667640f864"] ] ] ;;• l+m to Log Master Queitly in Obsidian (via QuickAdd) 🔰 new 8/21/23
 		;; [:w [ :!TOCSm [:open "kmtrigger://macro=A21AB772-13F5-4E8E-B059-904CD6ED747B"] ]] ;;• l+w 🧰 vault-log: Append to Workbench #core💠
@@ -836,6 +844,7 @@
 		[:slash [:open "kmtrigger://macro=49079F6C-B88F-4F5C-A1D1-0C7F48F6A19A"] ] ;;• w+d for log obsidian daily workbench
 		[:quote [:open "kmtrigger://macro=E94D0898-7C54-4723-BFB6-43B7E2B10283"] ] ;;• w+d for log obsidian daily workbench
 		
+		[:tab [:open "btt://trigger_named/?trigger_name=Activate Previous Window"] ] ;;• w+tab for previous window via BTT
 
 	]}
 ;;============================ X MODE ============================
@@ -997,7 +1006,13 @@
 		;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search "]] ] ;;• /+r to search Roam notes vvis raycast 
 		;; kmtrigger://macro=Dynalist%3A%20Search
 
-	
+	[:#SCh [[:SPKR3] [:open "file:///Users/loudog/"]]] ;;• /+⌘n create Notion database page 
+	[:#SCd [[:SPKR3] [:open "file:///Users/loudog/Desktop"]]] ;;• /+⌘n create Notion database page 
+	[:#SCa [[:SPKR3] [:open "file:///Users/loudog/Applications"]]] ;;• /+⌘n create Notion database page
+	[:#SCs [[:SPKR3] [:open "file:///Users/loudog/Sync"]]] ;;• /+⌘n create Notion database page
+	[:#SCs [[:SPKR3] [:open "file:///Users/loudog/Sync"]]] ;;• /+⌘n create Notion database page
+
+
 
 	]}
 ;;============================ OTHER MODE ========================== ⭕ TODO [ ] \ /
@@ -1017,7 +1032,9 @@
 ;;* APPLICATIONS
 	:applications {
 		;; :vscode
-					;; ["^com\\.app\\.name$"]
+					
+		:bear ["^net\\.shinyfrog\\.bear"]
+		
 		:draftsApp     ["^com\\.agilet ortoise\\.Drafts\\-OSX"]
 		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"]
 		:slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
@@ -1046,35 +1063,3 @@
 
 }
 ;;*============================ END ===============================
-;;* protocol ======================================================
-;; ☰ new entry PROTOCOL:
-	;; add line with prepend date and description to change log
-	;; save, stage, commit with short&good description, push... be sure to pull next time opening up other mbp
-;;* boilerplate ======================================================
-;; working ke rule with sound template: [:KEYA [<KEYSEQUENCE> [: spea] [:km "MACRONAME"]]  ] ;;• COMMENT
-;; [:KeyA [[:SPKR2] [:alf "ALFREDWORKFLOWNAME" "BUNDLEID"]] ] ;;• KeyA+Keyb for WORKFLOW NAME via Alfred
-		;; [:INSERTKEY [[:SPKR3] [:open "INSERT_URL"]] ] ;;• slash+INSERTKEY for ✳️ NEW RULE TO COPY
-
-;; ℹ️ REFERENCE
-	;;• C T O S and Q W E R (KE modifier abreviations for reference)
-	;; :alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
-	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
-
-;; rule templates
-	;;* NEW simultaneous-pres rule
-	;; [ [:KeyA :KeyB :KeyC] [:open "URL"] ] ;;• KeyAKeyBKeyC simultaneously for TriggerCommand
-	;; ✨ TEMPLATE to maybe use: [:<INSERT 2nd key> [:km "<INSERT MACRO NAME>"]] ;;• <INSERT 1st key>+<INSERT 2nd key> for <INSERT MACRO NAME>
-	;; TODO add rule that uses variable, and others
-;; REFERENCE
-	;;• ! mandatory, # optional
-	;;• S  | left_shift
-	;;• C | left_command
-    ;;• T | left_control
-	;;• O  | left_option
-    ;;• F  | fni
-    ;;• Q  | right_command
-	;;• W  | right_control
-    ;;• E  | right_option
-	;;• R  | right_shift
-    ;;• P  | caps_lock
-    ;;• "!" mandatory command + control + optional + shift (hyper)
