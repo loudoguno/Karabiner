@@ -3,19 +3,6 @@
 		;; ✔ 2024-09-25 g+k to run goku (used :run)
 		;; 2024-09-27 [ ] fixing k+e,
     ;; here's the definition
-;; REFERENCE
-	    ;; ! mandatory, # optional
-    ;;• S  | left_shift
-    ;;• C | left_command
-    ;;• T | left_control
-	;;• O  | left_option
-    ;;• F  | fn
-    ;;• Q  | right_command
-	;;• W  | right_control
-    ;;• E  | right_option
-	;;• R  | right_shift
-    ;;• P  | caps_lock
-    ;;• "!" mandatory command + control + optional + shift (hyper)
 
 { ;;+ DEFINITIONS =================================================== for templates (aliases for frequently used CLI strings), layers, simlayers
 	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
@@ -50,22 +37,28 @@
 		}
 
 	:layers { ;;=............................................................................................................................. basic layers like spacemode
-		; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
 		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD]} ; prevents space mode from overiding F and D modes
 		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}
+		; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
+		
 		:numpad-mode {:key :f20} ;;? defined in layers and given symbolic key never used so can be triggered via setting variable in space mode
 		:numrow-mode {:key :f20}
 		:symrow-mode {:key :f20}
+		
+	;;* Supermodes
+		:grave-mode {:key :grave_accent_and_tilde}
+		:1& {:key :1}
+		;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
 		:backslash-mode {:key :backslash}
 		:quote-mode {:key :quote}
-		;; :rare-key-mode {:key :backslash :condi ["in-rkm" 1]}
-		:grave-mode {:key :grave_accent_and_tilde}
 		:slash& {:key :slash}
-		
+		:equal_sign& {:key :equal_sign}
+		:return& {:key :return_or_enter}
 		}
 
 	:simlayers { ;;=........................................................................................................................advanced layers that act as vairables
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
+		:period& {:key :period}
 		:a& {:key :a}
 		:b& {:key :b}
 		:c& {:key :c}
@@ -92,35 +85,42 @@
 		:x& {:key :x}
 		:y& {:key :y}
 		:z& {:key :z}
-		:1& {:key :1}
-		:equal_sign& {:key :equal_sign}
-		
-		:return& {:key :return_or_enter}
-		:period& {:key :period}
-		;; :backslash& {:key :backslash}
 		}
 
-;;+ MAIN ============================================================
-:main [ ;;+ =========================================================
+:main [
 
-
-
-;;• 1& mode SUPERSECTION==================================================
-	{:des "1&":rules [:1&
-	[:p :!OSTp] ;;• 1passp1sword
+{:des "drafts-mode":rules[
+	;; [:condi :draftsApp]
+	[:condi :drafts]
+	;; [:!TCw [:open "raycast://confetti"]] ;;• /+q to Search Quick Links via Raycast
+	[:!TCw [:km "© Open in New Window"]] ;;• /+q to Search Quick Links via Raycast
 	]}
 
-;;• grave mode SUPERSECTION==================================================
+{:des "browsers":rules[ ;; 👍 this works, so problem with above could be escaping the bundle id, KM issue, turned off confetty
+	[:condi :Browsers]
+	;; [:c [:open "raycast://confetti"]]
+	;; [:!TCw [ ] ;;• /+q to Search Quick Links via Raycast
+	;; ]}
+]}
+
+
+;;• 1 supermode ==================================================
+	{:des "1&":rules [:1&
+	[:p :!OSTp] ;;• 1password Quick Access
+	[:!Cp :!STCp] ;;• 1password Quick Access;
+	;; 1Password Autofill 
+	]}
+
+;;• grave supermode ===============================================
 	{:des "grave-mode":rules [:grave-mode
 	[:1 :f11] ;;• `+1
 	]}
-;;• quote mode SUPERSECTION==================================================
+;;• quote supermode==================================================
 	{:des "quote-mode for wrapper things":rules [:quote-mode
 	[:#TCw [:km "common command"]] ;;• Open in New Window
 	
-	
 	]} 
-;;• backslash mode SUPERSECTION==================================================
+;;• backslash supermode==================================================
 	{:des "backslash-mode":rules [:backslash-mode
 		
 		;; [:!Rright_control :hyphen] [:!Sright_control :!Shyphen] ;;- UHK compatability
@@ -631,8 +631,7 @@
 	[:o [:km "Go to Roam Greenhouse Lou"]] ;;• r+o Go to Roam Greenhouse Lou
 	;; [:XXX [:km "Deactivate Remote"]] ;;• r+XXX Deactivate Remote ⭕TODO
 
-
-		;;* Remote mode Palette
+	;;* Remote mode Palette
 			[:return_or_enter [:km "- Remote Modes Palette"]] ;;• r+return/enter for "- Remote Modes Palette"
 			[:y [:km "YouTube Remote"]] 		;;• y for YouTube Remote
 			[:x [:km "Deactivate Remote"]] 		;;• q for Deactivate Remote
@@ -843,6 +842,7 @@
 		[:n :vk_consumer_brightness_down] ;;• z+n for brightness down
 		;; [:m :mute] ;;• z+m for mute
 	]}
+
 ;;========================= PERIOD MODE ===========================
 	{:des " period-mode for typinator and autocomplete":rules [
     :period& ;;• –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -902,20 +902,7 @@
 	;; [:slash [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]] ;;• r+= raycast my reminders
 
 	]}
-	    ;; !  | means mandatory
-    ;; #  | means optional
-    ;; C  | left_command
-    ;; T  | left_control
-    ;; O  | left_option
-    ;; S  | left_shift
-    ;; F  | fn
-    ;; Q  | right_command
-    ;; W  | right_control
-    ;; E  | right_option
-    ;; R  | right_shift
-    ;; P  | caps_lock
-    ;; !! | mandatory command + control + optional + shift (hyper)
-    ;; ## | optional any
+
 ;;============================ (FORWARD) SLASH MODE ==========================
 		{	:des "slash-mode  for..." :rules [
 		:slash& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -924,7 +911,7 @@
 		;; [:spacebar [:open "kmtrigger://macro=F02A9897-43EA-42E6-89DD-33644529F73A"] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
 		;; [:spacebar [:km "/+spacebar for Help Menu"] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
 
-	 	[:h [[:S/gPKR3] [:open "alfred://runtrigger/com.alfredapp.hookbookmark/search-hookmark-bookmarks/"]] ] ;;• /+h to Search Hookmark Bookmarks (via Alfred worflow URL)
+	 	;; [:h [[:SPKR3] [:open "alfred://runtrigger/com.alfredapp.hookbookmark/search-hookmark-bookmarks/"]] ] ;;• /+h to Search Hookmark Bookmarks (via Alfred worflow URL)
 	 	
 		;; have Apple Notes Obsidian, Notion, Bear, 
 		[:q [[:SPKR3] [:open "raycast://extensions/raycast/raycast/search-quicklinks"]] ] ;;• /+q to Search Quick Links via Raycast
@@ -933,7 +920,13 @@
 		[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/searchNoteCommand"]] ] ;;• /+o to search obsidian via searchnote command (raycast)
 		[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/index"]] ] ;;• /+b to search Bear (raycast)
 	 	
-		;;• Roam Commands
+		;;• Roam and Reminders commands
+		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam 🟢
+		[:!Cr [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• /+r to capture to Roam 🟢
+		[:#Sn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+		[:#Tn [[:SPKR3] [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
+
+
 		;;• Bear
 		;;• Obsidian
 		;;• APN
@@ -975,7 +968,7 @@
 		;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search "]] ] ;;• /+r to search Roam notes vvis raycast 
 		;; kmtrigger://macro=Dynalist%3A%20Search
 
-
+	
 
 	]}
 ;;============================ OTHER MODE ========================== ⭕ TODO [ ] \ /
@@ -989,65 +982,69 @@
 			:uhk-2 [{:product_id 24868 :vendor_id 7504}]
 			:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
 			;; TODO add other gaming mouse, 
+			;;? i wonder if you can filter for universal control and fix some of those problems
 			}
 	:applications {
-		;; template  
-		;; drafts com.agiletortoise.Drafts-OSX
-		:dynalist ["^io\\.dynalist$"]
-		:Chromes      ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
+		;;template ["^com\\.app\\.name$"]
+		;; add Sidenotes, menubar X, tot...
+		
+		;; overlays
+		;; :vscode
+						;; ["^com\\.app\\.name$"]
+		:draftsApp     ["^com\\.agilet ortoise\\.Drafts\\-OSX"]
+		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"]
+		:slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
+		:dynalist      ["^io\\.dynalist$"]
+		:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
 		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
-		:Finder           ["^com\\.apple\\.finder$"]
-		:Debuggers   ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
+		:Finder        ["^com\\.apple\\.finder$"]
+		:Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
 		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
 		}
-		:input-sources {
-	 		:squirrel {:input_mode_id   "com.googlecode.rimeime.inputmethod.Squirrel"
-						:input_source_id "com.googlecode.rimeime.inputmethod.Squirrel.Rime"
-						:language        "zh-Hans"}
-			:us {:input_mode_id   ""
-					:input_source_id "com.apple.keylayout.US"
-					:language        "en"}
-			}
-;;*============================ END ===============================
-}
+	:input-sources {
+		:squirrel {:input_mode_id   "com.googlecode.rimeime.inputmethod.Squirrel"
+					:input_source_id "com.googlecode.rimeime.inputmethod.Squirrel.Rime"
+					:language        "zh-Hans"}
+		:us {:input_mode_id   ""
+				:input_source_id "com.apple.keylayout.US"
+				:language        "en"}
+		}
+;; * conditions 
+;; [{:des   "conditions" :rules [[:condi :us :hhkb]
+;;  [:l :!COi [:Browsers :z-mode]]]}]}
+;; text you'd put in the rules
 
+}
+;;*============================ END ===============================
 ;;* protocol ======================================================
 ;; ☰ new entry PROTOCOL:
 	;; add line with prepend date and description to change log
 	;; save, stage, commit with short&good description, push... be sure to pull next time opening up other mbp
-;;* templates ======================================================
-;; working ke rule with sound template: [:KEYA [<KEYSEQUENCE> [:SPKR3] [:km "MACRONAME"]]  ] ;;• COMMENT
+;;* boilerplate ======================================================
+;; working ke rule with sound template: [:KEYA [<KEYSEQUENCE> [: spea] [:km "MACRONAME"]]  ] ;;• COMMENT
 ;; [:KeyA [[:SPKR2] [:alf "ALFREDWORKFLOWNAME" "BUNDLEID"]] ] ;;• KeyA+Keyb for WORKFLOW NAME via Alfred
 		;; [:INSERTKEY [[:SPKR3] [:open "INSERT_URL"]] ] ;;• slash+INSERTKEY for ✳️ NEW RULE TO COPY
 
-;; find a home for 👇
-	;; [ [:d :s] [:km "Display (settings)"]] ;;* d+s for Display (settings) test
-	;; :open "osascript -e open \"%s\" "
 ;; ℹ️ REFERENCE
-	;; C T O S and Q W E R (KE modifier abreviations for reference)
+	;;• C T O S and Q W E R (KE modifier abreviations for reference)
 	;; :alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
 	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
 
-;; New Template TEMPLATE ()
-	;;✳️ NEW sim mode rule template
+;; rule templates
+	;;* NEW simultaneous-pres rule
 	;; [ [:KeyA :KeyB :KeyC] [:open "URL"] ] ;;• KeyAKeyBKeyC simultaneously for TriggerCommand
 	;; ✨ TEMPLATE to maybe use: [:<INSERT 2nd key> [:km "<INSERT MACRO NAME>"]] ;;• <INSERT 1st key>+<INSERT 2nd key> for <INSERT MACRO NAME>
-
-
-;; --- 🕰 HISTORY -----
-;; OLD: w+m wb menu| f+n floatnotes| j+p jump palette | j+d jump to daily 
-;;❌  fd to float log daily
-;; k+/ for ⌥⇧⌘+/ select menu
-;; a+d append to obsidian daily note
-;; d+0 for raycast Todo via raycast-todo-menuapp
-;; r+0 for raycast-reminders-menuapp
-
-;; `l+w` log workbench, `w+m` workbench menu, `f+n` float notes, `j+p` jump to palette, new palette
-;; a+d append to obsidian daily note, j+d Jump to Obs daily, (fj) hover log-daily,(jd) should be...
-;; /+r search Roam, /+e search Evernote, TODO /+o search,s
-;; k+/ select menu by name (via ⌥⇧⌘+/), k+p app conflict palette (via ⌥⇧⌘+p)
-;; d+0 RC manage Todos, r+0 rc reminders, return+...
-;; altx3 for km picklist now, FN*2 launchbar
-;; changed: vc to vs for visual studio code
-;; added rnm for Rename
-;; adding f+p for float palette
+	;; TODO add rule that uses variable, and others
+;; REFERENCE
+	;;• ! mandatory, # optional
+	;;• S  | left_shift
+	;;• C | left_command
+    ;;• T | left_control
+	;;• O  | left_option
+    ;;• F  | fni
+    ;;• Q  | right_command
+	;;• W  | right_control
+    ;;• E  | right_option
+	;;• R  | right_shift
+    ;;• P  | caps_lock
+    ;;• "!" mandatory command + control + optional + shift (hyper)
