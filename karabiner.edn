@@ -89,27 +89,6 @@
 
 :main [
 
-;;* App Filtering ====================
-;; {:des "app-mode":rules[[condi :appname]
-;; [:#Cj [:open "something"]]
-;; ]}
-;; {:des "bear-mode":rules[[condi :Bear]
-;; [:#Cj [:open "something"]]
-;; ]}
-
-{:des "drafts-mode":rules[
-	[:condi :draftsApp]
-	[:condi :drafts]
-	[:!TCw [:open "raycast://confetti"]] ;;• /+q to Search Quick Links via Raycast
-	[:!TCw [:km "© Open in New Window"]] ;;• /+q to Search Quick Links via Raycast
-	]}
-
-{:des "browsers":rules[ ;; 👍 this works, so problem with above could be escaping the bundle id, KM issue, turned off confetty
-	[:condi :Browsers]
-	;; [:c [:open "raycast://confetti"]]
-	;; [:!TCw [ ] ;;• /+q to Search Quick Links via Raycast
-	]}
-;; ]}
 
 
 ;;• 1 supermode ==================================================
@@ -1016,7 +995,39 @@
 
 	]}
 ;;============================ OTHER MODE ========================== ⭕ TODO [ ] \ /
-] ;;
+
+;;* App Filtering ====================
+;; ℹ️ app filtering notes:
+	;; application modes are defined with regex of the bundleID of the app
+	;; so far drafts-mode works
+
+
+;; {:des "app-mode":rules[[condi :appname]
+;; [:#Cj [:open "something"]]
+;; ]}
+;; {:des "bear-mode":rules[[condi :Bear]
+;; [:#Cj [:open "something"]]
+;; ]}
+
+{:des "drafts-mode":rules[
+	[:condi :draftsApp]
+	;; [:condi :drafts]
+	[:!TCw [:open "raycast://confetti"]] ;;• /+q to Search Quick Links via Raycast
+	[:!TCw [:km "© Open in New Window"]] ;;• /+q to Search Quick Links via Raycast
+	]}
+
+{:des "browsers":rules[ ;; 👍 this works, so problem with above could be escaping the bundle id, KM issue, turned off confetty
+	[:condi :Browsers]
+	;; [:c [:open "raycast://confetti"]]
+	;; [:!TCw [ ] ;;• /+q to Search Quick Links via Raycast
+	]}
+;; ]}
+
+] ;; CLOSES main
+
+
+
+
 :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
 	;! seems to create obsene delay on  on key up
 ;;* Devices, Applications and Input Sources  ==================================
@@ -1033,10 +1044,9 @@
 	:applications {
 		;; :vscode
 					
-		:bear ["^net\\.shinyfrog\\.bear"]
+		;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo
+		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"] ;; 👍 works
 		
-		:draftsApp     ["^com\\.agilet ortoise\\.Drafts\\-OSX"]
-		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"]
 		:slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
 		:dynalist      ["^io\\.dynalist$"]
 		:Finder        ["^com\\.apple\\.finder$"]
@@ -1063,3 +1073,5 @@
 
 }
 ;;*============================ END ===============================
+
+;; todo
