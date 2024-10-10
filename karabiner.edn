@@ -44,18 +44,17 @@
 
 	;;? LAYERS
 	:layers { ;;=............................................................................................................................. basic layers like spacemode
-		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!quote-mode :!slash-mode :!periodµ :!return-mode]} ; prevents space mode from overiding F and D modes 
+		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!periodµ :!return-mode]} ; prevents space mode from overiding F and D modes 
 		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
 	
-		:grave-mode {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
-		
-		:=µ {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!return-mode]}
-		;; :=µ {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!return-mode]}
-		
-		:backslash-mode {:key :backslash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
-		:slash-mode {:key :slash :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
-		:periodµ {:key :period :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
 	;;* NEW Super-modes
+		:tildeµ {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
+		:hyphenµ {:key :hyphen :condi [:!space-mode]}
+		:=µ {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!return-mode]}
+		
+		:backslashµ {:key :backslash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
+		:fslashµ {:key :slash :condi [:!space-mode :!tildeµ :!backslashµ :!fslashµ :!=µ]}
+		:periodµ {:key :period :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
 		;;row1 escapeµ, F1µ, F12µ,
 		;;row2 tildeµ, 1µ, hyphenµ, =µ, deleteµ
 			:1µ {:key :1}
@@ -64,8 +63,8 @@
 			; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
 			;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
 		;;row4 caps_lockµ, semicolonµ, quoteµ, returnµ
-			;; :quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
-			;; :return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode :!space-mode]}
+			;; :quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
+			;; :return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode :!space-mode]}
 		;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (periodµ), / (slashµ), right_shiftµ
 			;; [ ] 
 		;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
@@ -150,11 +149,6 @@
 	]}
 
 ;;* LAYERS =====================================
-
-;;? PERIOD MODE µ (convert) ====================================================
-	{:des " period-mode for typinator and autocomplete":rules [ :periodµ
-		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
-	]}
 ;;? ESCAPE MODE ================================================================
 	;; {:des "escape-mode for escape things" :rules [ :escape&
 	;;TODO (ESCAPE MODE)
@@ -163,10 +157,12 @@
 	;; {:des "f1-mode for f1 things" :rules [ :f1&
 	;;TODO (F1 MODE)
 	;; ]}
-;;? TILDE MODE ================================================================
-	;; {:des "tilde-mode for tilde things" :rules [ :tilde&
+;;? TILDE MODE tildeµ ================================================================
+	{:des "tilde-mode for tilde things" :rules [ :tildeµ
+			[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
+		;; [:##spacebar :!t] ;;* `+spacebar for test
 	;;TODO (TILDE MODE)
-	;; ]}
+	]}
 ;;? HYPHEN MODE ================================================================
 	;; {:des "hyphen-mode for hyphen things" :rules [ :hyphen&
 	;;TODO (HYPHEN MODE)
@@ -197,9 +193,21 @@
 	;;TODO (LEFT_BRACKET MODE)
 	;; ]}
 ;;? BACKSLASH MODE ================================================================
-	;; {:des "backslash-mode for backslash things" :rules [ :backslash&
+	;; {:des "backslashµ for backslash things" :rules [ :backslash&
 	;;TODO (BACKSLASH MODE)
 	;; ]}
+	;; {	:des "backslashµ for..." :rules [ :backslashµ
+	;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• \+r to capture Roam notes
+	;; [:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/add-text"]] ] ;• \+a for add text to apple notes 
+	;; [:o [[:SPKR3] [:open "raycast://extensions/millin_gabani/obsidian-smart-capture/capture"]] ] ;;• \+o for Obsidian
+
+	;; [:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]]] ;;• \+b for new bear 
+	;; [:XXX [[:SPKR3] [:open "URL"]] ] ;;• \+XXX for 
+	;; [b [[:SPKR3] [:open]] ] ;;• \+XXX for 
+
+		; [:s [:ToKey]] ;;• quote+s for ToKey hello
+;; ]}
+
 ;;? QUOTE MODE ================================================================
 	;; {:des "quote-mode for quote things" :rules [ :quote&
 	;;TODO (QUOTE MODE)
@@ -210,6 +218,35 @@
 	;; {:des "return-mode for return things" :rules [ :return&
 	;; TODO (RETURN MODE)
 	;; ]}
+;;? PERIOD MODE periodµ (convert) ====================================================
+	{:des " period-mode for typinator and autocomplete":rules [ :periodµ
+		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
+	]}
+;;? (FORWARD SLASH MODE fslashµ ================================================================
+	{:des "slash-mode for slash things" :rules [ :fslashµ
+		[:spacebar [:!CSslash [:SPKR3]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
+		[:q [[:SPKR3] [:open "raycast://extensions/raycast/raycast/search-quicklinks"]] ] ;;• /+q to Search Quick Links via Raycast
+		[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/index"]] ] ;;• /+o to search obsidian via searchnote command (raycast)
+		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam notes vvis raycast 
+		[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/searchNoteCommand"]] ] ;;• /+o to search obsidian via searchnote command (raycast)
+		[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/index"]] ] ;;• /+b to search Bear (raycast)
+		;;• Roam and Reminders commands
+		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam 🟢
+		[:!Cr [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• /+r to capture to Roam 🟢
+		[:#Sr [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+		[:#Tr [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]]] ;;• /+⌘n create Notion database page 
+		[:#TCr [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]]] ;;• /+⌘n create Notion database page 
+		;;• Bear
+		;;• Obsidian
+		;;• APN
+		;;• Notion Commands
+
+
+	;; TODO (fslash mode)
+		;; [:spacebar [:!CSslash [:SPKR3]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
+		;; [:spacebar [:open "kmtrigger://macro=F02A9897-43EA-42E6-89DD-33644529F73A"] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
+		;; [:spacebar [:km "/+spacebar for Help Menu"] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
+	]}
 ;;? SPACE MODE ===============
 	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	;; COMMENTS:
@@ -592,19 +629,6 @@
 	;; TODO (Z MODE)
 	]}
 ]}
-;;============================ BACKSLASH MODE============================
-	{	:des "backslash-mode for..." :rules [
-	:backslash& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-	;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• \+r to capture Roam notes
-	;; [:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/add-text"]] ] ;• \+a for add text to apple notes 
-	;; [:o [[:SPKR3] [:open "raycast://extensions/millin_gabani/obsidian-smart-capture/capture"]] ] ;;• \+o for Obsidian
-
-	;; [:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]]] ;;• \+b for new bear 
-	;; [:XXX [[:SPKR3] [:open "URL"]] ] ;;• \+XXX for 
-	;; [b [[:SPKR3] [:open]] ] ;;• \+XXX for 
-
-		; [:s [:ToKey]] ;;• quote+s for ToKey hello
-]}
 
 ;;========================== RETURN MODE ==========================
 {	:des "return-mode for..." :rules [:return-mode
@@ -624,9 +648,8 @@
 
 	]}
 
-;;============================ (FORWARD) SLASH MODE ==========================
-		{	:des "slash-mode  for..." :rules [
-		:slash-mode ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+;;!(FORWARD) SLASH MODE fslashµ ==========================
+		{	:des "slashµ  for..." :rules [ :fslashµ
 
 		;; [:spacebar [:!CSslash [:SPKR3]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
 		;; [:spacebar [:open "kmtrigger://macro=F02A9897-43EA-42E6-89DD-33644529F73A"] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
