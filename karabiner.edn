@@ -1,10 +1,16 @@
-;; karabiner.edn 1.0 2024-09-24
-;; 📓 LOG/NOTES =====================================================
-		;; ✔ 2024-09-25 g+k to run goku (used :run)
-		;; 2024-09-27 [ ] fixing k+e,
-    ;; here's the definition
+;; karabiner.edn 1.0 2024-10-10
 
-{ ;;+ DEFINITIONS =================================================== for templates (aliases for frequently used CLI strings), layers, simlayers
+{ ;;? DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
+;; for templates (aliases for frequently used CLI strings), layers, simlayers
+	;;? PROFILES
+	
+	;;? DEVICES
+
+	;;? APPLICATIONS
+	
+	;;? INPUT SOURCES
+
+	;;? TEMPLATES
 	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
 		:run "%s"
 		:open "open \"%s\"" ; open file
@@ -32,10 +38,14 @@
 		;; :gokurl "goku" ;; trying to add load goku
 		}
 
+	;;? MODIFIERS
+	;;? FROMS
+	;;? TOS
+
+	;;? LAYERS
 	:layers { ;;=............................................................................................................................. basic layers like spacemode
-		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!quote-mode :!slash-mode :!period-mode :!return-mode]} ; prevents space mode from overiding F and D modes 
-		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}
-				
+		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!quote-mode :!slash-mode :!periodµ :!return-mode]} ; prevents space mode from overiding F and D modes 
+		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
 	;;* NEW Super-modes
 		;;row1 escapeµ, F1µ, F12µ,
 		;;row2 tildeµ, 1µ, hyphenµ, equal_signµ, deleteµ
@@ -53,11 +63,12 @@
 		;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (periodµ), / (slashµ), right_shiftµ
 			;; [ ] 
 			:slash-mode {:key :slash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
-			:period-mode {:key :period :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+			:periodµ {:key :period :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
 		;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
 			;; [ ] figure out if arrows get triggered when space+jlik
-		}
+	}
 
+	;;? SIMLAYERS
 	:simlayers { ;;=........................................................................................................................advanced layers that act as vairables
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
 		:a& {:key :a}
@@ -86,10 +97,25 @@
 		:x& {:key :x}
 		:y& {:key :y}
 		:z& {:key :z}
-		}
+	}
 
-:main [
+;;? 👿 CHEATSHEET
+:main [ ;;? MAIN RULES ==========================================
 ;;= SIMULTANEOUS KEYS =====================================
+;;? ASSORTED RULES =====================================
+;; [ ] decide on format (readability by line length or more on 1 line?)
+	;; like yellow* associated with description and blue • associated with rule
+
+	
+	{:des "right_shift+space for underscore/dash":rules[ ;;* right-shift+spacebar
+		[:!Rspacebar :hyphen] ;;• right_shift+spacebar for hyphen "-" (aka dash)
+		[:!SRspacebar :!Shyphen] ;;• both shift + spacebar for underscore 
+		;; COMMENTS: 
+			;; modified to always require rightshift
+			;; was causing issues with UHK right control still need #todo
+				;; [:!Sspacebar :!Shyphen] ;;- left_shift+spacebar for underscore "_"
+			;; 
+		]}
 
 	;;* double press ⌘+q to quit to prevent accidental
 		{:des "double press ⌘+q to quit " :rules[ [:!C#Pq [ :!Cq ["⌘q" 0]] ["⌘q" 1]] [:!C#Pq ["⌘q" 1] nil {:delayed {:invoked ["⌘q" 0] :canceled ["⌘q" 0]}}] ]}
@@ -98,15 +124,16 @@
 	;;* capslock as hyper
 		{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
 		[:##caps_lock :!!left_control nil {:alone :escape} ] ]}
-	;;* semicolon as fn
+	
+	;;* FN stuff (semicolon as fn, fn from UHK, 
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
 		[:##semicolon :##fn nil {:alone :semicolon}] ]}
 		;;TODO fn is used with Contexts for quick witching
-	;;* fn from UHK
-		{:des "FN from UHK" :rules [[:#SOCTf24 :fn [:uhk] ]]} ;;* UHK FN as mac fn via UHK hardcoded f24 > fn in KE but only for uhk
-		{:des "FN from UHK 2" :rules [[:#SOCTf24 :fn [:uhk-2] ]]} ;;* for V2
+		;;* fn from UHK
+			{:des "FN from UHK" :rules [[:#SOCTf24 :fn [:uhk] ]]} ;;* UHK FN as mac fn via UHK hardcoded f24 > fn in KE but only for uhk
+			{:des "FN from UHK 2" :rules [[:#SOCTf24 :fn [:uhk-2] ]]} ;;* for V2
 
-{:des "spacebar mode" :rules [ ;;= SPACE MODE =======================
+{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	
 		[:##comma :!Scomma :space-mode] ;;* spacebar+comma for "<"
 		[:##period :!Speriod :space-mode] ;;* spacebar+period for >
@@ -756,10 +783,9 @@
 		;; [:m :mute] ;;• z+m for mute
 	]}
 
-;;========================= PERIOD MODE ===========================
+;;? PERIOD MODE ====================================================
 	{:des " period-mode for typinator and autocomplete":rules [
-    :period-mode ;;• –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-		[:left_shift [[:SPKR3] :!SCTt] ] ;;• period+spacebar for Typinator Quick Search (via ⌃⇧⌘+T hotkey set in app pref.)
+    :periodµ ;;• –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
 	]}
 ;;============================ QUOTE MODE (NEW TEMPLATE)============================
