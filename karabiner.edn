@@ -8,12 +8,8 @@
 	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
 		:run "%s"
 		:open "open \"%s\"" ; open file
-		:wait "sleep 250" ; pause 250 ms
-		:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
 		:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
 		:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
-		:ray "open \"raycast://extensions/raycast/%s\""	
-
 	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		:SPKR1 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
@@ -39,22 +35,27 @@
 	:layers { ;;=............................................................................................................................. basic layers like spacemode
 		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!quote-mode :!slash-mode :!period-mode :!return-mode]} ; prevents space mode from overiding F and D modes 
 		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}
-		; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
-		
-		:numpad-mode {:key :f20} ;;? defined in layers and given symbolic key never used so can be triggered via setting variable in space mode
-		:numrow-mode {:key :f20}
-		:symrow-mode {:key :f20}
-		
-	;;* Supermodes
-		:grave-mode {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
-		;; :1& {:key :1}
-		;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
-		:backslash-mode {:key :backslash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
-		:quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
-		:slash-mode {:key :slash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
-		:equal_sign& {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
-		:return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode :!space-mode]}
-		:period-mode {:key :period :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+				
+	;;* NEW Super-modes
+		;;row1 escapeµ, F1µ, F12µ,
+		;;row2 tildeµ, 1µ, hyphenµ, equal_signµ, deleteµ
+			:grave-mode {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+			:1µ {:key :1}
+				;; [ ] search and replace...
+			:equal_sign& {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		;;row3 tabµ, [/] (open_bracketµ), `\` (backslashµ)
+			; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
+			;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
+			:backslash-mode {:key :backslash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		;;row4 caps_lockµ, semicolonµ, quoteµ, returnµ
+			:quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+			:return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode :!space-mode]}
+		;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (periodµ), / (slashµ), right_shiftµ
+			;; [ ] 
+			:slash-mode {:key :slash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+			:period-mode {:key :period :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
+			;; [ ] figure out if arrows get triggered when space+jlik
 		}
 
 	:simlayers { ;;=........................................................................................................................advanced layers that act as vairables
@@ -75,11 +76,11 @@
 		:n& {:key :n}
 		:o& {:key :o}
 		:p& {:key :p}
+		:q& {:key :q}
 		:r& {:key :r}
 		:s& {:key :s}
 		:t& {:key :t}
 		:u& {:key :u}
-		:q& {:key :q}
 		:v& {:key :v}
 		:w& {:key :w}
 		:x& {:key :x}
@@ -88,130 +89,34 @@
 		}
 
 :main [
-
-
-
-;;• 1 supermode ==================================================
-	{:des "1&":rules [:1&
-	[:p :!OSTp] ;;• 1+p for 1password Quick Access
-	[:!Cp :!STCp] ;;• 1+⌘p for 1password Quick Access;
-	;; 1Password Autofill 
-	]}
-
-;;• grave supermode ===============================================
-;;! ❗ issue bc doesn't seem to be working
-	{:des "grave-mode":rules[:grave-mode
-	
-		[:spacebar [[:🛎] :!TOCf11]] ;;• grave+1 slidepad 1
-		[:backslash [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+1 slidepad 1
-		;; [:q [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+q 
-		[:1 [[:🛎] :!TOCf11]] ;;• grave+1 slidepad 1
-		[:2 [[:🛎] :!TOCf12]] ;;• grave+2 slidepad 2
-		[:3 [[:🛎] :!TOCf13]] ;;• grave+3 slidepad 3
-		[:4 [[:🛎] :!TOCf14]] ;;• grave+4 slidepad 4
-		[:5 [[:🛎] :!TOCf15]] ;;• grave+5 slidepad 5
-	;;  STARTED trying to fix return+spacebar not activating bartender
-	[:d [[:🛎] :!COTS4]] ;;• grave+6 Drafts Quick Capture
-	[:!Cd [[:🛎] :!COTS5]] ;; • grave+7` slidepad 7
-	
-	[:s [[:🛎] :!COSs]] ;;• grave+7` Sidenotes7
-	
-	;; [:8 [[:🛎] :!TOCf18]] ;;• grave+8 slidepad 8
-	;; [:9 [[:🛎] :!TOCf19]] ;;• grave+9 slidepad 9
-	;; [:10 [[:🛎] :!TOCf20]] ;;• grave+10 slidepad 10
-	;; [:11 [[:🛎] :!TOCf21]] ;;• grave+11 slidepad 11\
-
-	 
-	]}
-;;• quote supermode==================================================
-	{:des "quote-mode for wrapper things":rules [:quote-mode
-	[:#TCw [:km "common command"]] ;;• Open in New Window
-	
-	]} 
-;;• backslash supermode==================================================
-	{:des "backslash-mode":rules [:backslash-mode
-		
-		;; [:!Rright_control :hyphen] [:!Sright_control :!Shyphen] ;;- UHK compatability
-		[:l :!TOCf11] ;;• \+l slidepad lousgreenhouse via 
-		[:1 :!TOCf11] ;;• \+1 slidepad lousgreenhouse via 
-		[:t :!TOCf12] ;;• \+t slidepad loustodos via
-		[:2 :!TOCf12] ;;• \+2 slidepad loustodos via
-		[:h :!TOCf13] ;;• \+t slidepad loustodos via
-		[:3 :!TOCf13] ;;• \+3 slidepad loustodos via
-		[:k :!TOCf14] ;;• \+t slidepad loustodos via
-		[:4 :!TOCf14] ;;• \+4 slidepad loustodos via
-		[:n :!TOCf15] ;;• \+t slidepad Notion
-		[:5 :!TOCf15] ;;• \+5 slidepad loustodos via
-		[:p :!TOCf16] ;;• \+t slidepad photos
-		[:6 :!TOCf16] ;;• \+6 slidepad loustodos via
-		[:m :!TOCf17] ;;• \+t slidepad loustodos via notes
-		[:7 :!TOCf17] ;;• \+7 slidepad loustodos via
-		[:8 :!TOCf18] ;;• \+t slidepad loustodos via
-		[:d :!TOCf18] ;;• \+8 slidepad loustodos via
-		
-		[:!TCw [:tink]]
-		[:!Ca [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ;;• \+ slidepad loustodos via
-
-		]}
+;;= SIMULTANEOUS KEYS =====================================
 
 	;;* double press ⌘+q to quit to prevent accidental
-		{:des "double press ⌘+q to quit,  " :rules[ [:!C#Pq [ :!Cq ["⌘q" 0]] ["⌘q" 1]] [:!C#Pq ["⌘q" 1] nil {:delayed {:invoked ["⌘q" 0] :canceled ["⌘q" 0]}}] ]}
-	
- 	;;* left_shift+spacebar for underscore/dash and right_control+spacebar for hyphen 
-		{:des "⇧+␣ for underscore/dash":rules[
-		[:!Rspacebar :hyphen] ;;- right_shift+spacebar for hyphen "-" (aka dash)
-		[:!Sspacebar :!Shyphen] ;;- left_shift+spacebar for underscore "_"
-    	;; NOTE on UHK spacebar key is split and the right spacebar key is mapped to right_control in UHK agent for "reason"
-		[:!Rright_control :hyphen] [:!Sright_control :!Shyphen] ;;- UHK compatability
-			;; TODO add device filter
-                                     			 
-		]}
+		{:des "double press ⌘+q to quit " :rules[ [:!C#Pq [ :!Cq ["⌘q" 0]] ["⌘q" 1]] [:!C#Pq ["⌘q" 1] nil {:delayed {:invoked ["⌘q" 0] :canceled ["⌘q" 0]}}] ]}
+		
+;;= HYPER MODE and MODIFIERS ==============================
+	;;* capslock as hyper
+		{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
+		[:##caps_lock :!!left_control nil {:alone :escape} ] ]}
+	;;* semicolon as fn
+		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
+		[:##semicolon :##fn nil {:alone :semicolon}] ]}
+		;;TODO fn is used with Contexts for quick witching
+	;;* fn from UHK
+		{:des "FN from UHK" :rules [[:#SOCTf24 :fn [:uhk] ]]} ;;* UHK FN as mac fn via UHK hardcoded f24 > fn in KE but only for uhk
+		{:des "FN from UHK 2" :rules [[:#SOCTf24 :fn [:uhk-2] ]]} ;;* for V2
 
-;;• SlMULTANEOUS KEY RULES ==============================================
-	{:des "Simultaneous Keys":rules [
-	;; see purged code here vscode://file/Users/loudog/vaults/obs-git-config/config.files/karabiner/2024-08 purging.md:34 
-	[ [:n :v] [:km "nvUltra: Activate"] ] ;;* km activate Keyboard Maestro
-	[ [:k :m] [:km "Activate Keyboard Maestro"] ] ;;* km activate Keyboard Maestro
-	[ [:o :b :s]  [:open "obsidian://advanced-uri?vault=reference-vault&commandid=obsidian-global-hotkeys%253Ashow"] ] ;;* [obs] for Show Obsidian (via command URI)
-	[ [:o :m :f] [:km "Activate OmniFocus"] ]  ;;* [omf] simultanoesly for Activate OmniFocus via KM. could
-	[ [:v :s] [:km "Activate Visual Studio Code"] ] ;;* vs to Activate VS-CodeStudio Code
-	[ [:d :a :f :s]  [:km "Activate Drafts"] ] ;;* asdf to Activate Drafts (left hand home-row)
-	[[:n :e :w] [ [:SPKR3] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ] ;;• n|e|w+s for ✨ new stuff (sidenotes note)
-	[ [:h :d] [:km "© Hide Application"]] ;;* hd for © Hide Application
-	
-	;; [ [:k :j] ] ;;* hd for © Hide Application
-;;• SURROUND/WRAP TEXT WITH... =====================
-;; [[:open_bracket :close_bracket] [[:km "surround selection: square brackets"]] ]
-
-]}
-
-;;======================= HYPER MODE and MODIFIERS ====================
-
-	{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
-	[:##caps_lock :!!left_control nil {:alone :escape} ] ]}
-
-	;;TODO fn is used with Contexts for quick witching
-	{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
-	[:##semicolon :##fn nil {:alone :semicolon}] ]}
-	
-	{:des "FN from UHK" :rules [[:#SOCTf24 :fn [:uhk] ]]} ;;* UHK FN as mac fn via UHK hardcoded f24 > fn in KE but only for uhk
-	{:des "FN from UHK 2" :rules [[:#SOCTf24 :fn [:uhk-2] ]]} ;;* for V2
-
-
-;;=========================== SPACE MODE ============================ bread and butter space + all sorts of awesome things
-	{:des "spacebar mode" :rules [ ;? set up not to conflict with numpad-mode
-
-		[:##quote :application :space-mode] ;;* spacebar+quote for (space+') NEW 2024-08-26 #todo
+{:des "spacebar mode" :rules [ ;;= SPACE MODE =======================
 	
 		[:##comma :!Scomma :space-mode] ;;* spacebar+comma for "<"
 		[:##period :!Speriod :space-mode] ;;* spacebar+period for >
 	;; homerow keyboard
-		[:##b :spacebar :space-mode] ; spacebar+b for space
-		;spacebar+jlik for left/right/up/down
-			[:##j :left_arrow :space-mode] ;;* spacebar+j for ←
-			[:##l :right_arrow :space-mode] ;;* spacebar+l for →
-			[:##i :up_arrow :space-mode] ;;* spacebar+i for ↑
-			[:##k :down_arrow :space-mode] ;;* spacebar+k for ↓
+		[:##b :spacebar :space-mode]        ;;• spacebar+b for space
+		; jlik for ←↑→↓ (left/right/up/down arrows)
+			[:##j :left_arrow  :space-mode]  ;;• spacebar+j for ←
+			[:##l :right_arrow :space-mode] ;;• spacebar+l for →
+			[:##i :up_arrow    :space-mode]    ;;• spacebar+i for ↑
+			[:##k :down_arrow  :space-mode]  ;;• spacebar+k for ↓
 		;; non-text characters (↩⇥, delete, page up/down)
 			[:##semicolon :return_or_enter :space-mode] ;;* spacebar+return for ↩
 			[:##h :tab :space-mode] ;;* spacebar+h for ⇥
@@ -455,7 +360,6 @@
 		[:k [[:SPKR3] :!Th]] ;;• h+k for Hookmark (via ⌃h) 🔰 new 8/11/23
 		[:i [[:SPKR3] :!Ti] ];;• h+i for Slidepad (via ⌃i) 🔰 new 8/17/23, see if causes false positives
 
-		[:g [:shortcut "Hey GPT"]] ;;* h+g to run Shortcut Hey GPT ⭐
 		[:p [[:SPKR3] [:open "/Applications/Setapp/MenubarX.app" ] ]] ;;• h+p for MenuBarX via :open (instead of ⌥+x hotkey)
 		
 
