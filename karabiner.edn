@@ -46,24 +46,28 @@
 	:layers { ;;=............................................................................................................................. basic layers like spacemode
 		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!quote-mode :!slash-mode :!periodµ :!return-mode]} ; prevents space mode from overiding F and D modes 
 		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
+	
+		:grave-mode {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
+		
+		:=µ {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!return-mode]}
+		;; :=µ {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!return-mode]}
+		
+		:backslash-mode {:key :backslash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
+		:slash-mode {:key :slash :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
+		:periodµ {:key :period :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
 	;;* NEW Super-modes
 		;;row1 escapeµ, F1µ, F12µ,
-		;;row2 tildeµ, 1µ, hyphenµ, equal_signµ, deleteµ
-			:grave-mode {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+		;;row2 tildeµ, 1µ, hyphenµ, =µ, deleteµ
 			:1µ {:key :1}
 				;; [ ] search and replace...
-			:equal_sign& {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
 		;;row3 tabµ, [/] (open_bracketµ), `\` (backslashµ)
 			; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
 			;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
-			:backslash-mode {:key :backslash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
 		;;row4 caps_lockµ, semicolonµ, quoteµ, returnµ
-			:quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
-			:return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode :!space-mode]}
+			;; :quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode]}
+			;; :return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!=µ :!return-mode :!space-mode]}
 		;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (periodµ), / (slashµ), right_shiftµ
 			;; [ ] 
-			:slash-mode {:key :slash :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
-			:periodµ {:key :period :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
 		;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
 			;; [ ] figure out if arrows get triggered when space+jlik
 	}
@@ -145,6 +149,67 @@
 		;; [:m [[:SPKR3] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
 	]}
 
+;;* LAYERS =====================================
+
+;;? PERIOD MODE µ (convert) ====================================================
+	{:des " period-mode for typinator and autocomplete":rules [ :periodµ
+		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
+	]}
+;;? ESCAPE MODE ================================================================
+	;; {:des "escape-mode for escape things" :rules [ :escape&
+	;;TODO (ESCAPE MODE)
+	;; ]}
+;;? F1 MODE ================================================================
+	;; {:des "f1-mode for f1 things" :rules [ :f1&
+	;;TODO (F1 MODE)
+	;; ]}
+;;? TILDE MODE ================================================================
+	;; {:des "tilde-mode for tilde things" :rules [ :tilde&
+	;;TODO (TILDE MODE)
+	;; ]}
+;;? HYPHEN MODE ================================================================
+	;; {:des "hyphen-mode for hyphen things" :rules [ :hyphen&
+	;;TODO (HYPHEN MODE)
+	;; ]}
+;;? EQUAL_SIGN MODE =µ ================================================================
+	{:des "equal_sign-mode for equal sign things" :rules [ :=µ
+		; new CRUD
+			[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
+			[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]] ] ;;• =+b for new bear 
+			[:d [[:SPKR3] [:open "raycast://extensions/FlohGro/drafts/create-draft-and-open"]] ] ;;• =+d for new drafts
+			[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/createNoteCommand"]] ] ;;• =+o for new obsidian
+			;; [:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/index"]] ] ;;• =+l for new logseq
+			[:r [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ] ;;• =+r for reminders
+			;; [:u [[:SPKR3] [:open "raycast://extensions/praveenjuge/ulysses/new-empty-sheet"]] ] ;;• =+u for ulyses 
+	;;TODO (EQUAL_SIGN MODE)
+	 	
+	]}
+;;? DELETE MODE ================================================================
+	;; {:des "delete-mode for delete things" :rules [ :delete&
+	;;TODO (DELETE MODE)
+	;; ]}
+;;? TAB MODE ================================================================
+	;; {:des "tab-mode for tab things" :rules [ :tab&
+	;; ;;TODO (TAB MODE)
+	;; ]}
+;;? LEFT_BRACKET MODE ================================================================
+	;; {:des "left_bracket-mode for left bracket things" :rules [ :left_bracket&
+	;;TODO (LEFT_BRACKET MODE)
+	;; ]}
+;;? BACKSLASH MODE ================================================================
+	;; {:des "backslash-mode for backslash things" :rules [ :backslash&
+	;;TODO (BACKSLASH MODE)
+	;; ]}
+;;? QUOTE MODE ================================================================
+	;; {:des "quote-mode for quote things" :rules [ :quote&
+	;;TODO (QUOTE MODE)
+	;; ]}
+	
+	;; NOTE: quote is set as left control for emacs (no it's)
+;;? RETURN MODE ================================================================
+	;; {:des "return-mode for return things" :rules [ :return&
+	;; TODO (RETURN MODE)
+	;; ]}
 ;;? SPACE MODE ===============
 	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	;; COMMENTS:
@@ -183,57 +248,6 @@
 		;; [ ] +1/2/3/4 for...
 		;; [ ] F1/f2/f3/f4 for... F11 to F22
 		]}
-;;? PERIOD MODE ====================================================
-	{:des " period-mode for typinator and autocomplete":rules [ :periodµ
-		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
-	]}
-
-;;? ESCAPE MODE ================================================================
-	;; {:des "escape-mode for escape things" :rules [ :escape&
-	;;TODO (ESCAPE MODE)
-	;; ]}
-;;? F1 MODE ================================================================
-	;; {:des "f1-mode for f1 things" :rules [ :f1&
-	;;TODO (F1 MODE)
-	;; ]}
-;;? TILDE MODE ================================================================
-	;; {:des "tilde-mode for tilde things" :rules [ :tilde&
-	;;TODO (TILDE MODE)
-	;; ]}
-;;? HYPHEN MODE ================================================================
-	;; {:des "hyphen-mode for hyphen things" :rules [ :hyphen&
-	;;TODO (HYPHEN MODE)
-	;; ]}
-;;? EQUAL_SIGN MODE ================================================================
-	;; {:des "equal_sign-mode for equal sign things" :rules [ :equal_sign&
-	;;TODO (EQUAL_SIGN MODE)
-	;; ]}
-;;? DELETE MODE ================================================================
-	;; {:des "delete-mode for delete things" :rules [ :delete&
-	;;TODO (DELETE MODE)
-	;; ]}
-;;? TAB MODE ================================================================
-	;; {:des "tab-mode for tab things" :rules [ :tab&
-	;; ;;TODO (TAB MODE)
-	;; ]}
-;;? LEFT_BRACKET MODE ================================================================
-	;; {:des "left_bracket-mode for left bracket things" :rules [ :left_bracket&
-	;;TODO (LEFT_BRACKET MODE)
-	;; ]}
-;;? BACKSLASH MODE ================================================================
-	;; {:des "backslash-mode for backslash things" :rules [ :backslash&
-	;;TODO (BACKSLASH MODE)
-	;; ]}
-;;? QUOTE MODE ================================================================
-	;; {:des "quote-mode for quote things" :rules [ :quote&
-	;;TODO (QUOTE MODE)
-	;; ]}
-	
-	;; NOTE: quote is set as left control for emacs (no it's)
-;;? RETURN MODE ================================================================
-	;; {:des "return-mode for return things" :rules [ :return&
-	;; TODO (RETURN MODE)
-	;; ]}
 ;;? UP_ARROW MODE ================================================================
 	;; {:des "up_arrow-mode for up arrow things" :rules [ :up_arrow&
 	;; TODO (UP_ARROW MODE)
@@ -479,7 +493,7 @@
 		;; TODO remote mode
 		;; raycast reminders
 			[:slash [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]] ;;• r+/ raycast my reminders #Reminders
-			[:equal_sign [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ;;• r+= raycast new reminder reminders #Reminders
+			;; [:equal_sign [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ;;• r+= raycast new reminder reminders #Reminders
 			;; [:delete_or_backspace [:!SCf12]] ;;• r+⌫ for raycast reminders menuapp ❓ BROKEN	
 			;; ❌ doesn't work from outside raycast
 				;; [:q [:open "raycast://extensions/raycast/apple-reminders/quick-add-reminder?arguments=%7B%22text%22%3A%22%22%2C%22notes%22%3A%22%22%7D"]] ;;• r+= raycast my reminders
