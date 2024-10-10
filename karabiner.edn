@@ -1,22 +1,45 @@
 ;; karabiner.edn 1.0 2024-10-10
 
-{ ;;? DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
-;; for templates (aliases for frequently used CLI strings), layers, simlayers
-	;;? PROFILES
-	
-	;;? DEVICES
-
-	;;? APPLICATIONS
-	
-	;;? INPUT SOURCES
-
-	;;? TEMPLATES
-	:templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
+{
+;;? DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
+;;? PROFILES	
+:devices { ;;? DEVICES
+		;; todo add macbook internals
+			;; :macbook-internal [{:product_id 631 :vendor_id 1452}]
+			;; :mbp [{:product_id 631 :vendor_id 1452}] 
+			;; not sure which one this is 
+		;; todo add uhks
+			:uhk [{:product_id 24866 :vendor_id 7504}]
+			:uhk-2 [{:product_id 24868 :vendor_id 7504}]
+		;; todo add mice
+			:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
+		;; TODO add other gaming mouse, 
+		;;? i wonder if you can filter for universal control and fix some of those problems
+	}
+:applications { ;;? APPLICATIONS
+		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
+		:Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
+		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
+		:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
+	;; TODO (applications)
+		:Finder        ["^com\\.apple\\.finder$"]
+		:dynalist      ["^io\\.dynalist$"]
+		:slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
+		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"] ;; 👍 works		
+		;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
+		;; :vscode					
+	}
+:input-sources { ;;? INPUT SOURCES
+	:us {:input_mode_id   ""
+		:input_source_id "com.apple.keylayout.US"
+		:language        "en"}
+	}
+:templates { ;;? TEMPLATES
 		:run "%s"
 		:open "open \"%s\"" ; open file
 		:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
 		:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
-	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
+	; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		:SPKR1 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
 		:SPKR2 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
@@ -38,15 +61,13 @@
 		;; :gokurl "goku" ;; trying to add load goku
 		}
 
-	;;? MODIFIERS
-	;;? FROMS
-	;;? TOS
+;;? MODIFIERS (todo)
+;;? FROMS (todo)
+;;? TOS (todo)
 
-	;;? LAYERS
-	:layers { ;;=............................................................................................................................. basic layers like spacemode
-		:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!periodµ :!return-mode]} ; prevents space mode from overiding F and D modes 
-		:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
-	
+:layers { ;;? LAYERS
+	:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!periodµ :!return-mode]} ; prevents space mode from overiding F and D modes 
+	:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
 	;;* NEW Super-modes
 		:tildeµ {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
 		:hyphenµ {:key :hyphen :condi [:!space-mode]}
@@ -71,8 +92,7 @@
 			;; [ ] figure out if arrows get triggered when space+jlik
 	}
 
-	;;? SIMLAYERS
-	:simlayers { ;;=........................................................................................................................advanced layers that act as vairables
+:simlayers { ;;? SIMLAYERS
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
 		:a& {:key :a}
 		:b& {:key :b}
@@ -103,6 +123,7 @@
 	}
 
 ;;? 👿 CHEATSHEET
+
 :main [ ;;? MAIN RULES ==========================================
 ;;= SIMULTANEOUS KEYS =====================================
 ;;? ASSORTED RULES =====================================
@@ -241,8 +262,8 @@
 		;;• APN
 		;;• Notion Commands
 
-
 	;; TODO (fslash mode)
+		;; see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged-2-special-char.edn:11
 		;; [:spacebar [:!CSslash [:SPKR3]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
 		;; [:spacebar [:open "kmtrigger://macro=F02A9897-43EA-42E6-89DD-33644529F73A"] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
 		;; [:spacebar [:km "/+spacebar for Help Menu"] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
