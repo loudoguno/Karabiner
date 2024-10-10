@@ -183,6 +183,63 @@
 		;; [ ] +1/2/3/4 for...
 		;; [ ] F1/f2/f3/f4 for... F11 to F22
 		]}
+;;? PERIOD MODE ====================================================
+	{:des " period-mode for typinator and autocomplete":rules [ :periodµ
+		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
+	]}
+
+;;? ESCAPE MODE ================================================================
+	;; {:des "escape-mode for escape things" :rules [ :escape&
+	;;TODO (ESCAPE MODE)
+	;; ]}
+;;? F1 MODE ================================================================
+	;; {:des "f1-mode for f1 things" :rules [ :f1&
+	;;TODO (F1 MODE)
+	;; ]}
+;;? TILDE MODE ================================================================
+	;; {:des "tilde-mode for tilde things" :rules [ :tilde&
+	;;TODO (TILDE MODE)
+	;; ]}
+;;? HYPHEN MODE ================================================================
+	;; {:des "hyphen-mode for hyphen things" :rules [ :hyphen&
+	;;TODO (HYPHEN MODE)
+	;; ]}
+;;? EQUAL_SIGN MODE ================================================================
+	;; {:des "equal_sign-mode for equal sign things" :rules [ :equal_sign&
+	;;TODO (EQUAL_SIGN MODE)
+	;; ]}
+;;? DELETE MODE ================================================================
+	;; {:des "delete-mode for delete things" :rules [ :delete&
+	;;TODO (DELETE MODE)
+	;; ]}
+;;? TAB MODE ================================================================
+	;; {:des "tab-mode for tab things" :rules [ :tab&
+	;; ;;TODO (TAB MODE)
+	;; ]}
+;;? LEFT_BRACKET MODE ================================================================
+	;; {:des "left_bracket-mode for left bracket things" :rules [ :left_bracket&
+	;;TODO (LEFT_BRACKET MODE)
+	;; ]}
+;;? BACKSLASH MODE ================================================================
+	;; {:des "backslash-mode for backslash things" :rules [ :backslash&
+	;;TODO (BACKSLASH MODE)
+	;; ]}
+;;? QUOTE MODE ================================================================
+	;; {:des "quote-mode for quote things" :rules [ :quote&
+	;;TODO (QUOTE MODE)
+	;; ]}
+	
+	;; NOTE: quote is set as left control for emacs (no it's)
+;;? RETURN MODE ================================================================
+	;; {:des "return-mode for return things" :rules [ :return&
+	;; TODO (RETURN MODE)
+	;; ]}
+;;? UP_ARROW MODE ================================================================
+	;; {:des "up_arrow-mode for up arrow things" :rules [ :up_arrow&
+	;; TODO (UP_ARROW MODE)
+	;; ]}
+
+;;* SIMLAYERS (a,b,c modes) ==================================================================
 
 ;;? A MODE (EMPTY) ========================================================
 	;; leave empty and see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:144
@@ -520,42 +577,7 @@
 
 	;; TODO (Z MODE)
 	]}
-
-;;? PERIOD MODE ====================================================
-	{:des " period-mode for typinator and autocomplete":rules [
-    :periodµ ;;• –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
-	]}
-
-;;============================ QUOTE MODE (NEW TEMPLATE)============================
-;; NOTE: quote is set as left control for emacs (no it's)
-{	:des "quote-mode for..." :rules [
-	:quote& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-	
 ]}
-
-;;============================ EQUALSIGN (NEW TEMPLATE)============================
-{	:des "equal-sign for..." :rules [
-	:equal_sign& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-
-	 	[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
-	 	[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]] ] ;;• =+b for new bear 
-	 	
-		[:d [[:SPKR3] [:open "raycast://extensions/FlohGro/drafts/create-draft-and-open"]] ] ;;• =+d for new drafts
-		;; [:d [:km "Jump to Drafts (global)"]] ;;• /+d for Jump to Drafts (global) 🐿❌ disable for jump to journal
-
-	 	[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/createNoteCommand"]] ] ;;• =+o for new obsidian
-	 	[:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/index"]] ] ;;• =+l for new logseq
-	 	[:r [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ] ;;• =+r for reminders
-	 	[:u [[:SPKR3] [:open "raycast://extensions/praveenjuge/ulysses/new-empty-sheet"]] ] ;;• =+u for ulyses 
-		[:f [[:SPKR3] [:open "raycast://extensions/raycast/raycast/create-quicklink"]] ] ;;• =+f for COMMAND
-
-	 	;; [:c [[:SPKR3] [:open ""]] ] ;;• =+XXX for COMMAND
-	 	;; [:a [[:SPKR3] [:open "URL"]] ] ;;• =+XXX for COMMAND
-
-
-]}
-
 ;;============================ BACKSLASH MODE============================
 	{	:des "backslash-mode for..." :rules [
 	:backslash& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
