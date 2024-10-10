@@ -201,9 +201,9 @@
 ;;=========================== SPACE MODE ============================ bread and butter space + all sorts of awesome things
 	{:des "spacebar mode" :rules [ ;? set up not to conflict with numpad-mode
 
-		[:##quote :application :space-mode] ;;* spacebar+quote NEW 2024-08-26
+		[:##quote :application :space-mode] ;;* spacebar+quote for (space+') NEW 2024-08-26 #todo
 	
-		[:##comma :!Scomma :space-mode] ;;* spacebar+comma <
+		[:##comma :!Scomma :space-mode] ;;* spacebar+comma for "<"
 		[:##period :!Speriod :space-mode] ;;* spacebar+period for >
 	;; homerow keyboard
 		[:##b :spacebar :space-mode] ; spacebar+b for space
@@ -1044,7 +1044,7 @@
 	:applications {
 		;; :vscode
 					
-		;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo
+		;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
 		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"] ;; 👍 works
 		
 		:slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
