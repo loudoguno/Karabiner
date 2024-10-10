@@ -62,7 +62,7 @@
 			:return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode :!space-mode]}
 		;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (periodµ), / (slashµ), right_shiftµ
 			;; [ ] 
-			:slash-mode {:key :slash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
+			:slash-mode {:key :slash :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
 			:periodµ {:key :period :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!grave-mode :!backslash-mode :!quote-mode :!slash-mode :!equal_sign& :!return-mode]}
 		;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
 			;; [ ] figure out if arrows get triggered when space+jlik
@@ -132,54 +132,9 @@
 		;;* fn from UHK
 			{:des "FN from UHK" :rules [[:#SOCTf24 :fn [:uhk] ]]} ;;* UHK FN as mac fn via UHK hardcoded f24 > fn in KE but only for uhk
 			{:des "FN from UHK 2" :rules [[:#SOCTf24 :fn [:uhk-2] ]]} ;;* for V2
-
-{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	
-		[:##comma :!Scomma :space-mode] ;;* spacebar+comma for "<"
-		[:##period :!Speriod :space-mode] ;;* spacebar+period for >
-	;; homerow keyboard
-		[:##b :spacebar :space-mode]        ;;• spacebar+b for space
-		; jlik for ←↑→↓ (left/right/up/down arrows)
-			[:##j :left_arrow  :space-mode]  ;;• spacebar+j for ←
-			[:##l :right_arrow :space-mode] ;;• spacebar+l for →
-			[:##i :up_arrow    :space-mode]    ;;• spacebar+i for ↑
-			[:##k :down_arrow  :space-mode]  ;;• spacebar+k for ↓
-		;; non-text characters (↩⇥, delete, page up/down)
-			[:##semicolon :return_or_enter :space-mode] ;;* spacebar+return for ↩
-			[:##h :tab :space-mode] ;;* spacebar+h for ⇥
-			[:##p :delete_or_backspace :space-mode] ;;* spacebar+p for delete
-			[:##y :page_up :space-mode] ;;* spacebar+y for page up
-			[:##o :tab :space-mode] ;;* spacebar+u for tab
-			[:##u :!Stab :space-mode] ;;* spacebar+u for ⇧+tab
-		;; spacebar+asdf for  modifiers (⇧⌥⌘⌃)
-			[:##a :left_control :space-mode] ;;* spacebar+a for ctrl
-			[:##s :left_shift :space-mode] ;;* spacebar+s for shift
-			[:##d :left_option :space-mode] ;;* spacebar+d for option
-			[:##f :right_command :space-mode] ;;* spacebar+f for cmd
-			[:##caps_lock :fn :space-mode] ;;* spacebar+caps_lock for 
-
-	;; v clipboard history, m moom, c/w/tab contexts
-		[:##v [[:SPKR3][:km "Clipboard History Switcher"]] :space-mode]  ;;• spacebar+v for "Clipboard History" (via KM macro)
-		[:##m [[:SPKR3]:!!f14] :space-mode] [:##m [[:SPKR2]:!!f14] :Rctrl-mode] ;;• spacebar+m for activate moom (like this one better)
-		[:##c [[:SPKR3]:!CTOw] :space-mode] [:##c [[:SPKR2]:!Ospacebar] :Rctrl-mode] ;;• spacebar+c to activate Contexts
-		[:##w [[:SPKR3]:!CTOw] :space-mode] [:##c [[:SPKR2]:!Ospacebar] :Rctrl-mode] ;;• spacebar+w to activate Contexts (❗ changing w to do contexts and not moom)
-		[:##tab [[:SPKR3]:!Otab] :space-mode] [:##tab [[:SPKR2]:!Otab] :Rctrl-mode] ;;• spacebar+tab for contexts tab switch
-			
-;; NOTES: 
-	;;• ⭐  ⌘+f12 does NOT bring up km conflict palette , focuses Raycast group
-	[:##slash [[:SPKR3]:!Oescape] :space-mode]  ;;• spacebar+slash for ⌥⎋ (autocomplete) 🔰 REVIEW ✅ works
-	[:##right_shift [[:SPKR3][:km "Show KM Status Menu"]] :space-mode]  ;;• spacebar+right_shift  for "Show KM Status Menu" (via KM macro) 🔰new 1/19/24
-	[:##return_or_enter [[:SPKR3]:!Of12] :space-mode]  ;;• spacebar+return for Bartender Search menu bar items (via ⌥+F12 in Bartender) 🟢🔰new
-	;;• ✅ spacebar+rightshift brings up km status menu
-	;;• ✅ spacebar+return sends ⌥+f12 for bartender  keyboard navigate status menu
-	;; TODO k+spacebar should do status menu
-	;; TODO add all of these to shortcut table
-
-		]}
-
-;;============================ iPad default shortcuts
+;;? iPad defaults ==========
 	{:des "iPad defaults" :rules [ 
-
 		[:!Cperiod [[:SPKR3] :escape]] ;;• ⌘+period for escape
 		[:!Cperiod [[:SPKR3] :escape]] ;;• 🌐+\ for cycle sidevview
 		;; [:!Cperiod [[:SPKR3] :escape]] ;;• 🌐+q for Quick Note #todo
@@ -188,37 +143,49 @@
 		;; [:!Treturn_or_enter [[:SPKR3] [:btt "Show Context Menu for Selected Item"]]] ;;• ⌃+return for context menu #??? did i add this before new Seqoia 
 		;; [:!Treturn_or_enter [[:SPKR3] :insert]] ;;• ⌃+return for context menu
 		;; [:m [[:SPKR3] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
-
-	
-
-	]}
-;;============================ logitech MOUSEPAD MODE ======================
-	{:des "tech mousepad" :rules [ :logitech-mouse
-		[:##keypad_1 [[:SPKR3] :escape]] ;;• mousepad 1 for escape
-		[:##keypad_2 [[:SPKR3] :delete_or_backspace]] ;;• mousepad 2 for...
-		[:##keypad_3 [[:SPKR3] :delete_or_backspace]] ;;• mousepad 3 for...
-		[:##keypad_4 [[:SPKR3] :!Stab]] ;;• mousepad 3 for...
-		[:##keypad_5 [[:SPKR3] :up_arrow]] ;;• mousepad 3 for...
-		[:##keypad_6 [[:SPKR3] :tab]] ;;• mousepad 3 for...
-		[:##keypad_7 [[:SPKR3] :left_arrow]] ;;• mousepad 3 for...
-		[:##keypad_8 [[:SPKR3] :down_arrow]] ;;• mousepad 3 for...
-		[:##keypad_9 [[:SPKR3] :right_arrow]] ;;• mousepad 3 for...
-		[:##keypad_0 [[:SPKR3] :end]] ;;• mousepad 3 for...
-		[:##keypad_plus [[:SPKR3] :spacebar]] ;;• mousepad 3 for...
-		[:##keypad_hyphen [[:SPKR3] :return_or_enter]] ;;• mousepad 3 for...
-	
-		;; [:##left_control [[:SPKR3] :left_command]] ;;• ring finger button as command
-		[:##left_control [[:SPKR3] :left_command]] ;;• mousepad 3 for...
 	]}
 
+;;? SPACE MODE ===============
+	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
+	;; COMMENTS:
+	;; homerow keyboard
+		[:##b :spacebar :space-mode]        ;;• spacebar+b for space
+		; jlik for ←↑→↓ (left/right/up/down arrows)
+			[:##j :left_arrow  :space-mode]  ;;• spacebar+j for ←
+			[:##l :right_arrow :space-mode] ;;• spacebar+l for →
+			[:##i :up_arrow    :space-mode]    ;;• spacebar+i for ↑
+			[:##k :down_arrow  :space-mode]  ;;• spacebar+k for ↓
+		; spacebar+;/o/u/p/h/y for non-text characters (↩⇥, delete, page up/down)
+			[:##semicolon :return_or_enter :space-mode] ;;* spacebar+return for ↩
+			[:##o :tab :space-mode] ;;* spacebar+u for tab
+			[:##u :!Stab :space-mode] ;;* spacebar+u for ⇧+tab
+			[:##p :delete_or_backspace :space-mode] ;;* spacebar+p for delete
+			[:##y :page_up :space-mode] ;;* spacebar+y for page up
+			[:##h :tab :space-mode] ;;* spacebar+h for ⇥
+		; spacebar+asdf for modifiers (⇧⌥⌘⌃)
+			;;todo (remember thought about c instead F (check omf project))
+			[:##a :left_control :space-mode] ;;* spacebar+a for ctrl
+			[:##s :left_shift :space-mode] ;;* spacebar+s for shift
+			[:##d :left_option :space-mode] ;;* spacebar+d for option
+			[:##f :right_command :space-mode] ;;* spacebar+f for cmd
+			[:##caps_lock :fn :space-mode] ;;* spacebar+caps_lock for 
+	;; spacebar+xxx for shift modifiers
+		[:##comma :!Scomma :space-mode] ;;• spacebar+comma for "<"
+		[:##period :!Speriod :space-mode] ;;• spacebar+period for ">""
+	;; spacebar+MISC for v clipboard history, m moom, c contexts, REMOVED w for contexts and tab for contexts
+		[:##v [[:SPKR3][:km "Clipboard History Switcher"]] :space-mode]  ;;• spacebar+v for "Clipboard History" (via KM macro)
+		[:##m [[:SPKR3]:!!f14] :space-mode] [:##m [[:SPKR2]:!!f14] :Rctrl-mode] ;;• spacebar+m for activate moom (like this one better)
+		[:##c [[:SPKR3]:!CTOw] :space-mode] [:##c [[:SPKR2]:!Ospacebar] :Rctrl-mode] ;;• spacebar+c to activate Contexts
+		[:##return_or_enter [[:SPKR3]:!Of12] :space-mode]  ;;• spacebar+return for Bartender Search menu bar items (via ⌥+F12 in Bartender) 🟢🔰new
+	;; todo something with tab, tilde ect.... [:##tab :#menu]
+	;; TODO
+		;; use with
+		;; [ ] +1/2/3/4 for...
+		;; [ ] F1/f2/f3/f4 for... F11 to F22
+		]}
 
-
-;;============================ A MODE ===============================
-	{:des "a-mode for apple notes menubar (a+equals/delete)" :rules [ :a& ;;* –––––––––––––––––––––––––––––––––––––
-	[:equal_sign [:open "raycast://extensions/raycast/apple-notes/index"] ] ;;• a+= for_t
-	[:delete_or_backspace [:!STCf9] ] ;;• a+delete for Apple Notes menubar
-	;; [:delete_or_backspace [:open "btt://trigger_named/?trigger_name=menu-apple-notes"]] ;;• a+delete for Apple Notes menuba 
-	]}
+;;? A MODE (EMPTY) ===============================
+	;; leave empty and see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:144
 ;;=========================== B MODE ==============================
 	{:des " b-mode for b things" :rules [ :b& ;;* ––––––––––––––––––––––––––––––––––––
 		
@@ -788,6 +755,7 @@
     :periodµ ;;• –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
 	]}
+
 ;;============================ QUOTE MODE (NEW TEMPLATE)============================
 ;; NOTE: quote is set as left control for emacs (no it's)
 {	:des "quote-mode for..." :rules [
