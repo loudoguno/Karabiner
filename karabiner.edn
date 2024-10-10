@@ -354,29 +354,64 @@
 
 ;;? S MODE ================================================================
 	{:des "s-mode for s things" :rules [ :s&
+		[:t :!STCs] ;;• s+t for Speak Text via system hot key (⇧⌥⌃S)
+		
 	;;TODO (S MODE)
 	]}
 
 ;;? T MODE ================================================================
 	{:des "t-mode for t things" :rules [ :t&
+		[:r [:soundOn]] ;;• TEST  t+r for test rule (🔈 worked) 🔉🔊🛎🔔📢📯
+		[:d [[:SPKR3] :!Ti] ];;• t+d for Slidepad (via ⌃i)
+		[:s [[:SPKR3] :!OSCs]] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
+		[:g [:t :h :e :g :o :s :p :e :l :a :c :c :o :r :d :i :n :g :t :o :l :o :u] ] ;;• t+g tgal expansion
+
 	;;TODO (T MODE)
+		;;* Raycast Todo list 
+			;; [:delete_or_backspace [:open ]] ;;• t+delete for raycast todos menubar 🔰 
+			;; [:equal_sign [[:SPKR3] [:!STCf11] ]] ;;• t+= for open raycast todo-list 
+			;; [:equal_sign [:open "raycast://extensions/maggie/todo-list/index"] ] ;;• t+= for raycast todo-list via raycasut URL
+			;; [:return_or_enter [:open "raycast://extensions/maggie/todo-list/index"] ] ;;• t+= for open raycast todo-list
+			;; raycastbtt://trigger_named/?trigger_name=clickMenu ;; todo-list menubar
+		;; todo change to #shortcuts
+			[:1 [[:SPKR3] [:open "shortcuts://run-shortcut?name=Tot%201"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
+			[:2 [[:SPKR3] [:open "shortcuts://run-shortcut?name=Tot%202"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
+			[:3 [[:SPKR3] [:open "shortcuts://run-shortcut?name=Tot%203"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
+			[:4 [[:SPKR3] [:open "shortcuts://run-shortcut?name=Tot%204"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
+			[:5 [[:SPKR3] [:open "shortcuts://run-shortcut?name=Tot%205"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
+			[:6 [[:SPKR3] [:open "shortcuts://run-shortcut?name=Tot%206"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
+			[:7 [[:SPKR3] [:open "shortcuts://run-shortcut?name=Tot%207"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
 	]}
-
-;;? U MODE ================================================================
-	{:des "u-mode for u things" :rules [ :u&
+;;? U MODE (empty)================================================================
+	;; {:des "u-mode for u things" :rules [ :u&
 	;;TODO (U MODE)
-	]}
-
+	;; ]}
 ;;? V MODE ================================================================
 	{:des "v-mode for v things" :rules [ :v&
+		[:1 [:km "paste clipboard 1"] ] ;;• c+1 paste to clipboard 1
+		[:2 [:km "paste clipboard 2"] ] ;;• c+2 paste to clipboard 2
+		[:3 [:km "paste clipboard 3"] ] ;;• c+3 paste to clipboard 3
 	;;TODO (V MODE)
+		[:p [[:SPKR3] [:open "raycast://confetti"]]]  ;;• v+p AVAILABLE
 	]}
-
 ;;? W MODE ================================================================
 	{:des "w-mode for w things" :rules [ :w&
+		[:spacebar [[:SPKR3] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
+			;; #uhk
+				;; [:right_control [[:SPKR3] :!SOCf3 ]] ;; for uhk2
+		[:c [:km "Center Window on Current Mouse Location"] ] ;;• w+c for km "Move Mouse to Focused Window" #core
+		[:left_gui [[:SPKR3] :!!f14 ]] ;;* w+left_gui for moom via ⌃⌥⇧⌘F14 (accessable with left hand)
 	;;TODO (W MODE)
+		[:tab [:btt "Recall Saved Window"]] ;;• w+tab for Recall Saved Window (via BTT)
+		;; workbench
+			[:m [[:SPKR3] [:open "kmtrigger://macro=2B5C8666-4BD0-4FA7-B76F-A4F28DDB67AC"]]] ;;• w+m Workbench Menu
+			[:b [[:SPKR3] [:km "Float Obsidian Workbench with Marked"]]] ;;• w+b Float Obsidian Workbench with Marked
+		; spaces (replace SPKR3) see krb-purged.edn line 591 vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:579
+			[:a [[:SPKR3] :!STOcomma]] ;;• w+a for Switch Active Workspace Left (via System Hotkeys)
+			[:d [[:SPKR3] :!STOperiod]] ;;• w+d for Switch Active Workspace Right (via System Hotkeys)
+			;; [:f [[:SPKR3] [:btt "Move Window Space Right"] ] ] ;;• w+f  Move Window Space Right (via btt)
+			;; [:caps_lock [[:SPKR3] [:btt "Move Window Space Left"] ] ] ;;• w+capslock Move Window Space Left (via btt)		
 	]}
-
 ;;? X MODE ================================================================
 	{:des "x-mode for x things" :rules [ :x&
 	;;TODO (X MODE)
@@ -384,9 +419,7 @@
 		;; rehome 		[:l [:!Ta :!TSe :!Sright_arrow [:SPKR3] [:km "Extract URL from Selection"]]  ] ;;• compiled >>> did keyboard sequence, DID sound, DID KM 😀😀😀😀😀😀😀
 		;;  #common-command
 			;; 	[:u [:km "© Copy URL"]] ;;• x+u for © Copy URL (via KM global context)
-
 	]}
-
 ;;? Y MODE (EMPTY) ================================================================
 	;; {:des "y-mode for y things" :rules [ :y&
 	;;TODO (Y MODE)
