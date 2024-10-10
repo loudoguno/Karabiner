@@ -1,0 +1,135 @@
+;;? PERIOD MODE ====================================================
+	{:des " period-mode for typinator and autocomplete":rules [
+    :periodµ ;;• –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
+	]}
+
+;;============================ (FORWARD) SLASH MODE ==========================
+{ :des "slash-mode for..." :rules [
+    :slash-mode ;;* ------------------------------------------------------------------------------------------------------------------------
+    
+    
+    ;; [:h [[:SPKR3] [:open "alfred://runtrigger/com.alfredapp.hookbookmark/search-hookmark-bookmarks/"]] ] ;;• /+h to Search Hookmark Bookmarks (via Alfred worflow URL)
+    ;; have Apple Notes Obsidian, Notion, Bear, 
+
+    [:n [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n for Search Notion via raycast
+    [:#Cn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+    [:#Sn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+    [:#Tn [[:SPKR3] [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
+    [:#On [[:SPKR3] [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
+    [:#SCn [[:SPKR3] [:open "raycast://extensions/reckoning-dev/search-notion/commandSearchNotion "]]] ;;• /+⌘n create Notion database page 
+    [:#TCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+    [:#OCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+    [:#TOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+    [:#STn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+    [:#SOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+    [:#SCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+    [:#SOCn [[:SPKR3] [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
+    [:#TOCn [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n create Notion database page
+    [:#STOn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+    [:#STCn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+    [:#Qm [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+    [:#RScomma [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+    [:8 [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+d to search Dynalist (via km)
+    [:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/logsearch"]] ] ;;• /+l to search logdeq (via Raycast)
+    ;; [:left_gui [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+left_gui to seek Superkey
+
+    ;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search "]] ] ;;• /+r to search Roam notes vvis raycast 
+
+    ;; kmtrigger://macro=Dynalist%3A%20Search
+    [:#SCh [[:SPKR3] [:open "file:///Users/loudog/"]]] ;;• /+⌘n create Notion database page 
+    [:#SCd [[:SPKR3] [:open "file:///Users/loudog/Desktop"]]] ;;• /+⌘n create Notion database page 
+    [:#SCa [[:SPKR3] [:open "file:///Users/loudog/Applications"]]] ;;• /+⌘n create Notion database page
+    [:#SCs [[:SPKR3] [:open "file:///Users/loudog/Sync"]]] ;;• /+⌘n create Notion database page
+    [:#SCs [[:SPKR3] [:open "file:///Users/loudog/Sync"]]] ;;• /+⌘n create Notion database page
+    ]}
+
+;;============================ QUOTE MODE (NEW TEMPLATE)============================
+;; NOTE: quote is set as left control for emacs (no it's)
+{	:des "quote-mode for..." :rules [
+	:quote& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+	
+]}
+;;============================ EQUALSIGN (NEW TEMPLATE)============================
+{	:des "equal-sign for..." :rules [
+	:equal_sign& ;;* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+	 	[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
+	 	[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]] ] ;;• =+b for new bear 
+	 	
+		[:d [[:SPKR3] [:open "raycast://extensions/FlohGro/drafts/create-draft-and-open"]] ] ;;• =+d for new drafts
+		;; [:d [:km "Jump to Drafts (global)"]] ;;• /+d for Jump to Drafts (global) 🐿❌ disable for jump to journal
+
+	 	[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/createNoteCommand"]] ] ;;• =+o for new obsidian
+	 	[:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/index"]] ] ;;• =+l for new logseq
+	 	[:r [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ] ;;• =+r for reminders
+	 	[:u [[:SPKR3] [:open "raycast://extensions/praveenjuge/ulysses/new-empty-sheet"]] ] ;;• =+u for ulyses 
+		[:f [[:SPKR3] [:open "raycast://extensions/raycast/raycast/create-quicklink"]] ] ;;• =+f for COMMAND
+
+	 	;; [:c [[:SPKR3] [:open ""]] ] ;;• =+XXX for COMMAND
+	 	;; [:a [[:SPKR3] [:open "URL"]] ] ;;• =+XXX for COMMAND
+
+
+;;============================ OTHER MODE ========================== ⭕ TODO [ ] \ /
+
+;;* App Filtering ====================
+;; ℹ️ app filtering notes:
+	;; application modes are defined with regex of the bundleID of the app
+	;; so far drafts-mode works
+
+
+;; {:des "app-mode":rules[[condi :appname]
+;; [:#Cj [:open "something"]]
+;; ]}
+;; {:des "bear-mode":rules[[condi :Bear]
+;; [:#Cj [:open "something"]]
+;; ]}
+
+{:des "drafts-mode":rules[
+	[:condi :draftsApp]
+	;; [:condi :drafts]
+	[:!TCw [:open "raycast://confetti"]] ;;• /+q to Search Quick Links via Raycast
+	[:!TCw [:km "© Open in New Window"]] ;;• /+q to Search Quick Links via Raycast
+	]}
+
+{:des "browsers":rules[ ;; 👍 this works, so problem with above could be escaping the bundle id, KM issue, turned off confetty
+	[:condi :Browsers]
+	;; [:c [:open "raycast://confetti"]]
+	;; [:!TCw [ ] ;;• /+q to Search Quick Links via Raycast
+	]}
+;; ]}
+
+] ;; CLOSES main
+
+
+
+
+:simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
+	;! seems to create obsene delay on  on key up
+;;* Devices, Applications and Input Sources  ==================================
+	:devices { ;;✅
+			:macbook-internal [{:product_id 631 :vendor_id 1452}]
+			:uhk [{:product_id 24866 :vendor_id 7504}]
+			:uhk-2 [{:product_id 24868 :vendor_id 7504}]
+			:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
+			;; TODO add other gaming mouse, 
+			;;? i wonder if you can filter for universal control and fix some of those problems
+
+			}
+;;* APPLICATIONS
+	:applications {
+;; ------------- groups
+		}
+	
+:input-sources {
+		:squirrel {:input_mode_id   "com.googlecode.rimeime.inputmethod.Squirrel"
+					:input_source_id "com.googlecode.rimeime.inputmethod.Squirrel.Rime"
+					:language        "zh-Hans"}
+		:us {:input_mode_id   ""
+				:input_source_id "com.apple.keylayout.US"
+				:language        "en"}
+		}
+;; * conditions 
+;; [{:des   "conditions" :rules [[:condi :us :hhkb]
+;;  [:l :!COi [:Browsers :z-mode]]]}]}
+;; text you'd put in the rules

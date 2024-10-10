@@ -1,0 +1,123 @@
+
+;;========================== RETURN MODE ==========================
+{	:des "return-mode for..." :rules [:return-mode
+		[:delete_or_backspace :!Tdelete_or_backspace] ;;• return+delete for dismiss notification (via ⌃↩) 💡  could also just use ⭕to purge
+		[:spacebar [[:SPKR3] :!COSTreturn_or_enter]] ;;• return+spacebar for focus menubard (via bartender hotkey)
+
+	[:!SCc [[:🛎] [:open "raycast://confetti"]]]
+	
+	
+	;; [:t [:km "Master.Taskpaper"]]
+	[:t [:km "Master.Taskpaper"]]
+	[:g [:km "Master.Taskpaper"]]
+
+	;;* Menubar
+	[:r [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ;;• return+r for raycast reminders
+	;; [:slash [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]] ;;• r+= raycast my reminders
+
+	]}
+
+;;!(FORWARD) SLASH MODE fslashµ ==========================
+		{	:des "slashµ  for..." :rules [ :fslashµ
+
+		[:n [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n for Search Notion via raycast
+		[:#Cn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+		[:#Sn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+		[:#Tn [[:SPKR3] [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
+		[:#On [[:SPKR3] [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page  
+
+		[:#SCn [[:SPKR3] [:open "raycast://extensions/reckoning-dev/search-notion/commandSearchNotion "]]] ;;• /+⌘n create Notion database page 
+		[:#TCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#OCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#TOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#STn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#SOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+		[:#SCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
+
+		[:#SOCn [[:SPKR3] [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
+		[:#TOCn [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n create Notion database page
+		[:#STOn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+		[:#STCn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+
+		[:#Qm [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+		[:#RScomma [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+
+
+				
+
+		[:8 [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+d to search Dynalist (via km)
+		[:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/logsearch"]] ] ;;• /+l to search logdeq (via Raycast)
+		;; [:left_gui [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+left_gui to seek Superkey
+		
+		;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search "]] ] ;;• /+r to search Roam notes vvis raycast 
+		;; kmtrigger://macro=Dynalist%3A%20Search
+
+
+
+
+	]}
+;;* App Filtering ====================
+;; ℹ️ app filtering notes:
+	;; application modes are defined with regex of the bundleID of the app
+	;; so far drafts-mode works
+
+
+;; {:des "app-mode":rules[[condi :appname]
+;; [:#Cj [:open "something"]]
+;; ]}
+;; {:des "bear-mode":rules[[condi :Bear]
+;; [:#Cj [:open "something"]]
+;; ]}
+
+{:des "drafts-mode":rules[
+	[:condi :draftsApp]
+	;; [:condi :drafts]
+	[:!TCw [:open "raycast://confetti"]] ;;• /+q to Search Quick Links via Raycast
+	[:!TCw [:km "© Open in New Window"]] ;;• /+q to Search Quick Links via Raycast
+	]}
+
+{:des "browsers":rules[ ;; 👍 this works, so problem with above could be escaping the bundle id, KM issue, turned off confetty
+	[:condi :Browsers]
+	;; [:c [:open "raycast://confetti"]]
+	;; [:!TCw [ ] ;;• /+q to Search Quick Links via Raycast
+	]}
+;; ]}
+
+;;* Devices, Applications and Input Sources  ==================================
+	:devices {
+			:macbook-internal [{:product_id 631 :vendor_id 1452}]
+			:uhk [{:product_id 24866 :vendor_id 7504}]
+			:uhk-2 [{:product_id 24868 :vendor_id 7504}]
+			:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
+			;; TODO add other gaming mouse, 
+			;;? i wonder if you can filter for universal control and fix some of those problems
+
+			}
+;;* APPLICATIONS
+	:applications {
+		;; :vscode
+					
+		;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
+		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"] ;; 👍 works
+		
+		:slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
+		:dynalist      ["^io\\.dynalist$"]
+		:Finder        ["^com\\.apple\\.finder$"]
+;; ------------- groups
+		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
+		:Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
+		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
+		:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
+		}
+	
+	
+:input-sources {
+		:squirrel {:input_mode_id   "com.googlecode.rimeime.inputmethod.Squirrel"
+					:input_source_id "com.googlecode.rimeime.inputmethod.Squirrel.Rime"
+					:language        "zh-Hans"}
+		:us {:input_mode_id   ""
+				:input_source_id "com.apple.keylayout.US"
+				:language        "en"}
+		}
+
+

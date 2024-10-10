@@ -1,0 +1,118 @@
+
+
+;;? FROMS
+ :froms {:1 {:key :d}
+         :2 {:key :d :modi :1}
+         :3 {:key :d :modi :left_command}
+         :4 {:key :d :modi [:left_command :right_shift]}
+         :5 {:key :d :modi {:mandatory [:left_command :right_shift]}}
+         :6 {:key :d :modi {:mandatory [:left_command :right_shift]
+                            :optional [:caps_lock]}}
+         :7 {:ckey :display_brightness_decrement}
+         :8 {:ckey :display_brightness_decrement :modi :left_command}
+         :9 {:pkey :button4 :modi :left_command}
+         :10 {:sim [:a :b] :modi :left_command}
+         :11 {:sim [:a :b]
+              :simo {:interrupt true
+                     :dorder :insensitive}
+              :modi :left_command}}
+
+:froms { ;; from mmrocska's karabiner
+        :anykey {:any :key_code :modi {:optional [:any]}}
+        :any_cmd_key {:any :key_code :modi {:mandatory [:left_command :right_command]}}
+        }
+
+:froms  ;;rgomezcasas
+        {:clipboard-history        {:modi [:left_command :left_shift] :key :v}
+             :create-folder            {:modi [:left_control :left_option :left_command] :key :p}
+             :create-new               {:modi [:left_command] :key :n}
+             :create-new-window        {:modi [:left_command :left_shift] :key :n}
+             :copy-current-url         {:modi [:left_command :left_shift] :key :c}
+             :line-delete              {:modi :left_command :key :delete_or_backspace}
+             :line-duplicate           {:modi :left_command :key :d}
+             :move-next-screen         {:modi [:left_command :left_shift :left_option] :key :right_arrow}
+             :move-prev-screen         {:modi [:left_command :left_shift :left_option] :key :left_arrow}
+             :selection-extend         {:modi :left_option :key :up_arrow}
+             :selection-shrink         {:modi :left_option :key :down_arrow}
+             :show-recent              {:modi :left_command :key :e}
+             :sidebar-primary-toggle   {:modi :left_command :key :1}
+             :sidebar-secondary-toggle {:modi :left_command :key :2}
+             :switch-account           {:modi :left_command :key :caps_lock}
+             :switch-account-esc       {:modi :left_command :key :escape}
+             :zoom-in                  {:modi :left_command :key :equal_sign}
+             :zoom-out                 {:modi :left_command :key :hyphen}}
+
+;;? TOS
+ :tos {:macos-defin {:key :d :modifiers [:left_command :left_control]}
+       :alf--search-help "osascript -e 'tell application \"Alfred 3\" to run trigger \"helpSearch\" in workflow \"com.tedwise.menubarsearch\" with argument \"\"'"}
+
+ ;;;; helper function to generate things little bit quicker
+ ;; quick define "layers" or "state" feature(use set_variable)
+ ;; can use as conditions in rule list
+ ;; {:<layer name> {:from <froms>}}
+:tos { ;; from mmrocska's karabiner
+       :home_dir        [{:key :grave_accent_and_tilde :modi [:left_shift] :lazy true}
+                               {:key :slash}]
+
+       :TURN_OFF_VIM [
+                               {:shell "open -g hammerspoon://enterVimSpoonInsertMode"}
+                               {:set ["vim_mode" 0]}                                                 ; turn off vim mode
+                               {:set ["any_key_not_defined_above" 0]}                                ; turn off deadkey variable
+
+                               {:set ["vim_change_mode" 0]}
+                               {:set ["vim_delete_mode" 0]}
+                               {:set ["vim_delete_till_mode" 0]}
+                               {:set ["vim_find_char_mode" 0]}
+                               {:set ["vim_from_change_mode" 0]}
+                               {:set ["vim_from_delete_mode" 0]}
+                               {:set ["vim_from_surround_mode" 0]}
+                               {:set ["vim_from_visual_block_mode" 0]}
+                               {:set ["vim_from_visual_mode" 0]}
+                               {:set ["vim_from_yank_mode" 0]}
+                               {:set ["vim_go_to_mode" 0]}
+                               {:set ["vim_go_to_visual_mode" 0]}
+                               {:set ["vim_in_mode" 0]}
+                               {:set ["vim_indent_mode" 0]}
+                               {:set ["vim_lowercase_mode" 0]}
+                               {:set ["vim_movement_mode" 0]}
+                               {:set ["vim_outdent_mode" 0]}
+                               {:set ["vim_replace_mode" 0]}
+                               {:set ["vim_replace_single_letter_mode" 0]}
+                               {:set ["vim_surround_mode" 0]}
+                               {:set ["vim_uppercase_mode" 0]}
+                               {:set ["vim_visual_block_mode" 0]}
+                               {:set ["vim_visual_mode" 0]}
+                               {:set ["vim_yank_mode" 0]}
+                               ]
+
+       :TURN_ON_VIM_AND_CLEAR_VARS [
+                               {:shell "open -g hammerspoon://enterVimSpoon"}
+                               {:set ["vim_mode" 1]}                                                 ; turn on vim mode
+                               {:set ["any_key_not_defined_above" 1]}                                ; turn on deadkey variable
+
+                               {:set ["vim_change_mode" 0]}
+                               {:set ["vim_delete_mode" 0]}
+                               {:set ["vim_delete_till_mode" 0]}
+                               {:set ["vim_find_char_mode" 0]}
+                               {:set ["vim_from_change_mode" 0]}
+                               {:set ["vim_from_delete_mode" 0]}
+                               {:set ["vim_from_surround_mode" 0]}
+                               {:set ["vim_from_visual_block_mode" 0]}
+                               {:set ["vim_from_visual_mode" 0]}
+                               {:set ["vim_from_yank_mode" 0]}
+                               {:set ["vim_go_to_mode" 0]}
+                               {:set ["vim_go_to_visual_mode" 0]}
+                               {:set ["vim_in_mode" 0]}
+                               {:set ["vim_indent_mode" 0]}
+                               {:set ["vim_lowercase_mode" 0]}
+                               {:set ["vim_movement_mode" 0]}
+                               {:set ["vim_outdent_mode" 0]}
+                               {:set ["vim_replace_mode" 0]}
+                               {:set ["vim_replace_single_letter_mode" 0]}
+                               {:set ["vim_surround_mode" 0]}
+                               {:set ["vim_uppercase_mode" 0]}
+                               {:set ["vim_visual_block_mode" 0]}
+                               {:set ["vim_visual_mode" 0]}
+                               {:set ["vim_yank_mode" 0]}
+                               ]
+       }
