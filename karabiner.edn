@@ -1,11 +1,9 @@
-;; karabiner.edn 1.0 2024-10-10
-
-{
+{ ;; karabiner.edn 1.01 2024-10 (transition to layers where feasable and USW work)
 ;;? DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
-;;? PROFILES	
+;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
 		;! seems to create obsene delay on  on key up
-:devices { ;;? DEVICES
+:devices {      ;;? DEVICES (todo org)
 		;; todo add macbook internals
 			;; :macbook-internal [{:product_id 631 :vendor_id 1452}]
 			;; :mbp [{:product_id 631 :vendor_id 1452}] 
@@ -18,7 +16,7 @@
 		;; TODO add other gaming mouse, 
 		;;? i wonder if you can filter for universal control and fix some of those problems
 	}
-:applications { ;;? APPLICATIONS
+:applications{  ;;? APPLICATIONS
 		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
 		:Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
 		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
@@ -31,12 +29,12 @@
 		;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
 		;; :vscode					
 	}
-:input-sources { ;;? INPUT SOURCES
+:input-sources{ ;; INPUT SOURCES
 	:us {:input_mode_id   ""
 		:input_source_id "com.apple.keylayout.US"
 		:language        "en"}
 	}
-:templates { ;;? TEMPLATES
+:templates {    ;;? TEMPLATES
 		:run "%s"
 		:open "open \"%s\"" ; open file
 		:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
@@ -61,37 +59,65 @@
 		:soundOn "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
 		:soundOff "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		;; :gokurl "goku" ;; trying to add load goku
-		}
-;;? MODIFIERS (todo)
-;;? FROMS (todo)
-;;? TOS (todo)
-:layers { ;;? LAYERS
-	:space-mode {:key :spacebar :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!periodµ :!return-mode]} ; prevents space mode from overiding F and D modes 
-	:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
-	;;* NEW Super-modes
-		:tildeµ {:key :grave_accent_and_tilde :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
-		:hyphenµ {:key :hyphen :condi [:!space-mode]}
-		:=µ {:key :equal_sign :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!return-mode]}
-		
-		:backslashµ {:key :backslash :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
-		:fslashµ {:key :slash :condi [:!space-mode :!tildeµ :!backslashµ :!fslashµ :!=µ]}
-		:periodµ {:key :period :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
-		;;row1 escapeµ, F1µ, F12µ,
-		;;row2 tildeµ, 1µ, hyphenµ, =µ, deleteµ
-			:1µ {:key :1}
-				;; [ ] search and replace...
-		;;row3 tabµ, [/] (open_bracketµ), `\` (backslashµ)
-			; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
-			;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
-		;;row4 caps_lockµ, semicolonµ, quoteµ, returnµ
-			;; :quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode]}
-			;; :return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!return-mode :!space-mode]}
-		;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (periodµ), / (slashµ), right_shiftµ
-			;; [ ] 
-		;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
-			;; [ ] figure out if arrows get triggered when space+jlik
 	}
-:simlayers { ;;? SIMLAYERS
+:modifiers {    ;; MODIFIERS (todo empty)
+	}
+:froms {        ;; FROMS (todo empty)
+	}
+:tos {          ;; TOS (todo empty)
+	}
+:layers {       ;;? LAYERS
+	:space-mode {:key :spacebar ;;* space layer (space
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ]
+		} ; prevents space mode from overiding F and D modes 
+	:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
+	
+	:tildeµ {:key :grave_accent_and_tilde ;;* tilde layer (tildeµ)
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+		}
+	:hyphenµ {:key :hyphen ;;* hyper layer (hyphenµ)
+		:condi [:!space-mode]
+		}
+	:=µ {:key :equal_sign ;;* equal sign layer (=µ
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!↩µ]
+		}	
+	:backslashµ {:key :backslash ;;* backslash layer
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+		}
+	:fslashµ {:key :slash ;;* slash layer (fslashµ) ============
+		:condi [:!space-mode :!tildeµ :!backslashµ :!fslashµ :!=µ]
+		}
+	:.µ {:key :period ;;* period layer (.µ) ============
+		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+		}
+	:↩µ {:key :return_or_enter  ;;* return layer (↩µ)
+		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+		}
+	
+	;;row1 escapeµ, F1µ, F12µ,
+	;;row2 tildeµ, 1µ, hyphenµ, =µ, deleteµ
+		:1µ {:key :1}
+			;; [ ] search and replace...
+	;;row3 tabµ, [/] (open_bracketµ), `\` (backslashµ)
+		; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
+		;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
+	;;row4 caps_lockµ, semicolonµ, quoteµ, returnµ
+		;; :quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]}
+		;; :return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ :!space-mode]}
+	;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (.µ), / (slashµ), right_shiftµ
+		;; [ ] 
+	;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
+	;; :=µ {:key :equal_sign ;;* equal sign layer (=µ
+		;; :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!↩µ]
+		;; }
+
+	;;todo † new layer definition template
+		;; :KEYµ {:key :KEY 
+			;; :condi [:!space-mode]
+			;; }
+	;;todo [ ] figure out if arrows get triggered when space+jlik
+	}
+:simlayers {    ;;? SIMLAYERS
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
 		:a& {:key :a}
 		:b& {:key :b}
@@ -120,14 +146,14 @@
 		:y& {:key :y}
 		:z& {:key :z}
 	}
-;;? 👿 CHEATSHEET
+:cheatsheet {   ;; 👿 CHEATSHEET
+	}
 
 :main [ ;;? MAIN RULES ==========================================
 ;;= SIMULTANEOUS KEYS =====================================
 ;;? ASSORTED RULES =====================================
-	;;TODO (ASSORTED) A	;; [ ] decide on format (readability by line length or more on 1 line?)
 	;; like yellow* associated with description and blue • associated with rule
-	
+
 	{:des "right_shift+space for underscore/dash":rules[ ;;* right-shift+spacebar
 		[:!Rspacebar :hyphen] ;;• right_shift+spacebar for hyphen "-" (aka dash)
 		[:!SRspacebar :!Shyphen] ;;• both shift + spacebar for underscore 
@@ -153,6 +179,7 @@
 			{:des "FN from UHK 2" :rules [[:#SOCTf24 :fn [:uhk-2] ]]} ;;* for V2	
 	{:des "iPad defaults" :rules [ ;;? iPad defaults ========== 
 		[:!Cperiod [[:SPKR3] :escape]] ;;• ⌘+period for escape
+	;;TODO (ASSORTED) A	;; [ ] decide on format (readability by line length or more on 1 line?)
 		[:!Cperiod [[:SPKR3] :escape]] ;;• 🌐+\ for cycle sidevview
 		;; [:!Cperiod [[:SPKR3] :escape]] ;;• 🌐+q for Quick Note #todo
 		[:!!CSOTgrave_accent_and_tilde [[:SPKR3] :!Tf4]] ;;• 🌐+` cycle focus between windows #todo broken 
@@ -162,11 +189,11 @@
 		;; [:m [[:SPKR3] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
 		]}
 ;;* LAYERS =====================================
-;;? ESCAPE MODE (empty) ================================================================
+;; ESCAPE MODE (empty) ================================================================
 	;; {:des "escape-mode for escape things" :rules [ :escape&
 	;;TODO (ESCAPE MODE)
 	;; ]}
-;;? F1 MODE (empty) ================================================================
+;; F1 MODE (empty) ================================================================
 	;; {:des "f1-mode for f1 things" :rules [ :f1&
 	;;TODO (F1 MODE)
 	;; ]}
@@ -176,7 +203,7 @@
 		;; [:##spacebar :!t] ;;* `+spacebar for test
 	;;TODO (TILDE MODE)
 	]}
-;;? HYPHEN MODE (disabled) ================================================================
+;; HYPHEN MODE (disabled) ================================================================
 	;; {:des "hyphen-mode for hyphen things" :rules [ :hyphen&
 	;;TODO (HYPHEN MODE)
 	;; ]}
@@ -192,19 +219,19 @@
 			;; [:u [[:SPKR3] [:open "raycast://extensions/praveenjuge/ulysses/new-empty-sheet"]] ] ;;• =+u for ulyses 
 		;;TODO (EQUAL_SIGN MODE)
 		]}
-;;? DELETE MODE (empty) (empty) ================================================================
+;; DELETE MODE (empty) (empty) ================================================================
 	;; {:des "delete-mode for delete things" :rules [ :delete&
 		;;TODO (DELETE MODE)
 		;; ]}
-;;? TAB MODE (todo/disabled) ================================================================
+;; TAB MODE (todo/disabled) ================================================================
 	;; {:des "tab-mode for tab things" :rules [ :tab&
 	;; ;;TODO (TAB MODE)
 	;; ]}
-;;? LEFT_BRACKET MODE (todo/disabled) ================================================================
+;; LEFT_BRACKET MODE (todo/disabled) ================================================================
 	;; {:des "left_bracket-mode for left bracket things" :rules [ :left_bracket&
 	;;TODO (LEFT_BRACKET MODE)
 	;; ]}
-;;? BACKSLASH MODE (TODO) ================================================================
+;;! BACKSLASH MODE (TODO) ================================================================
 	;; {:des "backslashµ for backslash things" :rules [ :backslash&
 	;;TODO (BACKSLASH MODE)
 	;; ]}
@@ -219,18 +246,20 @@
 
 		; [:s [:ToKey]] ;;• quote+s for ToKey hello
 	;; ]}
-;;? QUOTE MODE (disabled) ================================================================
+;; QUOTE MODE (disabled) ================================================================
 	;; {:des "quote-mode for quote things" :rules [ :quote&
 	;;TODO (QUOTE MODE)
 	;; ]}
 	
 	;; NOTE: quote is set as left control for emacs (no it's)
-;;? RETURN MODE (disabled) ================================================================
-	;; {:des "return-mode for return things" :rules [ :return&
-	;; TODO (RETURN MODE)
-	;; ]}
-;;? PERIOD MODE periodµ (enabled, to convert) ====================================================
-	{:des " period-mode for typinator and autocomplete":rules [ :periodµ
+;;? RETURN MODE ↩µ ================================================================
+	{:des "return-mode for return things" :rules [ :↩µ
+		[:!!t [:open "raycast://confetti"]] ;;* works
+		[:##spacebar :!!COTSreturn_or_enter]
+		;; TODO (RETURN MODE)
+		]}
+;;? PERIOD MODE .µ (enabled, to convert) ====================================================
+	{:des " period-mode for typinator and autocomplete":rules [ :.µ
 		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
 		]}
 ;;? (FORWARD SLASH MODE fslashµ (✅ full) ===============
@@ -330,6 +359,11 @@
 ;;? UP_ARROW MODE ================================================================
 	;; {:des "up_arrow-mode for up arrow things" :rules [ :up_arrow&
 	;; TODO (UP_ARROW MODE)
+	;; ]}
+;; TODO † LAYER TEMPLATE
+	;; {:des "KEYKEY-mode for XXX things" :rules [ :NEWKEYµ
+	;; [:!!t [:open "raycast://confetti"]] ;;* test
+	;; TODO (NEWKEY MODE)
 	;; ]}
 
 ;;* SIMLAYERS (a,b,c modes) ==================================================================
