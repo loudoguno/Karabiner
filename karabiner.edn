@@ -3,7 +3,7 @@
 ;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
 		;! seems to create obsene delay on  on key up
-:devices {      ;;? DEVICES (todo org)
+:devices        { ;;? DEVICES (todo org)
 		;; todo add macbook internals
 			;; :macbook-internal [{:product_id 631 :vendor_id 1452}]
 			;; :mbp [{:product_id 631 :vendor_id 1452}] 
@@ -16,7 +16,7 @@
 		;; TODO add other gaming mouse, 
 		;;? i wonder if you can filter for universal control and fix some of those problems
 	}
-:applications{  ;;? APPLICATIONS
+:applications   { ;;? APPLICATIONS
 		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
 		:Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
 		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
@@ -29,12 +29,12 @@
 		;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
 		;; :vscode					
 	}
-:input-sources{ ;; INPUT SOURCES
+:input-sources  { ;; INPUT SOURCES
 	:us {:input_mode_id   ""
 		:input_source_id "com.apple.keylayout.US"
 		:language        "en"}
 	}
-:templates {    ;;? TEMPLATES
+:templates      { ;;? TEMPLATES
 		:run "%s"
 		:open "open \"%s\""
 		:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
@@ -63,58 +63,66 @@
 		:soundOff "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		;; :gokurl "goku" ;; trying to add load goku
 	}
-:modifiers {    ;; MODIFIERS (todo empty)
+:modifiers      { ;; MODIFIERS (todo empty)
 	}
-:froms {        ;; FROMS (todo empty)
+:froms          { ;; FROMS (todo empty)
 	}
-:tos {          ;; TOS (todo empty)
+:tos            { ;; TOS (todo empty)
 	}
-:layers {       ;;? LAYERS
-	:space-mode {:key :spacebar ;;* space layer (space
+:layers         { ;;? LAYERS 
+	:space-mode {:key :spacebar                ;;* space layer (space-mode)
 		:condi [:!f& :!d& :!c& :!k& :!w&
 		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ]
 		} ; prevents space mode from overiding F and D modes 
-	:Rctrl-mode {:key :right_control ;;* Rctrl mode
+	:Rctrl-mode {:key :right_control           ;;* Rctrl mode
 		:alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]
 		} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
-	
-	:tildeµ {:key :grave_accent_and_tilde ;;* tilde layer (tildeµ)
-		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+	:⎋µ         {:key :escape                  ;;* escape layer (⎋µ)
+		:condi [:!space-mode]
+		}	
+	:tildeµ     {:key :grave_accent_and_tilde  ;;* tilde layer (tildeµ)
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
-	:hyphenµ {:key :hyphen ;;* hyper layer (hyphenµ)
+	:1µ         {:key :1                       ;;* 1 layer (1µ)
 		:condi [:!space-mode]
 		}
-	:=µ {:key :equal_sign ;;* equal sign layer (=µ
-		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!↩µ]
+	:2µ         {:key :2                       ;;* 2 layer (2µ)
+		:condi [:!space-mode]
+		}
+	:-µ    {:key :hyphen                  ;;* hyper layer (-µ)
+		:condi [:!space-mode]
+		}
+	:=µ         {:key :equal_sign              ;;* equal sign layer (=µ
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!↩µ]
 		}	
-	:backslashµ {:key :backslash ;;* backslash layer
-		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+	:bslashµ {:key :backslash               ;;* backslash layer
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
-	:fslashµ {:key :slash ;;* slash layer (fslashµ) ============
-		:condi [:!space-mode :!tildeµ :!backslashµ :!fslashµ :!=µ]
+	:fslashµ    {:key :slash                   ;;* slash layer (fslashµ)
+		:condi [:!space-mode :!tildeµ :!bslashµ :!fslashµ :!=µ]
 		}
-	:.µ {:key :period ;;* period layer (.µ) ============
-		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+	:.µ         {:key :period                  ;;* period layer (.µ) 
+		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
-	:↩µ {:key :return_or_enter  ;;* return layer (↩µ)
-		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+	:↩µ         {:key :return_or_enter         ;;* return layer (↩µ)
+		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
 	
 	;;row1 escapeµ, F1µ, F12µ,
-	;;row2 tildeµ, 1µ, hyphenµ, =µ, deleteµ
-		:1µ {:key :1}
+	;;row2 tildeµ, 1µ, -µ, =µ, deleteµ
+		;; :1µ {:key :1}
 			;; [ ] search and replace...
-	;;row3 tabµ, [/] (open_bracketµ), `\` (backslashµ)
+	;;row3 tabµ, [/] (open_bracketµ), `\` (bslashµ)
 		; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
 		;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
 	;;row4 caps_lockµ, semicolonµ, quoteµ, returnµ
-		;; :quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]}
-		;; :return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ :!space-mode]}
+		;; :quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]}
+		;; :return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ :!space-mode]}
 	;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (.µ), / (slashµ), right_shiftµ
 		;; [ ] 
 	;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
 	;; :=µ {:key :equal_sign ;;* equal sign layer (=µ
-		;; :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!backslashµ :!quote-mode :!fslashµ :!↩µ]
+		;; :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!↩µ]
 		;; }
 
 	;;todo † new layer definition template
@@ -123,12 +131,12 @@
 			;; }
 	;;todo [ ] figure out if arrows get triggered when space+jlik
 	}
-:simlayers {    ;;? SIMLAYERS
+:simlayers     { ;;? SIMLAYERS
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
 		:a& {:key :a}
 		:b& {:key :b}
 		:c& {:key :c}
-		:d& {:key :d :condi :!space-mode} ;why is this here?
+		:d& {:key :d :condi :!space-mode}
 		:e& {:key :e}
 		:f& {:key :f}
 		:g& {:key :g}
@@ -152,7 +160,7 @@
 		:y& {:key :y}
 		:z& {:key :z}
 	}
-:cheatsheet {   ;; 👿 CHEATSHEET
+		:cheatsheet {   ;;? 👿 CHEATSHEET 
 	}
 
 :main [ ;;? MAIN RULES ==========================================
@@ -194,17 +202,18 @@
 		;; [:!Treturn_or_enter [[:SPKR3] :insert]] ;;• ⌃+return for context menu
 		;; [:m [[:SPKR3] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
 		]}
+
 ;;* LAYERS =====================================
-;; ESCAPE MODE (empty) ================================================================
-	;; {:des "escape-mode for escape things" :rules [ :escape&
-	;;TODO (ESCAPE MODE)
-	;; ]}
-;; F1 MODE (empty) ================================================================
+
+{:des "escape-mode" :rules [:⎋µ ;;?========================= ESCAPE MODE (⎋µ)
+	[:!!t [:open "raycast://confetti"]] ;;* test -> works
+	;; TODO (ESCAPE MODE)
+	]}
+;; F1 MODE (empty) 
 	;; {:des "f1-mode for f1 things" :rules [ :f1&
 	;;TODO (F1 MODE)
 	;; ]}
-;;? TILDE MODE tildeµ  (TO DO)================================================================
-	{:des "tilde-mode for tilde things" :rules [ :tildeµ
+{:des "tilde-mode"  :rules [:tildeµ ;;?===================== TILDE MODE  (tildeµ)
 		[:1 [[:🛎] :!TOCf11]] ;;• tilde+1 slidepad 1
 		[:2 [[:🛎] :!TOCf12]] ;;• tilde+2 slidepad 2
 		[:3 [[:🛎] :!TOCf13]] ;;• tilde+3 slidepad 3
@@ -240,20 +249,29 @@
 		;; [:q [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+q 
 			;; [:a [[:SPKR3] [:open "raycast://extensions/ray`cast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
 		]}
-;; HYPHEN MODE (disabled) ================================================================
-	;; {:des "hyphen-mode for hyphen things" :rules [ :hyphen&
+{:des "1-mode" :rules [ :1µ ;;?============================= 1 MODE      (1µ)
+	[:##p :!TSp] ;;• +p for 1Password Autofill (⌃⇧+p)
+	[:!!t [:open "raycast://confetti"]] ;;* test
+	;; TODO (1 LAYER)
+	]}
+{:des "2-mode" :rules [ :2µ ;;?============================= 2 MODE      (2µ)
+	[:!!t [:open "raycast://confetti"]] ;;* test
+	;; TODO (2 LAYER)
+	]}
+{:des "hyphen-mode" :rules [:-µ ;;?==================== HYPHEN MODE (-µ)
+	[:##t [:open "raycast://confetti"]]
 	;;TODO (HYPHEN MODE)
-	;; ]}
-;;? EQUAL_SIGN MODE =µ (✅ full) ===============================================================================
-	{:des "equal_sign-mode for equal sign things" :rules [ :=µ
-		; new CRUD
-			[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
-			[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]] ] ;;• =+b for new bear 
-			[:d [[:SPKR3] [:open "raycast://extensions/FlohGro/drafts/create-draft-and-open"]] ] ;;• =+d for new drafts
-			[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/createNoteCommand"]] ] ;;• =+o for new obsidian
-			;; [:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/index"]] ] ;;• =+l for new logseq
-			[:r [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ] ;;• =+r for reminders
-			;; [:u [[:SPKR3] [:open "raycast://extensions/praveenjuge/ulysses/new-empty-sheet"]] ] ;;• =+u for ulyses 
+	]}
+
+{:des "=-mode" :rules [ :=µ ;;?============================= EQUAL_SIGN MODE (=µ)
+	; new CRUD
+		[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
+		[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]] ] ;;• =+b for new bear 
+		[:d [[:SPKR3] [:open "raycast://extensions/FlohGro/drafts/create-draft-and-open"]] ] ;;• =+d for new drafts
+		[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/createNoteCommand"]] ] ;;• =+o for new obsidian
+		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• \+r to capture Roam notes
+		;; [:r [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ] ;;• =+r for reminders
+		;; [:u [[:SPKR3] [:open "raycast://extensions/praveenjuge/ulysses/new-empty-sheet"]] ] ;;• =+u for ulyses 
 		;;TODO (EQUAL_SIGN MODE)
 		]}
 ;; DELETE MODE (empty) (empty) ================================================================
@@ -268,21 +286,18 @@
 	;; {:des "left_bracket-mode for left bracket things" :rules [ :left_bracket&
 	;;TODO (LEFT_BRACKET MODE)
 	;; ]}
-;;! BACKSLASH MODE (TODO) ================================================================
-	;; {:des "backslashµ for backslash things" :rules [ :backslash&
+{:des "bslashµ" :rules [:bslashµ ;;?========================= BSLASH MODE (bslashµ)
+	[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• \+r to capture Roam notes
 	;;TODO (BACKSLASH MODE)
 	;; ]}
-	;; {	:des "backslashµ for..." :rules [ :backslashµ
-	;; [:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• \+r to capture Roam notes
 	;; [:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/add-text"]] ] ;• \+a for add text to apple notes 
 	;; [:o [[:SPKR3] [:open "raycast://extensions/millin_gabani/obsidian-smart-capture/capture"]] ] ;;• \+o for Obsidian
 
 	;; [:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]]] ;;• \+b for new bear 
 	;; [:XXX [[:SPKR3] [:open "URL"]] ] ;;• \+XXX for 
 	;; [b [[:SPKR3] [:open]] ] ;;• \+XXX for 
-
-		; [:s [:ToKey]] ;;• quote+s for ToKey hello
-	;; ]}
+	; [:s [:ToKey]] ;;• quote+s for ToKey hello
+	]}
 ;; QUOTE MODE (disabled) ================================================================
 	;; {:des "quote-mode for quote things" :rules [ :quote&
 	;;TODO (QUOTE MODE)
@@ -407,11 +422,11 @@
 
 ;;? A MODE (EMPTY) ========================================================
 	;; leave empty and see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:144
-;;? B MODE ================================================================
-	{:des " b-mode for b things" :rules [ :b&
+
+{:des " b-mode for b things" :rules [ :b& ;;? B MODE =======================
 		[:i :vk_consumer_brightness_up] ;;• +i for brightness up
 		[:d :vk_consumer_brightness_down] ;;• b+d for brightness
-		; Bear
+; Bear
 			[:r [:km "Jump to Bear"] ] ;;• b+r for Jump to Bear insgrey 
 			;;TODO add back new bear, jump to bear, toggle bear....	
 		;; BTT stuff
