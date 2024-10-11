@@ -84,18 +84,18 @@
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
 	:1µ         {:key :1                       ;;* 1 layer (1µ)
-		:condi [:!space-mode]
+		:condi [:!space-mode :!bslashµ]
 		}
 	:2µ         {:key :2                       ;;* 2 layer (2µ)
-		:condi [:!space-mode]
+		:condi [:!space-mode :!bslashµ]
 		}
-	:-µ    {:key :hyphen                  ;;* hyper layer (-µ)
+	:-µ         {:key :hyphen                  ;;* hyper layer (-µ)
 		:condi [:!space-mode]
 		}
 	:=µ         {:key :equal_sign              ;;* equal sign layer (=µ
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!↩µ]
 		}	
-	:bslashµ {:key :backslash               ;;* backslash layer
+	:bslashµ    {:key :backslash               ;;* backslash layer
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
 	:fslashµ    {:key :slash                   ;;* slash layer (fslashµ)
@@ -286,17 +286,13 @@
 	;; {:des "left_bracket-mode for left bracket things" :rules [ :left_bracket&
 	;;TODO (LEFT_BRACKET MODE)
 	;; ]}
-{:des "bslashµ" :rules [:bslashµ ;;?========================= BSLASH MODE (bslashµ)
-	[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• \+r to capture Roam notes
-	;;TODO (BACKSLASH MODE)
-	;; ]}
-	;; [:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/add-text"]] ] ;• \+a for add text to apple notes 
-	;; [:o [[:SPKR3] [:open "raycast://extensions/millin_gabani/obsidian-smart-capture/capture"]] ] ;;• \+o for Obsidian
-
-	;; [:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]]] ;;• \+b for new bear 
-	;; [:XXX [[:SPKR3] [:open "URL"]] ] ;;• \+XXX for 
-	;; [b [[:SPKR3] [:open]] ] ;;• \+XXX for 
-	; [:s [:ToKey]] ;;• quote+s for ToKey hello
+{:des "bslash mode" :rules [ :bslashµ ;;?========================= BSLASH MODE (bslashµ) backslash
+	;; [:r [:open "raycast://extensions/roamresearch/roam-research/quick-capture"] ] ;;• \+r to capture Roam notes
+	[:##1 :!TOCf11] ;;• backslash+1 slidepad 1
+	[:##2 :!TOCf12] ;;• backslash+2 slidepad 2
+	[:##3 :!TOCf13] ;;• backslash+3 slidepad 3
+	[:##4 :!TOCf14] ;;• backslash+4 slidepad 4
+	[:##5 :!TOCf15] ;;• backslash+5 slidepad 5
 	]}
 ;; QUOTE MODE (disabled) ================================================================
 	;; {:des "quote-mode for quote things" :rules [ :quote&
