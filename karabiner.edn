@@ -36,9 +36,12 @@
 	}
 :templates {    ;;? TEMPLATES
 		:run "%s"
-		:open "open \"%s\"" ; open file
+		:open "open \"%s\""
 		:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
 		:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
+		:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
+		:ray "open \"raycast://extensions/raycast/%s\""	
+
 	; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		:SPKR1 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
@@ -68,9 +71,12 @@
 	}
 :layers {       ;;? LAYERS
 	:space-mode {:key :spacebar ;;* space layer (space
-		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ]
+		:condi [:!f& :!d& :!c& :!k& :!w&
+		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ]
 		} ; prevents space mode from overiding F and D modes 
-	:Rctrl-mode {:key :right_control :alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
+	:Rctrl-mode {:key :right_control ;;* Rctrl mode
+		:alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]
+		} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
 	
 	:tildeµ {:key :grave_accent_and_tilde ;;* tilde layer (tildeµ)
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!backslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
@@ -199,10 +205,41 @@
 	;; ]}
 ;;? TILDE MODE tildeµ  (TO DO)================================================================
 	{:des "tilde-mode for tilde things" :rules [ :tildeµ
-			[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
-		;; [:##spacebar :!t] ;;* `+spacebar for test
+		[:1 [[:🛎] :!TOCf11]] ;;• tilde+1 slidepad 1
+		[:2 [[:🛎] :!TOCf12]] ;;• tilde+2 slidepad 2
+		[:3 [[:🛎] :!TOCf13]] ;;• tilde+3 slidepad 3
+		[:4 [[:🛎] :!TOCf14]] ;;• tilde+4 slidepad 4
+		[:5 [[:🛎] :!TOCf15]] ;;• tilde+5 slidepad 5
+		;; [:!Cd [[:🛎] :!COTS5]] ;; • grave+7` slidepad 7
+		
+		;; [:s [[:🛎] :!COSs]] ;;• grave+7` Sidenotes7
+		;; [:8 [[:🛎] :!TOCf18]] ;;• grave+8 slidepad 8
+		;; [:9 [[:🛎] :!TOCf19]] ;;• grave+9 slidepad 9
+		;; [:10 [[:🛎] :!TOCf20]] ;;• grave+10 slidepad 10
+		;; [:11 [[:🛎] :!TOCf21]] ;;• grave+11 slidepad 11\	
+
+		[:d [[:🛎] :!COTS4]] ;;• tilde+d Drafts Quick Capture
+		[:f [[:🛎] :!COTS5]] ;;• tilde+f Drafts Main Window 
+		[:t [[:🛎] :!!t]] ;;• tilde+t for tot
+		[:r [[:🛎] :!!r]] ;;• tilde+r menubarx
+		[:s [[:🛎] :!!r]] ;;• tilde+s sidenotes
+		
+		[:!C1 [:shortcut "Tot 1"]] ;;• tilde+⌘1 for tot 1
+		[:!C2 [:shortcut "Tot 2"]] ;;• tilde+⌘2 for tot 2
+		[:!C3 [:shortcut "Tot 3"]] ;;• tilde+⌘3 for tot 3
+		[:!C4 [:shortcut "Tot 4"]] ;;• tilde+⌘4 for tot 4
+		[:!C5 [:shortcut "Tot 5"]] ;;• tilde+⌘5 for tot 5
+		[:!C6 [:shortcut "Tot 6"]] ;;• tilde+⌘6 for tot 6
+		[:!C7 [:shortcut "Tot 7"]] ;;• tilde+⌘7 for tot 7
+		[:!C8 [:shortcut "Tot 8"]] ;;• tilde+⌘8 for tot 8
+
+	;;todo add modifiers for search, new, 
+
 	;;TODO (TILDE MODE)
-	]}
+		;; [:backslash [[:🛎] [:km "Focus Slidepad"]]] ;;• tilde+\ for focus slidepad
+		;; [:q [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+q 
+			;; [:a [[:SPKR3] [:open "raycast://extensions/ray`cast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
+		]}
 ;; HYPHEN MODE (disabled) ================================================================
 	;; {:des "hyphen-mode for hyphen things" :rules [ :hyphen&
 	;;TODO (HYPHEN MODE)
@@ -252,7 +289,7 @@
 	;; ]}
 	
 	;; NOTE: quote is set as left control for emacs (no it's)
-;;? RETURN MODE ↩µ ================================================================
+;;? RETURN MODE ↩µ (enabled) ================================================================
 	{:des "return-mode for return things" :rules [ :↩µ
 		[:!!t [:open "raycast://confetti"]] ;;* works
 		[:##spacebar :!!COTSreturn_or_enter]
@@ -481,18 +518,18 @@
 	;; {:des "i-mode for i things" :rules [ :i&
 	;; TODO (I MODE)
 	;; ]}
-;;? J MODE ================================================================
+;;? J MODE (filled) ================================================================
 	{:des "j-mode for j things" :rules [ :j&
+		[:o [:km "Jump to OmniFocus Quick"]] ;;• j+o for Jump to OmniFocus 🟡 needs work > 🟢 better now
+		[:b [:km "Jump to Bear"]] ;;• j+b for Jump to Bear˛st (global)
+		[:p [:open "kmtrigger://macro=66C07414-FE85-44A0-A5DC-2C2DAD502E26"]] ;;• j+p for Jump to Palette via KM
 		[:w [[:SPKR3] :!CTOw]] ;;• j+w for Jump to Window (via Context hotkey ⌥space) -> 2024-08-21 chaged from !Ospacebar to 
-	;;TODO (J MODE)
-		;; rework Jump to.... (see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:273)
-			[:s [ [:SPKR3]  :!OSCj ] ] ;;• j+s Search (Jump to) SideNotes (via ⌥⇧⌘+j)
-			;; [:b [:km "Jump to Bear"]] ;;• j+b for Jump to Bear˛st (global)
-			;; [:o [:km "Jump to OmniFocus"]] ;;• j+o for Jump to OmniFocus 🟡 needs work > 🟢 better now
+		[:s [ [:SPKR3]  :!OSCj ] ] ;;• j+s Search (Jump to) SideNotes (via ⌥⇧⌘+j)
+		;;TODO (J MODE)
+			;; rework Jump to.... (see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:273)
 			;; [:r [ [:SPKR3] [:open "kmtrigger://macro=047B91AB-DBCA-4976-BE79-C9A0603FA8B2"]]] ;;• j+r JUMP TO Apple Reminders (via km macro that uses GoodTask)
-			;; [:p [:open "kmtrigger://macro=66C07414-FE85-44A0-A5DC-2C2DAD502E26"]] ;;• j+p for Jump to Palette via KM
 			;; [:r [ [:SPKR3] [:open "alfred://runtrigger/com.jc.roampagesearch/roamSearchKE/?arg"]]] ;;• j+r Search Roam
-		;; #common-command
+		 ;; #common-command
 			;; [:right_command [:km "Jump To..."]] ;;• j+right command for common command Jump to ⭕ TODO
 			;; [:t [:km "© Jump To"]] ;;• j+t for © Jump To (via KM global contextual)
 			;; [:right_gui [:km "© Jump To"]] ;;• j+right_gui for... AVAILABLE
