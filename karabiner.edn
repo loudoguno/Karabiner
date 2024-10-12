@@ -68,6 +68,9 @@
 :froms          { ;; FROMS (todo empty)
 	}
 :tos            { ;; TOS (todo empty)
+	:rayfetti [{:shell "open raycast://confetti"} ;; 👍
+				{:km "mouse-party"}
+	]
 	}
 :layers         { ;;? LAYERS 
 	:space-mode {:key :spacebar                ;;* space layer (space-mode)
@@ -164,7 +167,13 @@
 	}
 
 :main [ ;;? MAIN RULES ==========================================
-;;= SIMULTANEOUS KEYS =====================================
+
+{:des "Simultaneous Keys":rules [ ;;? SIMULTANEOUS KEYS ===================
+	[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;• k|m activate Keyboard Maestro
+	;; [[:o :s :k :b] [[:open "raycast://confetti"] [:shortcut "Onscreen Keyboard Overlay"]] ]
+	;; [[:o :s :k :b] [:open "raycast://confetti"] ]
+	[[:o :s :k :b] :rayfetti]
+	]}
 ;;? ASSORTED RULES =====================================
 	;; like yellow* associated with description and blue • associated with rule
 
@@ -307,7 +316,7 @@
 		;; TODO (RETURN MODE)
 		]}
 ;;? PERIOD MODE .µ (enabled, to convert) ====================================================
-	{:des " period-mode for typinator and autocomplete":rules [ :.µ
+	{:des " period-mode for typinator and autocomplete":rules [ :.µ 
 		[:spacebar [[:SPKR3] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
 		]}
 ;;? (FORWARD SLASH MODE fslashµ (✅ full) ===============
@@ -416,16 +425,19 @@
 
 ;;* SIMLAYERS (a,b,c modes) ==================================================================
 
-;;? A MODE (EMPTY) ========================================================
+;; A MODE (EMPTY) ========================================================
 	;; leave empty and see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:144
 
-{:des " b-mode for b things" :rules [ :b& ;;? B MODE =======================
+{:des "b-mode" :rules [ :b& ;;? B MODE =======================
 		[:i :vk_consumer_brightness_up] ;;• +i for brightness up
 		[:d :vk_consumer_brightness_down] ;;• b+d for brightness
-; Bear
-			[:r [:km "Jump to Bear"] ] ;;• b+r for Jump to Bear insgrey 
-			;;TODO add back new bear, jump to bear, toggle bear....	
-		;; BTT stuff
+		; Bear stuff
+		[:semicolon    [:!TSCb  [:📢]] ]        ;;• b+; for activate Bear via global hotkey ⌃⇧⌘+b
+		[:equal_sign   [:!TSOb  [:📢]] ]        ;;• b+= for new bear note via ⌃⌥⇧+b
+			;; [:n [:km "New Bear Note"] ] ;;• b+n for km New Bear Note
+		[:slash        [:km "Jump to Bear"] ]   ;;• b+/ for Jump to Bear insgrey
+		[:w        [:km "Hover Bear ❗ NOW"] ]   ;;• b+w for Jump to Bear insgrey
+		;; btt stuff
 			;;TODO add back btt named menus, save active window for recall
 	]}
 ;;? C MODE ================================================================
