@@ -36,17 +36,14 @@
 		:language        "en"}
 	}
 :templates      { ;;? TEMPLATES
-		:run "%s"
-		:open "open \"%s\""
-		:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
-		:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
-		:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
-		:ray "open \"raycast://extensions/raycast/%s\""	
-		:alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
-		;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
-
-		
-
+	:run "%s"
+	:open "open \"%s\""
+	:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
+	:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
+	:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
+	:ray "open \"raycast://extensions/raycast/%s\""	
+	:alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
+	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
 	;;• 🔉 audio feedback aliases
 	 		;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
@@ -74,14 +71,13 @@
 	}
 :froms          { ;; FROMS (todo empty)
 	}
-:tos            { ;; TOS (todo empty)
-	:rayfetti [{:shell "open raycast://confetti"}] ;; ✅ works when called 
-	
+:tos            { ;;? TOS
+	:rayfetti [{:shell "open raycast://confetti"}] ;; ✅ works when called 	
 	}
 :layers         { ;;? LAYERS 
 	:space-mode {:key :spacebar                ;;* space layer (space-mode)
 		:condi [:!f& :!d& :!c& :!k& :!w&
-		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ]
+		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ]
 		} ; prevents space mode from overiding F and D modes 
 	:Rctrl-mode {:key :right_control           ;;* Rctrl mode
 		:alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]
@@ -93,10 +89,11 @@
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
 	:1µ         {:key :1                       ;;* 1 layer (1µ)
-		:condi [:!space-mode :!bslashµ]
+		:condi [:!space-mode :!bslashµ :!R⇧µ]
 		}
 	:2µ         {:key :2                       ;;* 2 layer (2µ)
-		:condi [:!space-mode :!bslashµ]
+		:condi [:!space-mode :!bslashµ
+		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ]
 		}
 	:-µ         {:key :hyphen                  ;;* hyper layer (-µ)
 		:condi [:!space-mode]
@@ -116,7 +113,9 @@
 	:↩µ         {:key :return_or_enter         ;;* return layer (↩µ)
 		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
-	
+	;;! :R⇧µ    {:key :right_shift            ;;* was trying something
+		;; :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
+		;; }
 	;;row1 escapeµ, F1µ, F12µ,
 	;;row2 tildeµ, 1µ, -µ, =µ, deleteµ
 		;; :1µ {:key :1}
@@ -170,7 +169,7 @@
 		:z& {:key :z}
 	}
 :main [ ;;? MAIN RULES ================================
-{:des "t+r 1/2/3/4/5 for test rules" :rules [
+{:des "TEST " :rules [ ;;* Test Rules
 	;; * sound test
 		;; [[:t :r] [:t :e :s :t]] ;; ✔ 
 		;; [ [:t :r] [:📢]] ;; ✔ 
@@ -201,75 +200,17 @@
 	;; [:!RTCw :km ""] ;;; 
 	]}
 
-;; ?🛰 Universal Keybinding Wrapper
-	;; core
-		;; Command Palette
-			;; could be spacemode right command P...
-		;; Quick Open / Jump to 
-		;; Move to
-		;; © Copy UID, URL, md link, rich text link
-			;; path
-			;; © Copy URL
-		
-	;; Window mgmt/GUI 
-		;; Main Window
-		;; Open in New Window
-		;; Focus 1/2/3/4
-		;; toggle left/right sidebar
-		;; Focus Sidebar
-		;; © Open Context Menu
-	;; tab control
-		;; New Tab
-		;; Tab right/left
-		;; Back/Forward
-	;; text editing and outlining
-		;; Move up/down/left/right
-		;; Item Up/down
-			;; Item Down ©
-			;; Item Up ©
-		;; fold/unfold (all)
-		;; toggle task/bullet
-		;; comment, code editing
-	;; more
-		;; stop/start editing
-			;; ⌘+e for edit in 1 password
-		;; table of contents
-		;; follow link under cursor
-			;; © Follow Link Under Cursor
-			;; Open and Go to Link [AppleScript] (omniFocus)
-		;; rename
-			;; © Rename
-		;; Pin/flag item
-		;; enable/disable
-		;; duplicate
-		;; print
-		;; open, save as
-	;; New item
-	;; Delete Item
-	;; Show Trash, Archive, Inbox
-		;; ⌘+1
-	;; delete
-	;; open in Finder
-	;; Find, replace
-	;; expand selection
-	;; tags
-	;; comment
-	;; Font bigger/ smaller ⌘++/-
-	;; show info
-	;; meata/float: 
-		;; cheatsheet, log, todo, keybindings,
-	
-
-
-
-{:des "assorted rules":rules [ ;;?========================== ASSORTED RULES
+{:des "Simultaneous Rules":rules [ ;;?========================== SIMULTANEOUS RULES
 	[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
-	[[:k :b] :rayfetti]
+	;; [[:k :b] :rayfetti]
+	[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
+	[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
 	]}
+;;? ASSORTED RULED
 	{:des "shift+space for _ and -":rules[ ;;*          shift+space for _ and -
 		[:!Rspacebar :hyphen]                           ;;• (r)⇧+␣ for "-"
 		[:!SRspacebar :!Shyphen]                        ;;• both shift + spacebar for underscore 
-		;; COMMENTS: 
+		;; COMMENTS:
 			;; modified to always require rightshift
 			;; was causing issues with UHK right control still need #todo
 				;; [:!Sspacebar :!Shyphen] ;;- left_shift+spacebar for underscore "_"
@@ -289,7 +230,7 @@
 		;;* fn from UHK
 			{:des "FN from UHK" :rules [[:#SOCTf24 :fn [:uhk] ]]} ;;* UHK FN as mac fn via UHK hardcoded f24 > fn in KE but only for uhk
 			{:des "FN from UHK 2" :rules [[:#SOCTf24 :fn [:uhk-2] ]]} ;;* for V2	
-	{:des "iPad defaults" :rules [ ;;? iPad defaults ========== 
+{:des "iPad defaults" :rules [ ;;? iPad defaults ========== 
 		[:!Cperiod [[:SPKR3] :escape]] ;;• ⌘+period for escape
 	;;TODO (ASSORTED) A	;; [ ] decide on format (readability by line length or more on 1 line?)
 		[:!Cperiod [[:SPKR3] :escape]] ;;• 🌐+\ for cycle sidevview
@@ -299,9 +240,11 @@
 		;; [:!Treturn_or_enter [[:SPKR3] [:btt "Show Context Menu for Selected Item"]]] ;;• ⌃+return for context menu #??? did i add this before new Seqoia 
 		;; [:!Treturn_or_enter [[:SPKR3] :insert]] ;;• ⌃+return for context menu
 		;; [:m [[:SPKR3] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
-		]}
+	]}
 
+;;* ============================================
 ;;* LAYERS =====================================
+;;* ============================================
 
 {:des "escape-mode" :rules [:⎋µ ;;?========================= ESCAPE MODE (⎋µ)
 	[:!!t [:open "raycast://confetti"]] ;;* test -> works
@@ -347,7 +290,7 @@
 		;; [:q [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+q 
 			;; [:a [[:SPKR3] [:open "raycast://extensions/ray`cast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
 		]}
-{:des "1-mode" :rules [ :1µ ;;?============================= 1 MODE      (1µ)
+{:des "1-mode (1p, )" :rules [ :1µ ;;?============================= 1 MODE      (1µ)
 	;; 1Password
 	[:p :!TSCp]              				 ;;• 1+p for Show 1Password (⌃⇧⌘+p)
 	[:!Cp :!TOSp]            				 ;;• 1+⌘p for 1 PasswordShow Quick Access (⌃⌥⇧+p)
@@ -358,24 +301,27 @@
 
 	]}
 {:des "2-mode" :rules [ :2µ ;;?============================= 2 MODE      (2µ)
-	[:!!t [:open "raycast://confetti"]] ;;* test
+	[:!!t [:open "raycast://confetti"]]
 	;; TODO (2 LAYER)
 	]}
 {:des "hyphen-mode" :rules [:-µ ;;?==================== HYPHEN MODE (-µ)
 	[:##t [:open "raycast://confetti"]]
 	;;TODO (HYPHEN MODE)
 	]}
-
-{:des "=-mode" :rules [ :=µ ;;?============================= EQUAL_SIGN MODE (=µ)
+{:des "=-mode (new (a) apple note, (b)ear... d, o, r, ⌘r, )" :rules [ :=µ ;;?============================= EQUAL_SIGN MODE (=µ)
 	; new CRUD
 		[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
 		[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/new-note"]] ] ;;• =+b for new bear 
+		;; :b ;;• can also do new Bear from global shortcut ⌃⌥⇧+B
 		[:d [[:SPKR3] [:open "raycast://extensions/FlohGro/drafts/create-draft-and-open"]] ] ;;• =+d for new drafts
+		[:n [:open "https://notion.new"] ] ;;• =+n new notion
+		[:!Cn [:open "raycast://extensions/notion/notion/create-database-page"] ] ;;• =+n new notion
+		;; raycast://extensions/koinzhang/stickies/new-stickies-note ;;• =+s New Sticky
 		[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/createNoteCommand"]] ] ;;• =+o for new obsidian
-		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• \+r to capture Roam notes
-		;; [:r [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ] ;;• =+r for reminders
-		;; [:u [[:SPKR3] [:open "raycast://extensions/praveenjuge/ulysses/new-empty-sheet"]] ] ;;• =+u for ulyses 
-		;;TODO (EQUAL_SIGN MODE)
+		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• =+r to capture Roam notes
+		[:!Cr [[:🔈] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ] ;;• =+r for reminders
+		[:u [[:SPKR3] [:open "raycast://extensions/praveenjuge/ulysses/new-empty-sheet"]] ] ;;• =+u for ulyses 
+	;;TODO (EQUAL_SIGN MODE)
 		]}
 ;; DELETE MODE (empty) (empty) ================================================================
 	;; {:des "delete-mode for delete things" :rules [ :delete&
@@ -416,42 +362,53 @@
 
 {:des "slash-mode" :rules [ :fslashµ ;;? ==================== (FORWARD) SLASH MODE (fslashµ)
 		[:spacebar [:!CSslash [:SPKR3]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
-		[:q [[:SPKR3] [:open "raycast://extensions/raycast/raycast/search-quicklinks"]] ] ;;• /+q to Search Quick Links via Raycast
-		[:a [[:SPKR3] [:open "raycast://extensions/raycast/apple-notes/index"]] ] ;;• /+o to search obsidian via searchnote command (raycast)
-		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam notes vvis raycast 
-		[:o [[:SPKR3] [:open "raycast://extensions/KevinBatdorf/obsidian/searchNoteCommand"]] ] ;;• /+o to search obsidian via searchnote command (raycast)
-		[:b [[:SPKR3] [:open "raycast://extensions/hmarr/bear/index"]] ] ;;• /+b to search Bear (raycast)
-		;;• Roam and Reminders commands
-		[:r [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam 🟢
-		[:!Cr [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• /+r to capture to Roam 🟢
-		[:#Sr [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
-		[:#Tr [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]]] ;;• /+⌘n create Notion database page 
-		[:#TCr [[:SPKR3] [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]]] ;;• /+⌘n create Notion database page 
+		[:q [:open "raycast://extensions/raycast/raycast/search-quicklinks"] ] ;;• /+q to Search Quick Links via Raycast
+		[:r [:open "raycast://extensions/roamresearch/roam-research/search"] ] ;;• /+r to search Roam notes vvis raycast 
+		[:o [:open "raycast://extensions/KevinBatdorf/obsidian/searchNoteCommand"] ] ;;• /+o to search obsidian via searchnote command (raycast)
+		
+		[:t [:open "raycast://extensions/maggie/todo-list/index"]]
+		;;• Roam, Reminders and TODOs commands
+			[:r [ [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam 🟢
+			[:!Cr [ [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• /+r to capture to Roam 🟢
+			[:#Sr [ [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+			[:#Tr [ [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]]] ;;• /+⌘n create Notion database page 
+			[:#TCr [ [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]]] ;;• /+⌘n create Notion database page 
 		;;• Bear
+			[:b [:open "raycast://extensions/hmarr/bear/index"] ] ;;• /+b to search Bear (raycast)
+			[:!Cb :!TOSb] ;;• /+⌘b New Bear
+			[:!Ob :!TSCb] ;;• /+⌥b Activate Bear
+
+
 		;;• Obsidian
 
 		;;• APN
+			[:a [:open "raycast://extensions/raycast/apple-notes/index"] ] ;;• /+o to search obsidian via searchnote command (raycast)
+		    [:!Ra :!COTa] ;;• /+right shift⌘n for Apple Notes NOTE: start using /+right shift for bartender 
+
 		;;• Notion Commands
-		    [:n [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n for Search Notion via raycast
-			[:#Cn [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
-			[:#Sn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
-			[:#Tn [[:SPKR3] [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
-			[:#On [[:SPKR3] [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
-			[:#SCn [[:SPKR3] [:open "raycast://extensions/reckoning-dev/search-notion/commandSearchNotion "]]] ;;• /+⌘n create Notion database page 
-			[:#TCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
-			[:#OCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
-			[:#TOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
-			[:#STn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
-			[:#SOn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
-			[:#SCn [[:SPKR3] [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]]] ;;• /+⌘n create Notion database page
-			[:#SOCn [[:SPKR3] [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
-			[:#TOCn [[:SPKR3] [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n create Notion database page
-			[:#STOn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
-			[:#STCn [[:SPKR3] [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
-			[:#Qm [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
-			[:#RScomma [[:SPKR3] [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
-			;; [:8 [[:SPKR3] [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+d to search Dynalist (via km)
-			;; [:l [[:SPKR3] [:open "raycast://extensions/futantan/logseq/logsearch"]] ] ;;• /+l to search logdeq (via Raycast)
+		    [:n [:open "raycast://extensions/notion/notion/search-page"]] ;;• /+⌘n for Search Notion via raycast
+			[:#Cn [ [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+			[:#Sn [ [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+			[:#Tn [ [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
+			[:#On [ [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
+			
+			;; [:#SCn :rayfetti];;• /+⇧⌘n
+			;; [:#TCn ] ;;• /+⌃⌘n
+			;; [:#OCn ] ;;• /+⌥⌘n 
+			;; [:#TOn ] ;;• /+⌃⌥n  k
+			;; [:#STn ] ;;• /+⌃⇧n 
+			;; [:#SOn ] ;;• /+⇧⌥n 
+			;; [:#SOCn] ;;• /+⌥⇧⌘n 
+			;; [:#TOCn [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n create Notion database page
+			;; [:#STOn [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+			;; [:#STCn [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+			
+			[:!Qn [:km "Notion: Notion AI"]] ;;• /+⌘n
+			[:!SQn [:km "Notion: Command Search"]] ;;• /+⌘n
+			[:!QRn [:km "Notion: Command Search"]] ;;• /+⌘n
+			;; [:#RScomma [ [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+			;; [:8 [ [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+d to search Dynalist (via km)
+			;; [:l [ [:open "raycast://extensions/futantan/logseq/logsearch"]] ] ;;• /+l to search logdeq (via Raycast)
 
 	;; TODO (fslash mode)
 		;; [:spacebar [:!CSslash [:SPKR3]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
@@ -510,7 +467,8 @@
 ;;? UP_ARROW MODE ================================================================
 	;; {:des "up_arrow-mode for up arrow things" :rules [ :up_arrow&
 	;; TODO (UP_ARROW MODE)
-	;; ]}
+	;; ]}t
+;;? RIGHT_SHIFT (:R⇧µ)
 ;; TODO † LAYER TEMPLATE
 	;; {:des "KEYKEY-mode for XXX things" :rules [ :NEWKEYµ
 	;; [:!!t [:open "raycast://confetti"]] ;;* test
@@ -662,8 +620,9 @@
 		;; [:spacebar [:km "Trigger Macro by Name"]] ;;• by km alias
 		;; [:spacebar [:open "kmtrigger://macro=B55591CD-BB5B-4F28-9A4C-8EFDD59A2509"]] ;;• by  UUID URL
 	[:!Ca [:km "Activate App Launcher"]] ;;• k+⌘ka Activate App Launcher
-	[:c [:km "Activate Named Clipboard Switcher"]] ;;• k+c Activate Named Clipboard Switcher 
-	[:!Cc [:km "Activate Named Clipboard Switcher"]] ;;• k+c Activate Named Clipboard Switcher
+	[:!Sv [:km "Activate Named Clipboard Switcher"]] ;;• k+c Activate Named Clipboard Switcher 
+	;; [:Ov [:km "Activate Clipboard History Switcher"]] ;;• k+c Activate Named Clipboard Switcher
+	;; 
 	[:p :!SOCp]          ;;• k+p for kyper key (⇧⌥⌘+p) to Keyboard Maestro app conflict palette
 	[:slash :!SOCslash]  ;;• k+slash for KM Select Menu by Name app (⌥⇧⌘+/) 
 			;; [:right_gui [:open "kmtrigger://macro=791BDFF3-638B-4201-BDED-4D457748A972"]] ;;• select macro 
@@ -844,6 +803,96 @@
 		;; TODO (Z MODE)
 		]}
 ] ;;? CLOSES main
+
+;;TODO
+	;; 🌐 Marked URLS
+		;; x-marked://paste (clipboad)
+		;; "x-marked://refresh?file=filename.md&raise=true"
+		;; open -g 'x-marked://open?file=filename.md&raise=true'
+		;; open 'x-marked://open?file=filename.md'
+		;; open 'x-marked://refresh?file=filename.md'
+
+
+	;; :mission_control {:not-from true}
+	;; :launchpad {:not-from true}
+	;; :dashboard {:not-from true}
+
+;;? 🛰 Universal Keybinding Wrapper
+	;; core
+		;; Command Palette
+			;; could be spacemode right command P...
+		;; Quick Open / Jump to 
+		;; Move to
+		;; © Copy UID, URL, md link, rich text link
+			;; path
+			;; © Copy URL
+		
+	;; Window mgmt/GUI 
+		;; Main Window
+		;; Open in New Window
+		;; Focus 1/2/3/4
+		;; toggle left/right sidebar
+		;; Focus Sidebar
+		;; © Open Context Menu
+	;; tab control
+		;; New Tab
+		;; Tab right/left
+		;; Back/Forward
+	;; text editing and outlining
+		;; Move up/down/left/right
+		;; Item Up/down
+			;; Item Down ©
+			;; Item Up ©
+		;; fold/unfold (all)
+		;; toggle task/bullet
+		;; comment, code editing
+	;; more
+		;; stop/start editing
+			;; ⌘+e for edit in 1 password
+		;; table of contents
+		;; follow link under cursor
+			;; © Follow Link Under Cursor
+			;; Open and Go to Link [AppleScript] (omniFocus)
+		;; rename
+			;; © Rename
+		;; Pin/flag item
+		;; enable/disable
+		;; duplicate
+		;; print
+		;; open, save as
+	;; New item
+	;; Delete Item
+	;; Show Trash, Archive, Inbox
+		;; ⌘+1
+	;; delete
+	;; open in Finder
+	;; Find, replace
+	;; expand selection
+	;; tags
+	;; comment
+	;; Font bigger/ smaller ⌘++/-
+	;; show info
+	;; meata/float: 
+		;; cheatsheet, log, todo, keybindings,
+	
+;;? EXAMPLES
+	;; {:des "simultaneous e f to 3" :rules [[:e :f] :3]} ;; simultaneous key to key
+	;; {:des "g to 4 when variable vi-mode is 1" :rules [:g :4 :vi-mode]} ;; vi-mode is 1
+	;; {:des "h to 5 when variable vi-mode is not 1" :rules [:h :5 :!vi-mode]} ;; vi-mode is 0
+	;; {:des "i to 6 only for device hhkb-bt" :rules [:i :6 :hhkb-bt]} ;; key to key in layer b (in layer a) specific to hhkb-bt device
+	;; {:des "j to 7 on hhkb-bt when variable vi-mode is 1" :rules [:j :7 [:vi-mode :hhkb-bt]]} ;; multiple condition
+	;; {:des "press h insert 8 then set variable some-mode to 0" :rules [:h [:8 {:set ["some-mode" 0]}]]}] ;; h to 8 and set_variable
+	;;   {:des "c to example osascript" :rules [ ✅ display dialogue  works
+		;; [:c "osascript -e 'display dialog \"example apple script\"'"]
+		;; ]} ;; key to shell script
+	;; conditions
+		;;;; helper function to generate things little bit quicker
+ 		;; quick define "layers" or "state" feature(use set_variable)
+ 		;; can use as conditions in rule list
+ 		;; {:<layer name> {:from <froms>}}
+	;;•  :simlayers {:vi-mode {:key :d}}
+	;; •  :simlayer-threshold 250
+
 :cheatsheet {   ;;? 👿 CHEATSHEET 
 
 	}
