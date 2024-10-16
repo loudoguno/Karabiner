@@ -1,10 +1,44 @@
 * Examples
 Examples for users to check as quick reference and source of inspiration. Most docs are comments (starting with ;;) in the code blocks.
 
+;;* :device usage
+    (apple vendor id is :vendor_id 1452)
+    ;; set with single:
+        :logitech-mouse [{:product_id 49738 :vendor_id 1133}]
+        logi-mouse [{:product_id 4295704614 :vendor_id 1133 }]
+        :mbp0 [{:product_id 631 :vendor_id 1452}]
+        :mbpx [{:product_id 4294970359 :vendor_id 1452}]
+
+        :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
+    ;; (1) applied as condition at begginging of :rules
+            {:des "Right Cmd (alone) -> Enter"
+                :rules [ :apple
+                [:##right_command :right_control nil {:alone [:return_or_enter]}]
+            ]}
+    ;; (2) applied as condition after :to
+        [:##left_control :!TOleft_shift :apple]
+    ;; or for multiple all mbp internal
+        :apple [
+            {:vendor_id 1452}
+            {:vendor_id 76}
+            {:is_built_in_keyboard true}
+            ]
+    ;; or as group
+        ;; :kybs [  ;; Default for all keyboards
+            ;; {:vendor_id 1452}
+            ;; {:vendor_id 1133, :product_id 50501 }
+            ;; ]
+;;* :application usage
+    ;;todo overlays
+;;todo froms, tos and modifiers
+
+
 ;;* protocol ======================================================
 ;; ☰ new entry PROTOCOL:
 	;; add line with prepend date and description to change log
 	;; save, stage, commit with short&good description, push... be sure to pull next time opening up other mbp
+
+
 ;;* boilerplate ======================================================
 ;; working ke rule with sound template: [:KEYA [<KEYSEQUENCE> [: spea] [:km "MACRONAME"]]  ] ;;• COMMENT
 ;; [:KeyA [[:SPKR2] [:alf "ALFREDWORKFLOWNAME" "BUNDLEID"]] ] ;;• KeyA+Keyb for WORKFLOW NAME via Alfred

@@ -4,21 +4,53 @@
 ;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
 		;! seems to create obsene delay on  on key up
-:devices        { ;;? DEVICES (todo org)
-	;;† template: :devicename [{:product_id XXX :vendor_id XXX}]
-	;; 💻 mbps
-		;; :macbook-internal [{:product_id 631 :vendor_id 1452}] ;;* 💻 Main?
-		;; :mbp [{:product_id 631 :vendor_id 1452}] 
-	;; 🖱 pointing device (mice)
-		;; logitech-mouse
+:devices { ;;? DEVICES (todo org)
+	;;† templates
+		;; :device [{:product_id XXX, :vendor_id XXX}] ;;* DeviceName
+		;; :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
+
+	;; :mbps [ ;; 💻 mbps 
+		
+		;; ] 
+	:mb0 [{:product_id 631 :vendor_id 1452}] ;;* 💻 origiinal 
+	:mbp0 [{:product_id 631 :vendor_id 1452}]
+	:mbpx [{:product_id 4294970359 :vendor_id 1452}]
+	:mx3 [{:product_id 631 :vendor_id 4294970359}] ;;* 💻 mx3 4294970359
+
+	
+	;;* 🖱 mice
 		:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
+		;; logitech-mouse
 		;; old-school gaming 
 		;; bluetooth 1
 		;; bluetooth 2
-	;; ⌨️ keyboards
+	;;* ⌨️ keyboards
+		;; uhks: {:vendor_id 7504} ;; UHKS
 		:uhk [{:product_id 24866 :vendor_id 7504}]
 		:uhk-2 [{:product_id 24868 :vendor_id 7504}]
-	
+	    
+		:apple [
+            {:vendor_id 1452}
+            {:vendor_id 76}
+            {:is_built_in_keyboard true}
+    		]
+    ;;* references
+	;; :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
+    ;; :msft [{:vendor_id 1118, :product_id 1957 }] ;; Microsoft Keyboard [Ergonomic Sculpt]
+    ;; :tada68 [{:vendor_id 65261, :product_id 4611 }] ;; Tada68 (mechanical)
+    ;; :kinesis [{:vendor_id 10730 }] ;; Kinesis Advantage 2 keyboard
+    ;; :g915   [{:vendor_id 1133}] ;; Logitech G915 keyboard
+    ;; :kybs [  ;; Default for all keyboards
+    ;;     {:vendor_id 1452}
+    ;;     {:vendor_id 76}
+    ;;     {:vendor_id 1241, :product_id 41618 }
+    ;;     {:vendor_id 1118, :product_id 1957 }
+    ;;     {:vendor_id 65261, :product_id 4611 }
+    ;;     {:vendor_id 10730}
+    ;;     {:vendor_id 1133, :product_id 50501 }
+    ;; ]
+
+
 	;; todos: add mice
 		;; 2024-10-16 👍 adding logitech worked! (used vendor id and product id () from previous config, not sure what new vedor id 4295704614 is on mx3)
 		;; todo add uhks
@@ -190,9 +222,11 @@
 :main [ ;;? MAIN RULES ================================
 
 ;;? ✨ New/org
-;;* Mouse Mode Thumbpad (logitech MOUSEPAD MODE) =====================================
+;;* Mouse Thumbpad System (logitech MOUSEPAD MODE)
 
-{:des "TEST " :rules [ ;;* Test Rules
+
+{:des "TEST " :rules [ ;;? TEST Rules
+
 	;; * sound test
 		;; [[:t :r] [:t :e :s :t]] ;; ✔ 
 		;; [ [:t :r] [:📢]] ;; ✔ 
@@ -221,8 +255,13 @@
 	;; [:!Rt :rayfetti] ;;; Q and R work but W †
 	;; [:!QOt :rayfetti] ;;; lef+t rightworks
 	;; [:!RTCw :km ""] ;;; 
+;; test :device for apple interal, 
+	;; [:!Rt :rayfetti] ;;• test confetti 🎉
+	:mx3
 	]}
-{:des "Simultaneous Rules":rules [ ;;?========================== SIMULTANEOUS RULES
+
+{:des "Simultaneous Rules":rules [ ;;? SIMULTANEOUS RULES (Sim Mode)
+	[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* k|m activate Keyboard Maestro
 	[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
 	;; [[:k :b] :rayfetti]
 	[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
@@ -515,9 +554,11 @@
 		[:equal_sign   [:!TSOb  [:📢]] ]        ;;• b+= for new bear note via ⌃⌥⇧+b
 			;; [:n [:km "New Bear Note"] ] ;;• b+n for km New Bear Note
 		[:slash        [:km "Jump to Bear"] ]   ;;• b+/ for Jump to Bear insgrey
-		[:w        [:km "Hover Bear ❗ NOW"] ]   ;;• b+w for Jump to Bear insgrey
+		[:w [:km "Hover Bear ❗ NOW"] ]  ;;• b+w for Jump to Bear insgrey
+		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]] ;;* b+h hover bear now via URL BEARNOW new 2024-10-16
+			;; [:w        [:km "Hover Bear ❗ NOW"] ]   ;;• b+w for Jump to Bear insgrey
 		;; btt stuff
-			;;TODO add back btt named menus, save active window for recall
+		;;TODO add back btt named menus, save active window for recall
 	]}
 ;;? C MODE ================================================================
 	{:des "c-mode for c things" :rules [ :c& ;;* ––––––––––––––––––––––––––––––––––––
@@ -741,7 +782,7 @@
 				;; [:q [:open "raycast://extensions/raycast/apple-reminders/quick-add-reminder?arguments=%7B%22text%22%3A%22%22%2C%22notes%22%3A%22%22%7D"]] ;;• r+= raycast my reminders
 			[:0 [:open "btt://trigger_named/?trigger_name=rm1"]] ;;• r+0 raycast reminders menuapp ❓ BROKEN
 	]}
-;;TODO use :layer for surround with XXX (or simultaneous keys to... consider DefaultKeyBinding.dict) #layer:
+;;TODO use :layer for surround with XXX (or sximultaneous keys to... consider DefaultKeyBinding.dict) #layer:
 
 {:des "s-mode" :rules [ :s& ;;? ----------------------------------S MODE
 	[:r [:open "/System/Applications/Siri.app"]] ;;• s+r for siri 🟢
@@ -910,7 +951,7 @@
 ;;? EXAMPLES and Templates
 	;; Lou
 	;; [:p [[:📢]:!CTSg] ] ;;• working sound + key 
-	
+
 	
 	;; {:des "simultaneous e f to 3" :rules [[:e :f] :3]} ;; simultaneous key to key
 	;; {:des "g to 4 when variable vi-mode is 1" :rules [:g :4 :vi-mode]} ;; vi-mode is 1
