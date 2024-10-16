@@ -21,18 +21,19 @@ Examples for users to check as quick reference and source of inspiration. Most d
 	;; ✨ TEMPLATE to maybe use: [:<INSERT 2nd key> [:km "<INSERT MACRO NAME>"]] ;;• <INSERT 1st key>+<INSERT 2nd key> for <INSERT MACRO NAME>
 	;; TODO add rule that uses variable, and others
 ;; REFERENCE
-	;;• ! mandatory, # optional
-	;;• S  | left_shift
-	;;• C | left_command
-    ;;• T | left_control
-	;;• O  | left_option
-    ;;• F  | fni
-    ;;• Q  | right_command
-	;;• W  | right_control
-    ;;• E  | right_option
-	;;• R  | right_shift
-    ;;• P  | caps_lock
-    ;;• "!" mandatory command + control + optional + shift (hyper)
+;; ⌃⌥⇧⌘ TOSC QERW
+        ;;• ! mandatory, # optional
+        ;;• S  | left_shift
+        ;;• C | left_command
+        ;;• T | left_control
+        ;;• O  | left_option
+        ;;• F  | fni
+        ;;• Q  | right_command
+        ;;• W  | right_control
+        ;;• E  | right_option
+        ;;• R  | right_shift
+;;• P  | caps_lock
+;;• "!" mandatory command + control + optional + shift (hyper)
 
 
 ** minimal configuration

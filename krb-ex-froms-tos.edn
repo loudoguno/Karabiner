@@ -43,8 +43,11 @@
              :zoom-out                 {:modi :left_command :key :hyphen}}
 
 ;;? TOS
- :tos {:macos-defin {:key :d :modifiers [:left_command :left_control]}
-       :alf--search-help "osascript -e 'tell application \"Alfred 3\" to run trigger \"helpSearch\" in workflow \"com.tedwise.menubarsearch\" with argument \"\"'"}
+ :tos {
+        :macos-defin {:key :d :modifiers [:left_command :left_control]}
+       :alf--search-help "osascript -e 'tell application \"Alfred 3\" to run trigger \"helpSearch\" in workflow \"com.tedwise.menubarsearch\" with argument \"\"'"
+       :rayfetti [:open "raycast://confetti"]
+       }
 
  ;;;; helper function to generate things little bit quicker
  ;; quick define "layers" or "state" feature(use set_variable)

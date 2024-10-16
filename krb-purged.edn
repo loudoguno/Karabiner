@@ -11,8 +11,6 @@
 
 :templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
 		:wait "sleep 250" ; pause 250 ms	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
-		:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
-
 	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:SPKR0 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillIn.aiff"
 		:SPKR1 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
@@ -153,7 +151,7 @@
 
 ;;=========================== B MODE ==============================
 	{:des " b-mode for b things" :rules [ :b& ;;* ––––––––––––––––––––––––––––––––––––
-        ❌ [:w [:km "Hover Bear ❗ NOW"] ] ;;• b+r for Jump to Bear ☑️		[:r [:km "Jump to Bear"] ] ;;• b+r for Jump to Bear insgrey 
+        ❌ [:w [:km "Hover Bear ❗ NOW "] ] ;;• b+r for Jump to Bear ☑️		[:r [:km "Jump to Bear"] ] ;;• b+r for Jump to Bear insgrey 
         ;; [:r :!STCb] ;;• b+r Toggle Bear (via ⌥⇧⌘+b)
 		
 		;; [:a [:km "Boldate Clean Left"] ] ;;• b+a for Boldate Clean Left BROKEN 
