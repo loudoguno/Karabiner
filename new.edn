@@ -1,0 +1,31 @@
+	[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
+	[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
+    Marked: Activate Marked
+    Apple Notes: Quick Note
+    Notion: Notion AI
+    Notion: Command Search
+    Fantastical: Mini Window
+    raycast://extensions/raycast/clipboard-history/clipboard-history
+    raycast://extensions/raycast/navigation/search-menu-items
+    FS Notes
+    '/System/Applications/iPhone Mirroring.app'
+    /Applications/MacVim.app
+    /Applications/PowerPhotos.
+    /Applications/Quiver.app
+    '/Applications/Setapp/KeyKey Typing Tutor.app'
+     '/Applications/Setapp/Keep It Shot.app'
+     /Applications/Setapp/MarginNote.app
+     /Applications/Setapp/Novabench.
+     
+     '/Applications/Setapp/Path Finder.app'/Applications/Setapp/Receipts.app
+
+
+     {:des "Right Shift" :rules [ :R⇧µ
+	[:spacebar :hyphen] ;;* works! note that you have to...
+	[:!Sspacebar :!Shyphen] ;;* works1
+	[:1 [:!S1]] ;;* works1
+	[:2 [:!S2]] ;;* works1
+	[:3 [:!S3]] ;;* works1
+	[:!!t [:open "raycast://confetti"]] ;;* works1
+	;; TODO (NEWKEY MODE)
+	]}
