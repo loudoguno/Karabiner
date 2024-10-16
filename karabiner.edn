@@ -5,30 +5,49 @@
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
 		;! seems to create obsene delay on  on key up
 :devices        { ;;? DEVICES (todo org)
-		;; todo add macbook internals
-			;; :macbook-internal [{:product_id 631 :vendor_id 1452}]
-			;; :mbp [{:product_id 631 :vendor_id 1452}] 
-			;; not sure which one this is 
+	;;† template: :devicename [{:product_id XXX :vendor_id XXX}]
+	;; 💻 mbps
+		;; :macbook-internal [{:product_id 631 :vendor_id 1452}] ;;* 💻 Main?
+		;; :mbp [{:product_id 631 :vendor_id 1452}] 
+	;; 🖱 pointing device (mice)
+		;; logitech-mouse
+		:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
+		;; old-school gaming 
+		;; bluetooth 1
+		;; bluetooth 2
+	;; ⌨️ keyboards
+		:uhk [{:product_id 24866 :vendor_id 7504}]
+		:uhk-2 [{:product_id 24868 :vendor_id 7504}]
+	
+	;; todos: add mice
+		;; 2024-10-16 👍 adding logitech worked! (used vendor id and product id () from previous config, not sure what new vedor id 4295704614 is on mx3)
 		;; todo add uhks
-			:uhk [{:product_id 24866 :vendor_id 7504}]
-			:uhk-2 [{:product_id 24868 :vendor_id 7504}]
-		;; todo add mice
-			:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
-		;; TODO add other gaming mouse, 
-		;;? i wonder if you can filter for universal control and fix some of those problems
+	;; comment:  i wonder if you can filter for universal control and fix some of those problems
 	}
 :applications   { ;;? APPLICATIONS
-		:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
-		:Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
-		:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
-		:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
-	;; TODO (applications)
-		:Finder        ["^com\\.apple\\.finder$"]
-		:dynalist      ["^io\\.dynalist$"]
+	:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
+	;; :Chromes                       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.brave\\.Browser"]
+	:Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
+	:Terminals     ["^com\\.apple\\.Terminal$", "^com\\.googlecode\\.iterm2$", "^co\\.zeit\\.hyperterm$", "^co\\.zeit\\.hyper$", "^io\\.alacritty$", "^net\\.kovidgoyal\\.kitty$"]
+	:Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
+	;;todo :Overlays
 		:slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
-		:drafts        ["^com\\.agiletortoise\\.Drafts-OSX"] ;; 👍 works		
-		;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
-		;; :vscode					
+		;; :Sidenotes
+		;; :MenubarX 
+
+	:Finder        ["^com\\.apple\\.finder$"]
+	:dynalist      ["^io\\.dynalist$"]
+	
+	;; * CORE
+	;; Roam
+	;; :bear ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
+	:Drafts        ["^com\\.agiletortoise\\.Drafts-OSX"] ;; 👍 works		
+	:Notion        ["^notion\\.id$"]
+	:vs-code       ["^com\\.microsoft\\.VSCode$"]
+
+
+
+
 	}
 :input-sources  { ;; INPUT SOURCES
 	:us {:input_mode_id   ""
@@ -169,6 +188,10 @@
 		:z& {:key :z}
 	}
 :main [ ;;? MAIN RULES ================================
+
+;;? ✨ New/org
+;;* Mouse Mode Thumbpad (logitech MOUSEPAD MODE) =====================================
+
 {:des "TEST " :rules [ ;;* Test Rules
 	;; * sound test
 		;; [[:t :r] [:t :e :s :t]] ;; ✔ 
@@ -199,7 +222,6 @@
 	;; [:!QOt :rayfetti] ;;; lef+t rightworks
 	;; [:!RTCw :km ""] ;;; 
 	]}
-
 {:des "Simultaneous Rules":rules [ ;;?========================== SIMULTANEOUS RULES
 	[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
 	;; [[:k :b] :rayfetti]
@@ -241,6 +263,11 @@
 		;; [:!Treturn_or_enter [[:SPKR3] :insert]] ;;• ⌃+return for context menu
 		;; [:m [[:SPKR3] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
 	]}
+
+;;* ============================================
+;;* APP FILTERED =====================================
+;;* ============================================
+
 
 ;;* ============================================
 ;;* LAYERS =====================================
@@ -481,7 +508,7 @@
 	;; leave empty and see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:144
 
 {:des "b-mode" :rules [ :b& ;;? B MODE =======================
-		[:i :vk_consumer_brightness_up] ;;• +i for brightness up
+		[:i :vk_consumer_brightness_up] ;;• b+i for brightness up
 		[:d :vk_consumer_brightness_down] ;;• b+d for brightness
 		; Bear stuff
 		[:semicolon    [:!TSCb  [:📢]] ]        ;;• b+; for activate Bear via global hotkey ⌃⇧⌘+b
@@ -573,6 +600,7 @@
 		[:k [[:run "goku"] [:tink]] ] ;;• g+k to run goku #1... works!
 		
 		[:j [:t :e :s :t]] ;;• g+j to run test		
+		[:p [[:📢]:!CTSg] ] ;;• g+p ChatGPT bar ✨ new 2024-10-16
 
 	;;TODO (G MODE)
 		;; change below to use shortcuts template (after replacing)
@@ -730,8 +758,12 @@
 
 	]}
 ;;? T MODE ================================================================
-	{:des "t-mode for t things" :rules [ :t&
+	{:des "t-mode for testing thing things" :rules [ :t&
+		;; 🧪 TEST
 		[:r [:soundOn]] ;;• TEST  t+r for test rule (🔈 worked) 🔉🔊🛎🔔📢📯
+		[:m [:km "TEST Macro"]] ;;• t_m for test macro3
+		[:p [:km "TEST Palette"]] ;;• t+p test palette 
+		
 		[:d [[:SPKR3] :!Ti] ];;• t+d for Slidepad (via ⌃i)
 		[:s [[:SPKR3] :!OSCs]] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
 		[:g [:t :h :e :g :o :s :p :e :l :a :c :c :o :r :d :i :n :g :t :o :l :o :u] ] ;;• t+g tgal expansion
@@ -875,7 +907,11 @@
 	;; meata/float: 
 		;; cheatsheet, log, todo, keybindings,
 	
-;;? EXAMPLES
+;;? EXAMPLES and Templates
+	;; Lou
+	;; [:p [[:📢]:!CTSg] ] ;;• working sound + key 
+	
+	
 	;; {:des "simultaneous e f to 3" :rules [[:e :f] :3]} ;; simultaneous key to key
 	;; {:des "g to 4 when variable vi-mode is 1" :rules [:g :4 :vi-mode]} ;; vi-mode is 1
 	;; {:des "h to 5 when variable vi-mode is not 1" :rules [:h :5 :!vi-mode]} ;; vi-mode is 0
