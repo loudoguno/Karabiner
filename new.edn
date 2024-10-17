@@ -1,5 +1,11 @@
-	[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
-	[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
+kev for karbainer event viewer
+osk for Onscreen Keyboard Overlay
+r+v for raycast clipboard
+r+v for Raycast Clipboard History
+k+c Activate Named Clipboard Switcher 
+
+	;;* SNL snippets lab toggle assistant
+	;;* SNL snippets lab toggle assistant
     Marked: Activate Marked
     Apple Notes: Quick Note
     Notion: Notion AI
@@ -21,11 +27,11 @@
 
 
      {:des "Right Shift" :rules [ :R⇧µ
-	[:spacebar :hyphen] ;;* works! note that you have to...
-	[:!Sspacebar :!Shyphen] ;;* works1
-	[:1 [:!S1]] ;;* works1
-	[:2 [:!S2]] ;;* works1
-	[:3 [:!S3]] ;;* works1
-	[:!!t [:open "raycast://confetti"]] ;;* works1
+	;;* works! note that you have to...
+	;;* works1
+	;;* works1
+	;;* works1
+	;;* works1
+	;;* works1
 	;; TODO (NEWKEY MODE)
 	]}
