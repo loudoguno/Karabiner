@@ -20,7 +20,7 @@ this is copy paste of karabiner event viewer device IDs
             ["REGEX"]
             ["REGEX"]
             :macbook-internal0 [{:product_id 631 :vendor_id 1452}]
-            :macbook-internal1 [{:product_id 4294970359 :vendor_id 1452}]
+            :macbook-internal1 [{:product_id 4294970359 :vendorsid 1452}]
             
 
         ]
