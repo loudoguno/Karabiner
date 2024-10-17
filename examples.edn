@@ -29,7 +29,46 @@ Examples for users to check as quick reference and source of inspiration. Most d
             ;; {:vendor_id 1133, :product_id 50501 }
             ;; ]
 ;;* :application usage
+- apps are defined use regex match to bundle ID e.g. "^com\\.google\\.Chrome$"
+- also can be grouped 
+        :Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"
+- :applications line 44: vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:44
+- e.g. have created definition for slidepad
+        :Slidepad   ["^com\\.slidepad\\.slidepad-setapp"]
+-> then have  rule
+	{:des "† Slidepad mode" :rules [:Slidepad
+		;; [:!TCw [:open "raycast://confetti"]] ;; works -> next get it to
+		[:!TCw [:!Treturn_or_enter :o]] ;; is triggering a new line
+- can also 
+
+-
+
+{:des "finder" :rules [:Finder ; ✅ works
+[:a :f] ;;
+]}
+{:des "dynalist" :rules [:dynalist ; ✅ works
+;; [:!OCc [:km "Copy URL for Dynalist"]] ;; 
+]}
+;; {:des "send key sequence" :rules [ ;; 🟢 works
+ ;; [:t [:d :n :l]] ; -> returnzmztztzmztdnldnldnldnl
+;; ]}
+
+;; app conditioonals 
+	;; NOTE: it works dnd d remdps to d when i take away to conditional]
+{:des "if app" :rules [ [:condi :Finder :macbook-internal]
+	[:a :d] ; -> return
+	;; {:des   "contions demo"
+        ;;  :rules [[:l :!COi [:us :hhkb :Browsers :z-mode]]]}]
+]}
+
+
+
+
+
+
     ;;todo overlays
+
+
 ;;todo froms, tos and modifiers
 ;; :devices {  organization that i don't think works
 			:macbook-internal [{:product_id 631 :vendor_id 1452}]
