@@ -9,20 +9,21 @@
 		;; :device [{:product_id XXX, :vendor_id XXX}] ;;* DeviceName
 		;; :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
 
-	;; :mbps [ ;; 💻 mbps 
-		
-		;; ] 
-	:mb0 [{:product_id 631 :vendor_id 1452}] ;;* 💻 origiinal 
-	:mbp0 [{:product_id 631 :vendor_id 1452}]
-	:mbpx [{:product_id 4294970359 :vendor_id 1452}]
-	;; :mx3 [{:product_id 631 :vendor_id 4294970359}] ;;* 💻 mx3 4294970359
+	;; 💻 mbps 
+		:apple [ {:vendor_id 1452} {:vendor_id 76} {:is_built_in_keyboard true}] ;;* all apple internals works ✅
+		:mb0 [{:product_id 631 :vendor_id 1452}] ;;* 💻 origiinal 
+		:mx3 [{:product_id 4294970359 :vendor_id 1452}] ;;* 💻 mx3 ✅ works
+		:mbp0 [{:product_id 631 :vendor_id 1452}]
+		;; mbx
+		;; mba
+		;; NeXT
+		;;todo what about 
 	;;* 🖱 mice
-		:logitech-mouse [{:product_id 49738 :vendor_id 1133}] ;;* Logitech G600
-		;; :utech ;;* UtechSmart Venus (old-school gaming)
+		:logiG600 [{:product_id 49738 :vendor_id 1133}] ;;* Logitech G600 (✅) logiG600
+		;; :utech 												;;* UtechSmart Venus (old-school gaming)
 		;; :logi-bt ;;* Logitech M585 (bluetooth mouse)
 		;; bluetooth 2
 	;;* ⌨️ keyboards
-		:apple [ {:vendor_id 1452} {:vendor_id 76} {:is_built_in_keyboard true}] ;; 2024-10-16 works ✅
 		;; uhks: {:vendor_id 7504} ;; UHKS
 		:uhk [{:product_id 24866 :vendor_id 7504}]
 		:uhk-2 [{:product_id 24868 :vendor_id 7504}]
@@ -65,7 +66,7 @@
 
 
 	}
-:input-sources  { ;; INPUT SOURCES
+:input-sources  { ;; INPUT SOURCEStd
 	:us {:input_mode_id   ""
 		:input_source_id "com.apple.keylayout.US"
 		:language        "en"}
@@ -73,6 +74,7 @@
 :templates      { ;;? TEMPLATES
 	:run "%s"
 	:open "open \"%s\""
+	:open-app "open -a \"%s\""
 	:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
 	:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
 	:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
@@ -83,8 +85,7 @@
 	 		;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Focus2.aiff" ;; high-pitched click
 		:🔈🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
-		:🔈🔈🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
-		;; :🔈🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Focus2.aiff" ;; high-pitched click
+		:🔈🔈🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/SearchRangeWithinSameElement.aiff"
 		:🔉 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrillOut.aiff"
 		:🔊 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
 		:📢 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff" 
@@ -204,11 +205,11 @@
 :main [ ;;? MAIN RULES ================================
 
 ;;? ✨ New/org
-;;*Mouse Thumbpad System (logitech MOUSEPAD MODE)
-{:des "tech mousepad" :rules [ :logitech-mouse
+;;* Mouse Thumbpad System (logitech MOUSEPAD MODE) #TODO install logi software and...
+{:des "mousepad keyboard mode" :rules [ :logiG600
 	;; modifiers 
-	;; [:##left_control [[:🔈🔈🔈] :left_command]] ;;• ring finger button as command
-	[:##left_control [[:🔈🔈🔈] :left_command]] ;;• mousepad 3 for...
+		;; [:##left_control [[:🔈] :left_command]] ;;• ring finger button as command
+		;; [:##left_control [[:🔈🔈🔈] :left_command]] ;;• mousepad 3 for...
 
 	[:##keypad_1 [[:🔈🔈🔈] :escape]] ;;• mousepad 1 for escape
 	[:##keypad_2 [[:🔈🔈🔈] :delete_or_backspace]] ;;• mousepad 2 for...
@@ -225,31 +226,17 @@
 	
 	]}
 
-
-
 {:des "TEST " :rules [ ;;? TEST MODE Rules
-	;; [[:t :r] [:t :e :s :t]] ;; test ✔
-
-	;; * sound test
-		;; [ [:t :r] [:📢]] ;; ✔ 
-		[ [:t :1] [:🔈]] ;; ✔ 
-		[ [:t :2] [:🔉]] ;; ✔ 
-		[ [:t :3] [:🔊]] ;; ✔ 
-		[ [:t :4] [:📢]] ;; ✔ 
-		[ [:t :5] [:🛎]] ;; ✔ 
-		[ [:t :6] [:🔔]] ;; ✔ 
-		[ [:t :7] [:pop]] ;; ✔ 
-		[ [:t :8] [:tink]] ;; ✔ 
-		;; :🔈
-		;; :🔉
-		;; :🔊
-		;; :📢
-		;; :🛎
-		;; :🔔
-	;; other test
-			;; [ [:o :s :k :b] [[:open "raycast://confetti"] [:shortcut "Onscreen Keyboard Overlay"]] ]
-				;; ✅ showed keyboard
-			;; [ [:o :s :k :b] [:open "raycast://confetti"] ]
+	;; [[:t :r] [:t :e :s :t]] ;; test for TO array  ✔
+	;;* test sound test
+	;; [ [:t :1][:🔈]][[:t :2][:🔉]][[:t :3][:🔊]][[:t :4][:📢]][[:t :5][:🛎]][[:t :6][:🔔]] 
+	
+	;;* test oskb
+	;; [ [:o :s :k] [:open "raycast://confetti"] ];; ✅ 
+	
+	;; ⚡
+	
+	;; [ [:o :s :k :b] [:open "raycast://confetti"] ]
 				;; ✅ worked
 		;; [[:o :s :k :b] :rayfetti] ;;! ❌ does not work
 		;; [[:o :s :k :b] [:rayfetti]] ;;! ❌ does not work
@@ -258,29 +245,25 @@
 	;; [:!QOt :rayfetti] ;;; lef+t rightworks
 	;; [:!RTCw :km ""] ;;; 
 ;;* test :device for apple internal NOW⚡
-;; [:!Rt :rayfetti] ;;• right shift+t to test confetti 🎉
-[:!Rt :rayfetti] ;; :mx3 as -> works ✔
-    ;; (2) applied as condition after :to
-		;; [:##left_control :!TOleft_shift :apple]
-        ;; [:##t :rayfetti] ;; works
-        [:##t :rayfetti :mbpx] ;; broken
-        [:##t :rayfetti :mbp0] ;; broken
-        ;; [:##t :rayfetti :apple] ;; worked
-
-
-		
-
-
-;; ✔ 
+[:!QCt :rayfetti] ;;• right shift+t to test confetti 🎉
+[:!QCt :rayfetti :apple] ;;• :apple device group works ✔
+[:!QCt :rayfetti :mx3] ;;• :apple device group works ✔    
+        ;; [:!St :rayfetti :mbpx] ;; worked 
 	]}
 
 ;;? SIMULTANEOUS RULES (Sim Mode)
 		{:des "Simultaneous Rules":rules [
+		[[:o :s :k][:shortcut "Onscreekson Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
+		;;† [[:KEY1 :KEY2 :KEY3][:open "URL"]] ;;* KEY1KEY2KEY3 for ACTION
+		[[:k :e :v][:run "open -a Karabiner-EventViewerb"]] ;;* kev for karbainer event viewer
 		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* k|m activate Keyboard Maestro
 		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
 		;; [[:k :b] :rayfetti]
 		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
 		[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
+		
+
+
 		]}
 ;;? ASSORTED RULED
 	{:des "shift+space for _ and -":rules[ ;;*          shift+space for _ and -
@@ -566,8 +549,12 @@
 		[:equal_sign   [:!TSOb  [:📢]] ]        ;;• b+= for new bear note via ⌃⌥⇧+b
 			;; [:n [:km "New Bear Note"] ] ;;• b+n for km New Bear Note
 		[:slash        [:km "Jump to Bear"] ]   ;;• b+/ for Jump to Bear insgrey
+		;; bear now (b+h for bear hover km that floats it front and center)
 		[:w [:km "Hover Bear ❗ NOW"] ]  ;;• b+w for Jump to Bear insgrey
+		;; [:h [:km "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"] ]  ;;• b+h for simple URL by ID
 		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]] ;;* b+h hover bear now via URL BEARNOW new 2024-10-16
+		[:n [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB&header=NOW&new_window=yes&float=no&show_window=yes&open_note=yes&pin=no&edit=no"]] ;;* b+n Bear
+		
 			;; [:w        [:km "Hover Bear ❗ NOW"] ]   ;;• b+w for Jump to Bear insgrey
 		;; btt stuff
 		;;TODO add back btt named menus, save active window for recall
@@ -599,7 +586,13 @@
 			[:g :!Cclose_bracket] 	;;• d+g for Forward Page via ⌘]
 		[:t [[:🔈🔈🔈] :dictation] ] ;;* d+t for Dictate Text (via ⇧⌃⌘d hotkey set in System Preferencees > Keyboard > Dictation)
 		[:c :!Cquote] 				;;* d+c for ⌘+quote (edit tags in omnifocus, evernote ect...)
-		[:k [ :open  "/Users/loudog/Desktop"] ] ;;• d+k for Switch Third Space Right
+		[:h [:open "/Users/loudog"] ] ;;• d+h home folder 
+		[:k [:open "/Users/loudog/Desktop"] ] ;;• d+k desktop
+		[:l [:open "/Users/loudog/Downloads"] ] ;;• d+l downloads
+		[:y [:open "/Users/loudog/Sync"] ] ;;• d+y Sync
+		[:p [:open "/Users/loudog/Pictures"] ] ;;• d+p Pictures
+
+		
 	;;TODO (D MODE)
 		;; [:q [:right_gui :right_gui ]] ;;* d+q for ask siri via double press
 		;; #common-commands
@@ -700,9 +693,10 @@
 		;; [:spacebar [:km "Trigger Macro by Name"]] ;;• by km alias
 		;; [:spacebar [:open "kmtrigger://macro=B55591CD-BB5B-4F28-9A4C-8EFDD59A2509"]] ;;• by  UUID URL
 	[:!Ca [:km "Activate App Launcher"]] ;;• k+⌘ka Activate App Launcher
-	[:!Sv [:km "Activate Named Clipboard Switcher"]] ;;• k+c Activate Named Clipboard Switcher 
+	[:v [:km "Activate Clipboard History Switcher"]] ;;• k+c Activate Named Clipboard Switcher 
+	[:c [:km "Activate Named Clipboard Switcher"]] ;;• k+c Activate Named Clipboard Switcher 
+	[:x [:km "Clipboard: Paste by Name"]] ;;• k+c Activate Named Clipboard Switcher 
 	;; [:Ov [:km "Activate Clipboard History Switcher"]] ;;• k+c Activate Named Clipboard Switcher
-	;; 
 	[:p :!SOCp]          ;;• k+p for kyper key (⇧⌥⌘+p) to Keyboard Maestro app conflict palette
 	[:slash :!SOCslash]  ;;• k+slash for KM Select Menu by Name app (⌥⇧⌘+/) 
 			;; [:right_gui [:open "kmtrigger://macro=791BDFF3-638B-4201-BDED-4D457748A972"]] ;;• select macro 
@@ -713,6 +707,7 @@
 	[:d [:open "https://www.notion.so/my-old-ky-home/My-Old-Kentucky-Notion-c9ffb2a6aa6540e1b3e80a34e5db2d72?p=226804d32b084480a53b9c5ec4bde45f&showMoveTo=true)"]] ;;• k+d for ky house dashboard Notion
 	[:j [:open "https://www.notion.so/my-old-ky-lakehouse/JOURNAL-666e38a11fc04a48b9893fc57bbd2c5e"]] ;;• k+j for 📓 KY RUNNING JOURNAL (Notion)
 	[:w [:open "kmtrigger://macro=08A820FF-1597-4884-A501-F57DF15D43D8"]] ;;• k+w for 🐿🧰 KY Workbench via marked
+	;; [:v [:open ""]] ;;• k+w for 🐿🧰 KY Workbench via marked
 	;;TODO (K MODE)
 		]}
 ;;? L MODE ================================================================
@@ -783,9 +778,12 @@
 		[:return_or_enter [:km "- Remote Modes Palette"]] ;;• r+return/enter for "- Remote Modes Palette"
 		[:y [:km "YouTube Remote"]] 		;;• y for YouTube Remote
 		[:x [:km "Deactivate Remote"]] 		;;• q for Deactivate Remote
+		[:x [:km "Deactivate Remote"]] 		;;• q for Deactivate Remote
+	[:v [:open "raycast://extensions/raycast/clipboard-history/clipboard-history"]] ;;* r+v for Raycast Clipboard History
+
 	;;TODO (R MODE)
-		;; TODO remote mode
-		;; raycast reminders
+	;; TODO remote mode
+	;; raycast reminders
 			[:slash [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]] ;;• r+/ raycast my reminders #Reminders
 			;; [:equal_sign [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ;;• r+= raycast new reminder reminders #Reminders
 			;; [:delete_or_backspace [:!SCf12]] ;;• r+⌫ for raycast reminders menuapp ❓ BROKEN	

@@ -31,6 +31,24 @@ Examples for users to check as quick reference and source of inspiration. Most d
 ;;* :application usage
     ;;todo overlays
 ;;todo froms, tos and modifiers
+;; :devices {  organization that i don't think works
+			:macbook-internal [{:product_id 631 :vendor_id 1452}]
+			:uhk [{:product_id 24866 :vendor_id 7504}]
+			:uhk-2 [{:product_id 24868 :vendor_id 7504}]
+			:logitech-mouse [{:product_id 49738 :vendor_id 1133}]
+			;; TODO add other gaming mouse, 
+		:mbps {[
+			:mbp0 [{:product_id 631 :vendor_id 1452}]
+			:mbpx [{:product_id 4294970359 :vendor_id 1452}]
+			]}
+		:uhks {[
+			:uhk [{:product_id 24866 :vendor_id 7504}]
+			:uhk-2 [{:product_id 24868 :vendor_id 7504}]
+			]}
+		:mice {[
+			logi-mouse [{:product_id 4295704614 :vendor_id  }]
+			;; other-mouse,
+			]}
 
 
 ;;* protocol ======================================================
