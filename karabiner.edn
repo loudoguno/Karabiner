@@ -51,15 +51,30 @@
 		;; * CORE
 
 	;; Roam
-	:Bear          ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
+	:Raycast           ["^com\\.raycast\\.Raycast$"]
 	:Drafts        ["^com\\.agiletortoise\\.Drafts-OSX"] ;; 👍 works		
+	:Bear          ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
 	:Notion        ["^notion\\.id$"]
-	:vs-code       ["^com\\.microsoft\\.VSCode$"]
+	:nvUltra           ["^dev\\.nvUltra\\.nvUltra$"]
+	:Obsidian          ["^md\\.obsidian\\.obsidian$"]
+	:Notes             ["^com\\.apple\\.Notes$"]
 	:Finder        ["^com\\.apple\\.finder$"]
+	:TextEdit      ["^com\\.apple\\.TextEdit$"]
 	:Dynalist      ["^io\\.dynalist$"]
+	:VSCode       ["^com\\.microsoft\\.VSCode$"]
+	:Messages          ["^com\\.apple\\.iMessage$"]	:Moom              ["^com\\.manytricks\\.Moom$"]
+	:OmniFocus         ["^com\\.omnigroup\\.OmniFocus$"]
+
+
+
 	;;todo :Overlays
-	  :Slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
-	  ;; :Sidenotes
+	:overlay-apps ["^com\\.slidepad\\.slidepad-setapp", "^com\\.sidenotes\\.Sidenotes$", "^com\\.menubarx\\.MenubarX$", "^.*Tot.*$"]
+	:Slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
+	:SideNotes         ["^com\\.sidenotes\\.Sidenotes$"]
+	:MenubarX          ["^com\\.menubarx\\.MenubarX$"]
+	:Tot               ["^.*Tot.*$"]
+
+
 	  ;; :MenubarX 
 	
 	}
@@ -248,19 +263,20 @@
 [:!QCt :rayfetti :mx3] ;;• :apple device group works ✔    
         ;; [:!St :rayfetti :mbpx] ;; worked 
 	]}
-
 ;;? SIMULTANEOUS RULES (Sim Mode)
 	{:des "Simultaneous Rules":rules [
 		[[:o :s :k][:shortcut "Onscreen Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
-		;;† [[:KEY1 :KEY2 :KEY3][:open "URL"]] ;;* KEY1KEY2KEY3 for ACTION
+		[[:f :k :a][:shortcut "Full Keyboard Access TOGGLE"] ] ;;* fka for Full Keyboard Access shortcut
+		[[:f :k :o][:shortcut "Full Keyboard Access ON"] ] ;;* fka for Full Keyboard Access shortcut
+		[[:f :k :0][:shortcut "Full Keyboard Access OFF"] ] ;;* fka for Full Keyboard Access shortcut
 		[[:k :e :v][:run "open -a Karabiner-EventViewer"]] ;;* kev for karbainer event viewer
 		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* k|m activate Keyboard Maestro
+		
 		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
 		;; [[:k :b] :rayfetti]
 		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
 		[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
-		
-
+		;;† [[:KEY1 :KEY2 :KEY3][:open "URL"]] ;;* KEY1KEY2KEY3 for ACTION
 
 		]}
 ;;? ASSORTED RULED
@@ -331,15 +347,18 @@
 		]}
 
 	{:des "Drafts Mode" :rules [:Drafts
-		[:!SQt [:open "raycast://confetti"]] ;;* WORKS! but makes lose context
-		[:!TCw :!Treturn_or_enter] ;; is triggering a new line
+		[:!SRt [:open "raycast://confetti"]] ;;* WORKS! but makes lose context
+		[:!TCw [:km "Open in New Window"]] ;; is triggering a new line
 		]		
 	}
+{:des "overlay mode" :rules [:overlay-apps
+	[:!SRt [:open "raycast://confetti"]] ;; 🧪 works!!!
+	]}
 
-;; [:!CQt :rayfetti :apple]
-;; Drafts
-;; Bear
 
+;;todo † {:des "app mode" :rules [:APP
+	;; [:!SRt [:open "raycast://confetti"]] ;; 🧪
+	;; ]}
 
 ;; 
 
@@ -442,6 +461,10 @@
 		[:##3 :!TOCf13] ;;• backslash+3 slidepad 3
 		[:##4 :!TOCf14] ;;• backslash+4 slidepad 4
 		[:##5 :!TOCf15] ;;• backslash+5 slidepad 5
+		[:##6 :!TOCf16] ;;• backslash+6 slidepad 6
+		[:##7 :!TOCf17] ;;• backslash+7 slidepad 7
+		[:##8 :!TOCf18] ;;• backslash+8 slidepad 8
+		[:##9 :!TOCf19] ;;• backslash+9 slidepad 9
 		]}
 ;; QUOTE MODE (disabled) ================================================================
 	;; {:des "quote-mode for quote things" :rules [ :quote&
@@ -673,7 +696,7 @@
 		[:p [:open "kmtrigger://macro=B4905F39-C99B-4DC8-B0F1-D86DA7E3DE6A"] ] ;;• f+p for 🎨🥏 Float Palette
 		;; [:m [:open "kmtrigger://macro=1D8E356F-C110-48C0-982B-7895C037B349"] ] ;;• f+m for Float Front Window with Marked
 		;; [:l [:open "raycast://extensions/raycast/floating-notes/toggle-floating-notes-window"] ] ;;• f+l for raycast floating notes (via URL)
-		;;todo [:k  [:open "shortcuts://run-shortcut?id=2D1A4FED-D5A1-4122-A125-7D5BF6C45E20"]] ;;• f+k Full Keyboard Access Toggle via shortcuts
+		[:k  [:open "shortcuts://run-shortcut?id=2D1A4FED-D5A1-4122-A125-7D5BF6C45E20"]] ;;• f+k Full Keyboard Access Toggle via shortcuts
 
 	]}
 ;;? G MODE ================================================================
@@ -815,7 +838,6 @@
 		;; maybe should be #layer:
 		[:return_or_enter [:km "- Remote Modes Palette"]] ;;• r+return/enter for "- Remote Modes Palette"
 		[:y [:km "YouTube Remote"]] 		;;• y for YouTube Remote
-		[:x [:km "Deactivate Remote"]] 		;;• q for Deactivate Remote
 		[:x [:km "Deactivate Remote"]] 		;;• q for Deactivate Remote
 	[:v [:open "raycast://extensions/raycast/clipboard-history/clipboard-history"]] ;;* r+v for Raycast Clipboard History
 
