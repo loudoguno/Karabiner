@@ -63,11 +63,11 @@
 	  ;; :MenubarX 
 	
 	}
-:input-sources  { ;; INPUT SOURCEStd
-	:us {:input_mode_id   ""
-		:input_source_id "com.apple.keylayout.US"
-		:language        "en"}
-	}
+;; :input-sources  { ;;? INPUT SOURCES
+	;; :us {:input_mode_id   ""
+		;; :input_source_id "com.apple.keylayout.US"
+		;; :language        "en"}
+	;; }
 :templates      { ;;? TEMPLATES
 	:run "%s"
 	:open "open \"%s\""
@@ -250,8 +250,8 @@
 	]}
 
 ;;? SIMULTANEOUS RULES (Sim Mode)
-		{:des "Simultaneous Rules":rules [
-		[[:o :s :k][:shortcut "Onscreekson Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
+	{:des "Simultaneous Rules":rules [
+		[[:o :s :k][:shortcut "Onscreen Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
 		;;† [[:KEY1 :KEY2 :KEY3][:open "URL"]] ;;* KEY1KEY2KEY3 for ACTION
 		[[:k :e :v][:run "open -a Karabiner-EventViewer"]] ;;* kev for karbainer event viewer
 		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* k|m activate Keyboard Maestro
