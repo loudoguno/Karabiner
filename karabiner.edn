@@ -1,5 +1,4 @@
-;; reference -> TOSC (left ⌃⌥⇧⌘+), WERQ(right ⌃⌥⇧⌘), 
-{ ;; karabiner.edn 1.01 2024-10 (transition to layers where feasable and USW work)
+{ ;; karabiner.edn 1.02 2024-21 dialing back, see Sync/notes/config.taskpaper 
 ;;? DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
 ;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
@@ -1038,6 +1037,6 @@
 	;; •  :simlayer-threshold 250
 
 :cheatsheet {   ;;? 👿 CHEATSHEET 
-
+;; reference -> TOSC (left ⌃⌥⇧⌘+), WERQ(right ⌃⌥⇧⌘), 
 	}
 } ;;? CLOSES FILE
