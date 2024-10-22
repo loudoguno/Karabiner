@@ -561,7 +561,7 @@
 	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	;; COMMENTS:
 	;; homerow keyboard
-		[:#TOCSb :spacebar :space-mode]        ;;• spacebar+b for space
+		[:#TOWERQb :spacebar :space-mode]        ;;• spacebar+b for space
 		[:!Fb :rayfetti :space-mode]        ;;• spacebar+b for space
 		; jlik for ←↑→↓ (left/right/up/down arrows)
 			[:##j :left_arrow  :space-mode]  ;;• spacebar+j for ←
@@ -570,19 +570,18 @@
 			[:##k :down_arrow  :space-mode]  ;;• spacebar+k for ↓
 		; spacebar+;/o/u/p/h/y for non-text characters (↩⇥, delete, page up/down)
 			[:##semicolon :return_or_enter :space-mode] ;;* spacebar+return for ↩
-			[:##o :tab :space-mode] ;;* spacebar+u for tab
-			[:##u :!Stab :space-mode] ;;* spacebar+u for ⇧+tab
+			[:#QWERo :tab :space-mode] ;;* spacebar+u for tab (QWER so can to window management)
+			[:#QWERu :!Stab :space-mode] ;;* spacebar+u for ⇧+tab
 			[:##p :delete_or_backspace :space-mode] ;;* spacebar+p for delete
 			[:##y :page_up :space-mode] ;;* spacebar+y for page up
-			[:##h :tab :space-mode] ;;* spacebar+h for ⇥
-		; spacebar+asdf for modifiers (⇧⌥⌘⌃)
+			[:##h :tab :space-mode] ;;* spacebar+h for ⇥		; spacebar+asdf for modifiers (⇧⌥⌘⌃)
 			;;todo (remember thought about c instead F (check omf project))
-			[:##a :left_control :space-mode] ;;* spacebar+a for ctrl
-			[:##s :left_shift :space-mode] ;;* spacebar+s for shift
-			[:##d :left_option :space-mode] ;;* spacebar+d for option
+			[:##a :right_control :space-mode] ;;* spacebar+a for ctrl
+			[:##s :right_shift :space-mode] ;;* spacebar+s for shift
+			[:##d :right_option :space-mode] ;;* spacebar+d for option
 			[:##f :right_command :space-mode] ;;* spacebar+f for cmd (why isn't this left command)
 			[:##caps_lock :fn :space-mode] ;;* spacebar+caps_lock for 
-			[:##left_shift :caps_lock :space-mode] ;;* spacebar+caps_lock for 
+			;; [:##left_shift :caps_lock :space-mode] ;;* spacebar+caps_lock for 
 	;; spacebar+xxx for shift modifiers
 		[:##comma :!Scomma :space-mode] ;;• spacebar+comma for "<"
 		[:##period :!Speriod :space-mode] ;;• spacebar+period for ">""
@@ -592,8 +591,10 @@
 		[:##c [[:🔈🔈🔈]:!CTOw] :space-mode] [:##c [[:🔈🔈]:!Ospacebar] :Rctrl-mode] ;;• spacebar+c to activate Contexts
 		[:##return_or_enter [[:🔈🔈🔈]:!Of12] :space-mode]  ;;• spacebar+return for Bartender Search menu bar items (via ⌥+F12 in Bartender) 🟢🔰new
 	;; todo something with tab, tilde ect.... [:##tab :#menu]
-;;? Space Mode Window MGMT
-	[:!Sb [:open "btt://trigger_named/?trigger_name=prev-window"]]
+	;;?🪟  Space Mode Window MGMT
+	;;* spacebar+w for window
+		;; [:!w ]
+	[:!Sb [:btt "prev-window"]] ;;* spacebar+b (left_shift) for btt prev-window
 	;; context
 	;; :!grave_accent_and_tilde
 	;; btt://trigger_named/?trigger_name=prev-window
