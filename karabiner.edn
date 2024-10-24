@@ -270,20 +270,28 @@
 	]}
 ;;? SIMULTANEOUS RULES (Sim Mode)
 	{:des "Simultaneous Rules":rules [
-		[[:o :s :k][:shortcut "Onscreen Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
+		
+		;; activate applications
+		[[:b :e :a :r] [:open "/Applications/Bear.app"]]
+		[[:t :a :s :k :p] [:open "/Applications/Setapp/TaskPaper.app"]]
+		[[:t :e :i] [:open "/Applications/TextEdit.app"]]
+		
+		[[:f :k :0][:shortcut "Full Keyboard Access OFF"] ] ;;* fka for Full Keyboard Access shortcut
 		[[:f :k :a][:shortcut "Full Keyboard Access TOGGLE"] ] ;;* fka for Full Keyboard Access shortcut
 		[[:f :k :o][:shortcut "Full Keyboard Access ON"] ] ;;* fka for Full Keyboard Access shortcut
-		[[:f :k :0][:shortcut "Full Keyboard Access OFF"] ] ;;* fka for Full Keyboard Access shortcut
-		[[:k :e :v][:run "open -a Karabiner-EventViewer"]] ;;* kev for karbainer event viewer
-		[[:k :r :b][:open "raycast://extensions/lucaschultz/karabiner-profile-switcher/index"]] ;;* krb switch Karabiner profile
-
 		
-		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
-		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* new for SideNotes "New" note
-		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
-		[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
-		[[:w :d :c] [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
 		[[:k :b] :rayfetti]
+		[[:k :e :v][:run "open -a Karabiner-EventViewer"]] ;;* kev for karbainer event viewer
+		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
+		[[:k :r :b][:open "raycast://extensions/lucaschultz/karabiner-profile-switcher/index"]] ;;* krb switch Karabiner profile
+		
+		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* new for SideNotes "New" note
+		[[:o :s :k][:shortcut "Onscreen Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
+		
+		[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
+		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
+		
+		[[:w :d :c] [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
 
 		;;† new sim rule template
 		;; [[:KEY1 :KEY2 :KEY3][:open "URL"]] ;;* KEY1KEY2KEY3 for ACTION
@@ -335,7 +343,7 @@
 		;;! potential con is unable to trigger with 1 had on mouse...
 	[:!SCQslash [:km "© Cheatsheet"]] ;; * RCMD⇧⌘+/ for ⌘+1
 	;; V1 using perffered keybinding
-	[:!CQ1 [:km "⌘+1"]] ;; * LR⌘+1 for ⌘+1
+	[:!CQ1 [:km "⌘+1"]] ;; * LR⌘+1 for ⌘+1 Home
 	[:!CQ2 [:km "⌘+2"]] ;; * LR⌘+2 for ⌘+2
 	[:!CQ3 [:km "⌘+3"]] ;; * LR⌘+3 for ⌘+3
 	[:!CQ4 [:km "⌘+4"]] ;; * LR⌘+4 for ⌘+4
@@ -529,6 +537,9 @@
 		]}
 ;;? (FORWARD) SLASH MODE (fslashµ) ==============
 	{:des "slash-mode" :rules [ :fslashµ
+		[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+q to Search Quick Links via Raycast
+		
+		
 		[:spacebar [:!CSslash [:🔈🔈🔈]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
 		[:q [:open "raycast://extensions/raycast/raycast/search-quicklinks"] ] ;;• /+q to Search Quick Links via Raycast
 		[:r [:open "raycast://extensions/roamresearch/roam-research/search"] ] ;;• /+r to search Roam notes vvis raycast 
@@ -661,21 +672,26 @@
 	{:des "b-mode" :rules [ :b& 
 		[:i :vk_consumer_brightness_up] ;;• b+i for brightness up
 		[:d :vk_consumer_brightness_down] ;;• b+d for brightness
-		; Bear stuff
-		[:semicolon    [:!TSCb  [:📢]] ]        ;;• b+; for activate Bear via global hotkey ⌃⇧⌘+b
-		[:equal_sign   [:!TSOb  [:📢]] ]        ;;• b+= for new bear note via ⌃⌥⇧+b
-			;; [:n [:km "New Bear Note"] ] ;;• b+n for km New Bear Note
-		[:slash        [:km "Jump to Bear"] ]   ;;• b+/ for Jump to Bear insgrey
-		;; bear now (b+h for bear hover km that floats it front and center)
-		[:w [:km "Hover Bear ❗ NOW"] ]  ;;• b+w for Jump to Bear insgrey
-		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]] ;;* b+h hover bear now via URL BEARNOW new 2024-10-16
-		;; [:h [:km "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"] ]  ;;• b+h for simple URL by ID
-		[:n [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB&header=NOW&new_window=yes&float=no&show_window=yes&open_note=yes&pin=no&edit=no"]] ;;* b+n Bear Now
 		
-		;;* b+s to add hook md link to BearShelf and refocus last  window
-		;; [:c [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=yes&clipboard=yes"]] ;;* b+s to prepend 
+		; Bear stuff
+		[:semicolon 	[:!TSCb  [:📢]]] 			;;• b+; for activate Bear via global hotkey ⌃⇧⌘+b
+		[:equal_sign 	[:!TSOb  [:📢]]]  			;;• b+= for new bear note via ⌃⌥⇧+b
+		[:n 			[:km "New Bear Note"]]		;;• b+n for km New Bear Note
+		[:slash 		[:km "Jump to Bear"]] 		;;• b+/ for Jump to Bear insgrey
+		[:w 			[:km "Hover Bear ❗ NOW"]] 	;;• b+w for Jump to Bear insgrey
+		;;* b+h hover bear now via URL BEARNOW new 2024-10-16
+		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]]
+		;;* b+n Bear Now
+		[:n [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB&header=NOW&new_window=yes&float=no&show_window=yes&open_note=yes&pin=no&edit=no"]]
+		;; bear now (b+h for bear hover km that floats it front and center)
+		;; [:h [:km "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"] ]  ;;• b+h for simple URL by ID
+		
+		;;* b+s to add hook md link to BearShelf and refocus las<t  window
+		[:s [:!SCspacebar :vk_consumer_brightness_up :vk_consumer_brightness_down :b :s :tab :!Cv]] ;;* paste clipboard into... #todo
+		;; BearShelf
 		[:v [:km "BearShelf: add clipboard"]]
 		[:c [:km "BearShelf: add hyper-c"]]
+			;; [:c [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=yes&clipboard=yes"]] ;;* b+s to prepend 
 		[:f [:km "BearShelf: float"]]
 		[:k [:km "BearShelf: add hook to current window"]]
 		[:m [:km "BearShelf: add hook to current window"]]
@@ -756,9 +772,12 @@
 		;; [:##k :!Tf1] ;;• f+k Turn keyboard access on or off ⌃F1
 	
 	;; 🪟 Window Mgmt and Focus (macOS built-in and defaults)
-		[:##tab :!Tgrave_accent_and_tilde]  ;;• f+tab Move focus to next window ⌘+tilde ☑️
-		[:##grave_accent_and_tilde :!STgrave_accent_and_tilde] ;;• f+tilde Move focus to active or next window ⌃`
-		[:##q :!STgrave_accent_and_tilde] ;;• f+q Move focus to active or next window ⌃`
+		;; [:##tab :!Cgrave_accent_and_tilde]  ;;• f+tab Move focus to next window ⌘+tilde ☑️
+		;; [:##grave_accent_and_tilde :!SCgrave_accent_and_tilde] ;;• f+tilde Move focus to active or next window ⌃`
+		;; [:##q :!SCgrave_accent_and_tilde] ;;• f+q Move focus to active or next window ⌃`
+		[:##tab :!Tf4]  ;;• f+tab Move focus to next window ⌘+tilde ☑️
+		[:##grave_accent_and_tilde :!TSf4] ;;• f+tilde Move focus to active or next window ⌃`
+		[:##q :!TSf4] ;;• f+q Move focus to active or next window ⌃`
 
 		[:##m :!Tf2] ;;• f+m Move focus to the menu bar ^F2 ☑️
 		[:##b :!Tf3] ;;• f+b Move focus to the Dock ^F3 ☑️
@@ -831,8 +850,9 @@
 			;; [:t [:km "© Jump To"]] ;;• j+t for © Jump To (via KM global contextual)
 			;; [:right_gui [:km "© Jump To"]] ;;• j+right_gui for... AVAILABLE
 	]}
-{:des "k-mode" :rules [ :k& ;;? ======================== K MODE
-	
+		
+;;? ======================== K MODE
+{:des "k-mode" :rules [ :k&
 	[:e [:km "edit karabiner config"]] ;;• k+e pick config-files
 		;; [:e [:km "picklist config-files"]] ;;• 🗑
 		;; [:c [:open "file:///Users/loudog/vaults/obs-git-config/config.files/karabiner/karabiner-copy-for-MBX.edn"]] ;;• k+c to open this file
