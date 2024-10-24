@@ -1,3 +1,8 @@
+2024-10-23 
+added f+1 focus for backwards compatablity
+[ ] now adding left command + left command
+
+learned that "sleep 1" pasues shell script for 1 second so probably why it w
 need to make window managementstuff that
 [ ] uses native :Tgrave_accent_and_tilde
 [ ] uses Context (change ⌥+tab because interferes with tab navigate

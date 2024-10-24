@@ -82,7 +82,7 @@
 	:run "%s"
 	:open "open \"%s\""
 	:open-app "open -a \"%s\""
-	:wait "sleep 1000" ; pause 250 ms	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
+	:wait "sleep 1" ; pause 250 ms	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 	:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
 	:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
 	:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
@@ -275,13 +275,15 @@
 		[[:f :k :o][:shortcut "Full Keyboard Access ON"] ] ;;* fka for Full Keyboard Access shortcut
 		[[:f :k :0][:shortcut "Full Keyboard Access OFF"] ] ;;* fka for Full Keyboard Access shortcut
 		[[:k :e :v][:run "open -a Karabiner-EventViewer"]] ;;* kev for karbainer event viewer
+		[[:k :r :b][:open "raycast://extensions/lucaschultz/karabiner-profile-switcher/index"]] ;;* krb switch Karabiner profile
+
 		
 		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
 		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* new for SideNotes "New" note
 		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
 		[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
 		[[:w :d :c] [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
-		;; [[:k :b] :rayfetti]
+		[[:k :b] :rayfetti]
 
 		;;† new sim rule template
 		;; [[:KEY1 :KEY2 :KEY3][:open "URL"]] ;;* KEY1KEY2KEY3 for ACTION
@@ -317,26 +319,44 @@
 	;;TODO (ASSORTED) A	;; [ ] decide on format (readability by line length or more on 1 line?)
 		[:!Cperiod [[:🔈🔈🔈] :escape]] ;;• 🌐+\ for cycle sidevview
 		;; [:!Cperiod [[:🔈🔈🔈] :escape]] ;;• 🌐+q for Quick Note #todo
-		[:!!CSOTgrave_accent_and_tilde [[:🔈🔈🔈] :!Tf4]] ;;• 🌐+` cycle focus between windows #todo broken 
 		[:!!backslash [[:🔈🔈🔈] :!Ti]] ;;• 🌐+\ show/hide sideview
 		;; [:!Treturn_or_enter [[:# 🔈🔈🔈] [:btt "Show Context Menu for Selected Item"]]] ;;• ⌃+return for context menu #??? did i add this before new Seqoia 
 		;; [:!Treturn_or_enter [[:🔈🔈🔈] :insert]] ;;• ⌃+return for context menu
 		;; [:m [[:🔈🔈🔈] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
 	]}
 
-;;* ============================================
-;;* APP FILTERED =====================================
-	;; † new app mode template
-		;; {:des "† APP mode" :rules [:APP
-			;; [:!SRt [:open "raycast://confetti"]] ;; 🧪
-			;; ]}
-	{:des "Bear mode" :rules [:Bear
-		[:!SRt [:open "raycast://confetti"]] ;; works
-		]}
-	{:des "Common Commands" :rules [ 
-		;;? Back
-			[:!Copen_bracket [:km "Back"]]
 
+;;? © COMMON COMMANDS ======================================
+;; 🎓 RECAP left+right... can then just create an alias of existing km macro and name it
+;; to add : c+d, 
+{:des "Common Commands (left and right modifiers)" :rules [  
+	;; attempting 
+	;;! CONSIDERATIONS: what about right handed shortcuts, what about left hand?,  
+		;;! potential con is unable to trigger with 1 had on mouse...
+	[:!SCQslash [:km "© Cheatsheet"]] ;; * RCMD⇧⌘+/ for ⌘+1
+	;; V1 using perffered keybinding
+	[:!CQ1 [:km "⌘+1"]] ;; * LR⌘+1 for ⌘+1
+	[:!CQ2 [:km "⌘+2"]] ;; * LR⌘+2 for ⌘+2
+	[:!CQ3 [:km "⌘+3"]] ;; * LR⌘+3 for ⌘+3
+	[:!CQ4 [:km "⌘+4"]] ;; * LR⌘+4 for ⌘+4
+	[:!CQl [:km "⌘+l"]] ;; * LR⌘+L for Rename item
+	
+	;; V2 using km with prepending ©
+	;; open link under cursor with
+	[:!QTo [:km "© Open Link Under Cursor"]] ;; * LR⌘+4 for ⌘+4
+	[:!CQopen_bracket [:km "© Back"]] ;; * LR⌘+4 for ⌘+4
+	[:!CQclose_bracket [:km "© Forward"]] ;; * LR⌘+4 for ⌘+4
+	[:!CQp [:km "© Command Palette"]] ;; * LR⌘+p for command palette
+	;; V3 using combination
+	[:!CQreturn_or_enter [:km "⌘+↩ (Start and Stop Editing)"]] ;; * LR⌘+return start/stop editing
+	[:!TCw [:km "New Window"]];;• ⌃⌘+w Open in New Window
+
+	]}
+{:des "Common Commands" :rules [ 
+		;;? Next/Previous Tab (left/right) - (⇧)⌃+tab - d+s and d+f
+		;;? Back/Forward (History Navigation) ⌘+[ and ⌘+] (d+a and d+g)
+			[:!Copen_bracket [:km "Back"]]
+ 
 		;;? ⌃⌘+w to Open in New Window
 			[:!TCw [:km "Open In New Window"] :Bear]
 			;; [:!TCw [:!Treturn_or_enter :o] :Slidepad] ;;• ⌃⌘+w to "open in new window" common command
@@ -347,6 +367,15 @@
 		;; [:!TCdown_arrow [:!OCdown_arrow] :Bear] ;;•❌ only works if using arrow keys
 
 		]}
+;;* APP FILTERED =====================================
+	;; † new app mode template
+		;; {:des "† APP mode" :rules [:APP
+			;; [:!SRt [:open "raycast://confetti"]] ;; 🧪
+			;; ]}
+	{:des "Bear mode" :rules [:Bear
+		[:!SRt [:open "raycast://confetti"]] ;; works
+		]}
+
 	{:des "† Slidepad mode" :rules [:Slidepad
 		;; [:!TCw [:open "raycast://confetti"]] ;; works -> next get it to
 		;; [:!TCw [:!Treturn_or_enter :o]] ;;• ⌃⌘+w to "open in new window" common command
@@ -516,7 +545,7 @@
 			[:a [:open "raycast://extensions/raycast/apple-notes/index"] ] ;;• /+o to search obsidian via searchnote command (raycast)
 		    [:!Ra :!COTa] ;;• /+right shift⌘n for Apple Notes NOTE: start using /+right shift for bartender 
 
-		;;• Notion Commands
+		;; • Notion Commands
 		    [:n [:open "raycast://extensions/notion/notion/search-page"]] ;;• /+⌘n for Search Notion via raycast
 			[:#Cn [ [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
 			[:#Sn [ [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
@@ -540,6 +569,9 @@
 			;; [:#RScomma [ [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
 			;; [:8 [ [:open "kmtrigger://macro=F5EDE946-40E2-4AEA-827F-48CEFD38689D"]] ] ;;• /+d to search Dynalist (via km)
 			;; [:l [ [:open "raycast://extensions/futantan/logseq/logsearch"]] ] ;;• /+l to search logdeq (via Raycast)
+		;; * /+1/2/3/4
+		;; [:1] ;;* search
+
 
 	;; TODO (fslash mode)
 		;; [:spacebar [:!CSslash [:🔈🔈🔈]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
@@ -628,13 +660,27 @@
 		[:slash        [:km "Jump to Bear"] ]   ;;• b+/ for Jump to Bear insgrey
 		;; bear now (b+h for bear hover km that floats it front and center)
 		[:w [:km "Hover Bear ❗ NOW"] ]  ;;• b+w for Jump to Bear insgrey
-		;; [:h [:km "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"] ]  ;;• b+h for simple URL by ID
 		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]] ;;* b+h hover bear now via URL BEARNOW new 2024-10-16
-		[:n [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB&header=NOW&new_window=yes&float=no&show_window=yes&open_note=yes&pin=no&edit=no"]] ;;* b+n Bear
-		[:c [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=yes&clipboard=yes"]] ;;* b+s to prepend 
-		;;* b+s to add hook md link to BearShelf and refocus last window
-		;; [:s [:!!m [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=yes&clipboard=yes" ]] ]
-		[:s [:!!m [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=yes&clipboard=yes"] [:wait]] ]
+		;; [:h [:km "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"] ]  ;;• b+h for simple URL by ID
+		[:n [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB&header=NOW&new_window=yes&float=no&show_window=yes&open_note=yes&pin=no&edit=no"]] ;;* b+n Bear Now
+		
+		;;* b+s to add hook md link to BearShelf and refocus last  window
+		;; [:c [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=yes&clipboard=yes"]] ;;* b+s to prepend 
+		[:v [:km "BearShelf: add clipboard"]]
+		[:c [:km "BearShelf: add hyper-c"]]
+		[:f [:km "BearShelf: float"]]
+		[:k [:km "BearShelf: add hook to current window"]]
+		[:m [:km "BearShelf: add hook to current window"]]
+		;; todo make a "close window and save"
+		;; [:m [:!!m [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=no&clipboard=yes"] ]]
+			;; not working don't know why...
+			
+		;; [:s [:!!m [:run "open bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=no&clipboard=yes" ]] ]
+		;; [:s [[:open "bear://x-callback-url/open-note?title=BearShelf&header=INBOX&new_window=yes&search=INBOX"] :wait :escape]]
+		;; [:t [:tink]] ;; worked
+	
+		;; [:p [[:📢]:!CTSg] ] ;;• working sound + key 
+
 		
 			;; [:w        [:km "Hover Bear ❗ NOW"] ]   ;;• b+w for Jump to Bear insgrey
 		;; btt stuff
@@ -705,8 +751,8 @@
 		[:##t :!Tf5] ;;• f+t Move focus to the window toolbar ⌃F5 ❓
 		[:##w :!Tf6] ;;• f+w Move focus to the floating window ^F6 ❓
 		[:##s :!Tf8] ;;• f+s Move focus to status menus ^F8 ❌
-		[:tab :!Cgrave_accent_and_tilde]  ;;• f+tab Move focus to next window ⌘+tilde ☑️
-		[:##grave_accent_and_tilde :!Tgrave_accent_and_tilde] ;;• f+` Move focus to active or next window ⌃`
+		[:tab :!Tgrave_accent_and_tilde]  ;;• f+tab Move focus to next window ⌘+tilde ☑️
+		[:##grave_accent_and_tilde :!STgrave_accent_and_tilde] ;;• f+` Move focus to active or next window ⌃`
 		;;• Show contextual menu
 	;;TODO (F MODE)
 		;; [ ] work back in :km "Focus 1", (add © and consolidate) #common-commands
@@ -717,6 +763,11 @@
 		;; [:m [:open "kmtrigger://macro=1D8E356F-C110-48C0-982B-7895C037B349"] ] ;;• f+m for Float Front Window with Marked
 		;; [:l [:open "raycast://extensions/raycast/floating-notes/toggle-floating-notes-window"] ] ;;• f+l for raycast floating notes (via URL)
 		[:k  [:open "shortcuts://run-shortcut?id=2D1A4FED-D5A1-4122-A125-7D5BF6C45E20"]] ;;• f+k Full Keyboard Access Toggle via shortcuts
+		[:1 [:km "Focus 1"]] ;; * f+1 for focus 1
+		[:2 [:km "Focus 2"]] ;; * f+2 for focus 2
+		[:3 [:km "Focus 3"]] ;; * f+3 for focus 3
+		[:4 [:km "Focus 4"]] ;; * f+4 for focus 4 
+		
 
 	]}
 ;;? G MODE ================================================================
