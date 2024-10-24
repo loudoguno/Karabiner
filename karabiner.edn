@@ -501,6 +501,15 @@
 		[:##7 :!TOCf17] ;;• backslash+7 slidepad 7
 		[:##8 :!TOCf18] ;;• backslash+8 slidepad 8
 		[:##9 :!TOCf19] ;;• backslash+9 slidepad 9
+		;; [:##s [:km "Focus Slidepad"]]
+		
+		[:##s [:open "/System/Volumes/Data/Applications/Setapp/Slidepad.app"]]
+		[:##s :!Ti :Slidepad]
+		;; [:##s :!Cgrave_accent_and_tilde :Slidepad]
+
+		              
+                    ;;   [:l [:open "/Applications/Google Chrome.app"]]]}]}
+
 		]}
 ;; QUOTE MODE (disabled) ================================================================
 	;; {:des "quote-mode for quote things" :rules [ :quote&
@@ -736,51 +745,56 @@
 	]}	
 ;;? F MODE ================================================================
 	{:des "f-mode for f things" :rules [ :f&
-		;; f+l-cmd/space/r-cmd for left click, right click, and button 3
-			[:spacebar :button1] [:right_control :button1] ;;• f+spacebar for left-click (f+right-control same thing with UHK compatability)
-			[:right_gui :button2];;• f+right_command for right-click
-			[:left_gui :button3];;• f+left_command for "button3" ... (!Cbutton1 doesn't work as a <to> but can be recreated using button3)
-		
-		;; keyboard shortcuts
-		;; move
-			;; [:##t :!Tf7] ;;• f+t Change the way Tab moves focus ⌃F7
-			;; [:##k :!Tf1] ;;• f+k Turn keyboard access on or off ⌃F1
-		[:##m :!Tf2] ;;• f+m Move focus to the menu bar ^F2 ☑️
-		[:##d :!Tf3] ;;• f+d Move focus to the Dock ^F3 ☑️
-		[:##t :!Tf5] ;;• f+t Move focus to the window toolbar ⌃F5 ❓
-		[:##w :!Tf6] ;;• f+w Move focus to the floating window ^F6 ❓
-		;; [:##s :!Tf8] ;;• f+s Move focus to status menus ^F8 ❌ 
-		[:##s [:km "© Focus Left Sidebar"]] ;;• f+s Move focus to status menus ^F8 ❌
-
-		
-		
-		[:tab :!Tgrave_accent_and_tilde]  ;;• f+tab Move focus to next window ⌘+tilde ☑️
-		[:##grave_accent_and_tilde :!STgrave_accent_and_tilde] ;;• f+` Move focus to active or next window ⌃`
-		;;• Show contextual menu
-	;;TODO (F MODE)
-		;; [ ] work back in :km "Focus 1", (add © and consolidate) #common-commands
-		;; [ ] revisit slate focus windows (no equivilent)
-		[:period [[:🔈🔈🔈] [:btt "Show Menu Bar in Context Menu"]] ] ;;• f+b for btt "Show Context Menu for Selected Item"
-		[:n [:open "kmtrigger://macro=EFE846C8-9B93-47C5-9A9F-9EBA0D76D79F"] ] ;;• f+n for float notes for app 🔰 
-		[:p [:open "kmtrigger://macro=B4905F39-C99B-4DC8-B0F1-D86DA7E3DE6A"] ] ;;• f+p for 🎨🥏 Float Palette
-		;; [:m [:open "kmtrigger://macro=1D8E356F-C110-48C0-982B-7895C037B349"] ] ;;• f+m for Float Front Window with Marked
-		;; [:l [:open "raycast://extensions/raycast/floating-notes/toggle-floating-notes-window"] ] ;;• f+l for raycast floating notes (via URL)
 		[:k  [:open "shortcuts://run-shortcut?id=2D1A4FED-D5A1-4122-A125-7D5BF6C45E20"]] ;;• f+k Full Keyboard Access Toggle via shortcuts
+
+		;; f+l-cmd/space/r-cmd for left click, right click, and button 3
+		[:spacebar :button1] [:right_control :button1] ;;• f+spacebar for left-click (f+right-control same thing with UHK compatability)
+		[:right_gui :button2];;• f+right_command for right-click
+		[:left_gui :button3];;• f+left_command for "button3" ... (!Cbutton1 doesn't work as a <to> but can be recreated using button3)
+		
+		;; [:##t :!Tf7] ;;• f+t Change the way Tab moves focus ⌃F7
+		;; [:##k :!Tf1] ;;• f+k Turn keyboard access on or off ⌃F1
+	
+	;; 🪟 Window Mgmt and Focus (macOS built-in and defaults)
+		[:##tab :!Tgrave_accent_and_tilde]  ;;• f+tab Move focus to next window ⌘+tilde ☑️
+		[:##grave_accent_and_tilde :!STgrave_accent_and_tilde] ;;• f+tilde Move focus to active or next window ⌃`
+		[:##q :!STgrave_accent_and_tilde] ;;• f+q Move focus to active or next window ⌃`
+
+		[:##m :!Tf2] ;;• f+m Move focus to the menu bar ^F2 ☑️
+		[:##b :!Tf3] ;;• f+b Move focus to the Dock ^F3 ☑️
+			;; [:##d :!Tf3] ;;• f+d Move focus to the Dock ^F3 (focus bottom) ☑️ 
+		[:##t :!Tf5] ;;• f+t Move focus to the window toolbar ⌃F5 (focus top)❓
+		;; [:##w :!Tf6] ;;• f+w Move focus to the floating window ^F6 ❓
+		[:##backslash :!Tf8] ;;• f+\ (backslash) Move focus to status menus ^F8  🟢 works but weird 2024-10-24
+	;; km, slate and...
 		[:1 [:km "Focus 1"]] ;; * f+1 for focus 1
 		[:2 [:km "Focus 2"]] ;; * f+2 for focus 2
 		[:3 [:km "Focus 3"]] ;; * f+3 for focus 3
 		[:4 [:km "Focus 4"]] ;; * f+4 for focus 4 
-		
+		[:##s [:km "© Focus Left Sidebar"]] ;;• f+s Move focus to status menus ^F8 ❌
 
+	;; overlays
+	;;• Show contextual menu
+	
+	[:period [[:🔈🔈🔈] [:btt "Show Menu Bar in Context Menu"]] ] ;;• f+. for btt "Show Context Menu for Selected Item" 🟢
+	
+	;;TODO (F MODE)
+		;; [ ] work back in :km "Focus 1", (add © and consolidate) #common-commands
+		;; [ ] revisit slate focus windows (no equivilent)
+		[:p [:open "kmtrigger://macro=B4905F39-C99B-4DC8-B0F1-D86DA7E3DE6A"] ] ;;• f+p for 🎨🥏 Float Palette
+		[:n [:open "kmtrigger://macro=EFE846C8-9B93-47C5-9A9F-9EBA0D76D79F"] ] ;;• f+n for float notes for app 🔰 
+		;; [:m [:open "kmtrigger://macro=1D8E356F-C110-48C0-982B-7895C037B349"] ] ;;• f+m for Float Front Window with Marked
+		;; [:l [:open "raycast://extensions/raycast/floating-notes/toggle-floating-notes-window"] ] ;;• f+l for raycast floating notes (via URL)
+		
 	]}
 ;;? G MODE ================================================================
 	{:des "g-mode for g things" :rules [ :g&
 		[:spacebar [:km "Click GUI Button"]] ;;• g+spacebar for Click GUI Button
 		[:right_control [:km "Click GUI Button"]] ;;• g+right_control for Click GUI Button (for compatability with UHK split spacebar)
 		[:k [[:run "goku"] [:tink]] ] ;;• g+k to run goku #1... works!
-		
 		[:j [:t :e :s :t]] ;;• g+j to run test		
 		[:p [[:📢]:!CTSg] ] ;;• g+p ChatGPT bar ✨ new 2024-10-16
+		[:o [:shortcut "!-GO-ULTRA"]];;• g+o for go ultra 
 
 	;;TODO (G MODE)
 		;; change below to use shortcuts template (after replacing)

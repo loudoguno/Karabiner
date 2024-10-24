@@ -1,4 +1,7 @@
 2024-10-23 
+✨ f+s to focus left sidebar (common command)
+- to add to other macro groups, create a command named "© Focus Left Sidebar"  and alias it to the actual command
+
 added f+1 focus for backwards compatablity
 [ ] now adding left command + left command
 
