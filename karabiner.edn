@@ -349,7 +349,9 @@
 	[:!CQp [:km "© Command Palette"]] ;; * LR⌘+p for command palette
 	;; V3 using combination
 	[:!CQreturn_or_enter [:km "⌘+↩ (Start and Stop Editing)"]] ;; * LR⌘+return start/stop editing
-	[:!TCw [:km "New Window"]];;• ⌃⌘+w Open in New Window
+	
+	[:!QTCw [:km "© Open in New Window"]];;• RCMD ⌃⌘+w for Open in New Window
+		;;! previous work doesn't work because should be open in new tab 
 
 	]}
 {:des "Common Commands" :rules [ 
@@ -373,16 +375,13 @@
 			;; [:!SRt [:open "raycast://confetti"]] ;; 🧪
 			;; ]}
 	{:des "Bear mode" :rules [:Bear
-		[:!SRt [:open "raycast://confetti"]] ;; works
+		;; [:!SRt [:open "raycast://confetti"]] ;; works
 		]}
-
 	{:des "† Slidepad mode" :rules [:Slidepad
 		;; [:!TCw [:open "raycast://confetti"]] ;; works -> next get it to
 		;; [:!TCw [:!Treturn_or_enter :o]] ;;• ⌃⌘+w to "open in new window" common command
 		;; makeit so in Slidepad ⌃⌘+w calls BTT open in external Browser url 
-		;;* open 
 		]}
-
 	{:des "Drafts Mode" :rules [:Drafts
 		[:!SRt [:open "raycast://confetti"]] ;;* WORKS! but makes lose context
 		[:!TCw [:km "Open in New Window"]] ;; is triggering a new line
@@ -750,7 +749,11 @@
 		[:##d :!Tf3] ;;• f+d Move focus to the Dock ^F3 ☑️
 		[:##t :!Tf5] ;;• f+t Move focus to the window toolbar ⌃F5 ❓
 		[:##w :!Tf6] ;;• f+w Move focus to the floating window ^F6 ❓
-		[:##s :!Tf8] ;;• f+s Move focus to status menus ^F8 ❌
+		;; [:##s :!Tf8] ;;• f+s Move focus to status menus ^F8 ❌ 
+		[:##s [:km "© Focus Left Sidebar"]] ;;• f+s Move focus to status menus ^F8 ❌
+
+		
+		
 		[:tab :!Tgrave_accent_and_tilde]  ;;• f+tab Move focus to next window ⌘+tilde ☑️
 		[:##grave_accent_and_tilde :!STgrave_accent_and_tilde] ;;• f+` Move focus to active or next window ⌃`
 		;;• Show contextual menu
