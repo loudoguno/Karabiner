@@ -286,7 +286,7 @@
 		[[:k :r :b][:open "raycast://extensions/lucaschultz/karabiner-profile-switcher/index"]] ;;* krb switch Karabiner profile
 		
 		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* new for SideNotes "New" note
-		[[:o :s :k][:shortcut "Onscreen Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
+		[[:o :s :k] [:shortcut "Onscreen Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
 		
 		[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
 		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
@@ -679,10 +679,12 @@
 		[:n 			[:km "New Bear Note"]]		;;• b+n for km New Bear Note
 		[:slash 		[:km "Jump to Bear"]] 		;;• b+/ for Jump to Bear insgrey
 		[:w 			[:km "Hover Bear ❗ NOW"]] 	;;• b+w for Jump to Bear insgrey
+		[:r 			[:km "Hover Bear ❗ NOW"]] 	;;• b+w for Jump to Bear insgrey
 		;;* b+h hover bear now via URL BEARNOW new 2024-10-16
 		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]]
 		;;* b+n Bear Now
 		[:n [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB&header=NOW&new_window=yes&float=no&show_window=yes&open_note=yes&pin=no&edit=no"]]
+	
 		;; bear now (b+h for bear hover km that floats it front and center)
 		;; [:h [:km "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"] ]  ;;• b+h for simple URL by ID
 		
@@ -852,32 +854,29 @@
 	]}
 		
 ;;? ======================== K MODE
-{:des "k-mode" :rules [ :k&
-	[:e [:km "edit karabiner config"]] ;;• k+e pick config-files
+	{:des "k-mode" :rules [ :k&
+		[:e [:km "edit karabiner config"]] ;;• k+e pick config-files
 		;; [:e [:km "picklist config-files"]] ;;• 🗑
 		;; [:c [:open "file:///Users/loudog/vaults/obs-git-config/config.files/karabiner/karabiner-copy-for-MBX.edn"]] ;;• k+c to open this file
+			
+		;; 🪄 Keyboard Maestro stuff
+		[:spacebar :!CSOspacebar][:left_gui :!CSOspacebar] ;;• k+spacebar or k+l⌘ for Trigger Macro by Name
+		[:p :!SOCp]										   ;;• k+p for kyper key (⇧⌥⌘+p) to Keyboard Maestro app conflict palette
+		[:return_or_enter [:km "Keyboard Maestro Status Menu"]] ;;• k+p for kyper key (⇧⌥⌘+p) to Keyboard Maestro app conflict palette
+		[:slash :!SOCslash] 							   ;;• k+slash for KM Select Menu by Name app (⌥⇧⌘+/) 
+		[:v [:km "Activate Clipboard History Switcher"]]   ;;• k+v Activate Named Clipboard Switcher 
+		[:c [:km "Activate Named Clipboard Switcher"]] 	   ;;• k+c Activate Named Clipboard Switcher 
+		[:x [:km "Clipboard: Paste by Name"]] 			   ;;• k+x Activate Named Clipboard Switcher
+		;; [:!Ca [:km "Activate App Launcher"]] 		   ;;x k+⌘ka Activate App Launcher
 		
-	;;* 🪄 Keyboard Maestro stuff
-	[:spacebar :!CSOspacebar] ;;• k+spacebar for to Trigger Macro by Name (via hotkey) 👈 this is faster than triggering by km: alias
-		;; [:spacebar [:km "Trigger Macro by Name"]] ;;• by km alias
-		;; [:spacebar [:open "kmtrigger://macro=B55591CD-BB5B-4F28-9A4C-8EFDD59A2509"]] ;;• by  UUID URL
-	[:!Ca [:km "Activate App Launcher"]] ;;• k+⌘ka Activate App Launcher
-	[:v [:km "Activate Clipboard History Switcher"]] ;;• k+c Activate Named Clipboard Switcher 
-	[:c [:km "Activate Named Clipboard Switcher"]] ;;• k+c Activate Named Clipboard Switcher 
-	[:x [:km "Clipboard: Paste by Name"]] ;;• k+c Activate Named Clipboard Switcher 
-	;; [:Ov [:km "Activate Clipboard History Switcher"]] ;;• k+c Activate Named Clipboard Switcher
-	[:p :!SOCp]          ;;• k+p for kyper key (⇧⌥⌘+p) to Keyboard Maestro app conflict palette
-	[:slash :!SOCslash]  ;;• k+slash for KM Select Menu by Name app (⌥⇧⌘+/) 
-			;; [:right_gui [:open "kmtrigger://macro=791BDFF3-638B-4201-BDED-4D457748A972"]] ;;• select macro 
-
-	; 🐿 KY STUFF: l for roam log, d for dashboard)
-	[:y [:open "https://roamresearch.com/#/app/myoldkyhome"]] ;;• k+y for 🐿📓 KY House Log
-	[:l [:open "https://roamresearch.com/#/app/myoldkyhome)"]] ;;• k+l ky house log roam graph
-	[:d [:open "https://www.notion.so/my-old-ky-home/My-Old-Kentucky-Notion-c9ffb2a6aa6540e1b3e80a34e5db2d72?p=226804d32b084480a53b9c5ec4bde45f&showMoveTo=true)"]] ;;• k+d for ky house dashboard Notion
-	[:j [:open "https://www.notion.so/my-old-ky-lakehouse/JOURNAL-666e38a11fc04a48b9893fc57bbd2c5e"]] ;;• k+j for 📓 KY RUNNING JOURNAL (Notion)
-	[:w [:open "kmtrigger://macro=08A820FF-1597-4884-A501-F57DF15D43D8"]] ;;• k+w for 🐿🧰 KY Workbench via marked
-	;; [:v [:open ""]] ;;• k+w for 🐿🧰 KY Workbench via marked
-	;;TODO (K MODE)
+		; 🐿 KY STUFF: l for roam log, d for dashboard)
+		[:y [:open "https://roamresearch.com/#/app/myoldkyhome"]] ;;• k+y for 🐿📓 KY House Log
+		[:l [:open "https://roamresearch.com/#/app/myoldkyhome)"]] ;;• k+l ky house log roam graph
+		[:d [:open "https://www.notion.so/my-old-ky-home/My-Old-Kentucky-Notion-c9ffb2a6aa6540e1b3e80a34e5db2d72?p=226804d32b084480a53b9c5ec4bde45f&showMoveTo=true)"]] ;;• k+d for ky house dashboard Notion
+		[:j [:open "https://www.notion.so/my-old-ky-lakehouse/JOURNAL-666e38a11fc04a48b9893fc57bbd2c5e"]] ;;• k+j for 📓 KY RUNNING JOURNAL (Notion)
+		[:w [:open "kmtrigger://macro=08A820FF-1597-4884-A501-F57DF15D43D8"]] ;;• k+w for 🐿🧰 KY Workbench via marked
+		;;x [:v [:open ""]] ;;• k+w for 🐿🧰 KY Workbench via marked
+		;;TODO (K MODE)
 		]}
 ;;? L MODE ================================================================
 	{:des "l-mode for l things" :rules [ :l&
@@ -893,9 +892,9 @@
 		;; [:p [ [:open "kmtrigger://macro=46019D37-B359-498F-B0E0-CD49B6373FB8"]] ] ;;• l+p Log Palette (via km uuid URL
 	]}
 ;;? M MODE (EMPTY)================================================================
-	{:des "m-mode for m things" :rules [ :m&
-	;;TODO (M MODE)
-	]}
+	;; {:des "m-mode for m things" :rules [ :m&
+	;; TODO (M MODE)
+	;; ]}
 ;;? N MODE (transfer to layer or +mode) ================================================================
 	{:des "n-mode for n things" :rules [ :n&
 		[:i [[:tink] :!CTSo]] ;;• n+i New Omnifocus Quick Entry (via omf hotkey ⌃⇧⌘+o) 🟢 FIXED
@@ -913,7 +912,6 @@
 		[:p [:open "kmtrigger://macro=F47E78A8-44C9-4A80-BC17-AE4D101DD6CA"]] ;;• n+p for new Palette 🔰
 		[:spacebar [:open "kmtrigger://macro=448A7D18-74A3-443E-919F-D230D5070EA2"]] ;;• n+spacebar for 🔫 New Trigger List 🔰
 	;;TODO (N MODE)
-		;; [:l [:open "kmtrigger://macro=46019D37-B359-498F-B0E0-CD49B6373FB8"]] ;;• n+l for Log Palette enabled
 	]}
 ;;? O MODE (empty maybe leave) ================================================================
 	;; {:des "o-mode for o things" :rules [ :o&
@@ -923,12 +921,13 @@
 	{:des "p-mode for p things" :rules [ :p&
 		[:w [[:🔈🔈🔈] [:km "Activate 1Password"] ]] ;;• p+w for search 1password... ;; edited12/05/23 > edited 3/15/24  
 		[:1 :!OSTp] ;;• 1passsword
+
 	;;TODO (P MODE)
 		;; [:c  [:km "Paste Clipboard by Name"]] ;;• p+c for Paste Clipboard by Name
 		;; [:l [:km "picklist master"] ] ;;•
 		;; [:u [:km "picklist urls"] ] ;;• p+u to edit url picklist
 	]}
-;;? Q MODE (rework as #layer: ?)================================================================
+;;? Q MODE ⭐⭐⭐ (rework as #layer: ?)================================================================
 	{:des "q-mode for q things" :rules [ :q&
 		[:l [ [:🔈🔈🔈] [:open "drafts://open?uuid=00E137E9-0DB5-4824-8929-D330416244CE"]]] ;;• q+l open 🔗 QUICK LINKS
 
@@ -936,7 +935,7 @@
 		;; rehome [:n [ [:🔈🔈🔈] [:open "drafts://open?uuid=6823BE09-6193-4D97-894A-5147B7285DD9"]]] ;;• q+n to open ⚡️ Quick Notes (Draft) #Drafts
 		;; rehome [:b [ [:🔈🔈🔈] [:open "drafts://open?uuid=02B40CD6-2E52-444F-9689-9B8D7D859436"]]] ;;• q+b to open 🎛 QUICK DASHBOARD #Drafts
 		
-		;; [:d [ [:open "kmtrigger://macro=EAE91CED-C7F9-466E-9AE1-5614763DB869"]]  ] ;;•q+d for ❎ Add to main pick list
+		[:d [ [:open "kmtrigger://macro=EAE91CED-C7F9-466E-9AE1-5614763DB869"]]  ] ;;•q+d for ❎ Add to main pick list
 		;; [:m [ [:open "kmtrigger://macro=4C54CAED-E4FA-47F3-9626-4E09B9E56BA6"]]  ] ;;•q+m for Quick Menu
 		;; [:c [ [:🔈🔈🔈]  [:open "obsidian://advanced-uri?vault=ldb&commandid=obsidian42-text-transporter%253Aobsidian42-text-transporter-QC"] ] ] ;;•q+c for quick capture to highly opinionated vault 	
 	]}
