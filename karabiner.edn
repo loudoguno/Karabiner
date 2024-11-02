@@ -43,6 +43,7 @@
 	}
 :applications   { ;;? APPLICATIONS
 	;; usage: add here then create group at APP FILTERED vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:307
+	;; use Raycast command to get bundle raycast://ai-commands/create-ke-rule-from-app-name?arguments=
 	:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
 	;; :Chromes                       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.brave\\.Browser"]
 	  :Browsers      ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$"]
@@ -50,7 +51,6 @@
 	  :Debuggers     ["^org\\.mozilla\\.firefox$", "^org\\.mozilla\\.firefoxdeveloperedition$", "^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$", "^com\\.apple\\.Safari$", "^com\\.microsoft\\.VSCode$"]
 		;; * CORE
 
-	;; Roam
 	:Bear              ["^net\\.shinyfrog\\.bear$"] ;; todo, not working yet...
 	:Drafts            ["^com\\.agiletortoise\\.Drafts-OSX"] ;; 👍 works		
 	:Dynalist          ["^io\\.dynalist$"]
@@ -65,13 +65,12 @@
 	:Raycast           ["^com\\.raycast\\.Raycast$"]
 	:TextEdit          ["^com\\.apple\\.TextEdit$"]
 	:VSCode            ["^com\\.microsoft\\.VSCode$"]
-	;;todo :Overlays
+	
 	:overlay-apps ["^com\\.slidepad\\.slidepad-setapp", "^com\\.sidenotes\\.Sidenotes$", "^com\\.menubarx\\.MenubarX$", "^.*Tot.*$"]
-	:Slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
-	:SideNotes         ["^com\\.sidenotes\\.Sidenotes$"]
-	:MenubarX          ["^com\\.menubarx\\.MenubarX$"]
-	:Tot               ["^.*Tot.*$"]
-
+		:Slidepad	   ["^com\\.slidepad\\.slidepad-setapp"]
+		:SideNotes         ["^com\\.sidenotes\\.Sidenotes$"]
+		:MenubarX          ["^com\\.menubarx\\.MenubarX$"]
+		:Tot               ["^.*Tot.*$"]
 	}
 ;; :input-sources  { ;;? INPUT SOURCES
 	;; :us {:input_mode_id   ""
@@ -215,11 +214,13 @@
 
 ;;? ✨ New/org
 ;;* Mouse Thumbpad System (logitech MOUSEPAD MODE) #TODO install logi software and...
-{:des "mousepad keyboard mode" :rules [ :logiG600
+	{:des "mousepad keyboard mode" :rules [ :logiG600
+	
 	;; modifiers 
-		;; [:##left_control [[:🔈] :left_command]] ;;• ring finger button as command
-		;; [:##left_control [[:🔈🔈🔈] :left_command]] ;;• mousepad 3 for...
-
+	;; [:##left_control [[:🔈] :left_command]] ;;• ring finger button as command
+	;; [:##left_control [[:🔈🔈🔈] :left_command]] ;;• mousepad 3 for...
+	
+	;; thumbpad
 	[:##keypad_1 [[:🔈🔈🔈] :escape]] ;;• mousepad 1 for escape
 	[:##keypad_2 [[:🔈🔈🔈] :delete_or_backspace]] ;;• mousepad 2 for...
 	[:##keypad_3 [[:🔈🔈🔈] :delete_or_backspace]] ;;• mousepad 3 for...
@@ -232,7 +233,6 @@
 	[:##keypad_0 [[:🔈🔈🔈] :end]] ;;• mousepad 3 for...
 	[:##keypad_plus [[:🔈🔈🔈] :spacebar]] ;;• mousepad 3 for...
 	[:##keypad_hyphen [[:🔈🔈🔈] :return_or_enter]] ;;• mousepad 3 for...
-	
 	]}
 
 {:des "TEST " :rules [ ;;? TEST MODE Rules
@@ -253,19 +253,19 @@
 	;; [:!Rt :rayfetti] ;;; Q and R work but W †
 	;; [:!QOt :rayfetti] ;;; lef+t rightworks
 	;; [:!RTCw :km ""] ;;; 
-;;* test :device for apple internal NOW⚡
-[:!QCt :rayfetti] ;;• right shift+t to test confetti 🎉
-[:!QCt :rayfetti :apple] ;;• :apple device group works ✔
-[:!QCt :rayfetti :mx3] ;;• :apple device group works ✔    
-[:!St :rayfetti :mbpx] ;; worked 
-;;• caps+right command + c to copy url 
-;; [:!CQa :rayfetti :refocus] seems to trigger select all first
-;; [:!CQt :rayfetti] ;;! [:!CQt :rayfetti] WORKS 
-;; [:!Cc :rayfetti] ;;! !Cc works
-;; [:!CQc :rayfetti] ;;! !CQc DOES NOT WORK maybe overridden
-[:!SRc :rayfetti] ;;! !!c works
-;; [:!!c :refocus] ;; worked 
-;; [:!!c [[:rayfetti] [:refocus]]] ;; worked 
+	;;* test :device for apple internal NOW⚡
+	;; [:!QCt :rayfetti] ;;• right shift+t to test confetti 🎉
+	;; [:!QCt :rayfetti :apple] ;;• :apple device group works ✔
+	;; [:!QCt :rayfetti :mx3] ;;• :apple device group works ✔    
+	;; [:!St :rayfetti :mbpx] ;; worked 
+	;;• caps+right command + c to copy url 
+	;; [:!CQa :rayfetti :refocus] seems to trigger select all first
+	;; [:!CQt :rayfetti] ;;! [:!CQt :rayfetti] WORKS 
+	;; [:!Cc :rayfetti] ;;! !Cc works
+	;; [:!CQc :rayfetti] ;;! !CQc DOES NOT WORK maybe overridden
+	;; [:!SRc :rayfetti] ;;! !!c works
+	;; [:!!c :refocus] ;; worked 
+	;; [:!!c [[:rayfetti] [:refocus]]] ;; worked 
 
 	]}
 ;;? SIMULTANEOUS RULES (Sim Mode)
@@ -275,14 +275,14 @@
 		[[:b :e :a :r] [:open "/Applications/Bear.app"]]
 		[[:t :a :s :k :p] [:open "/Applications/Setapp/TaskPaper.app"]]
 		[[:t :e :i] [:open "/Applications/TextEdit.app"]]
-		
-		[[:f :k :0][:shortcut "Full Keyboard Access OFF"] ] ;;* fka for Full Keyboard Access shortcut
+		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
+		;; utility
+		[[:k :e :v][:run "open -a Karabiner-EventViewer"]]     ;;* kev for karbainer event viewer
+		[[:f :k :0][:shortcut "Full Keyboard Access OFF"] ]    ;;* fka for Full Keyboard Access shortcut
 		[[:f :k :a][:shortcut "Full Keyboard Access TOGGLE"] ] ;;* fka for Full Keyboard Access shortcut
-		[[:f :k :o][:shortcut "Full Keyboard Access ON"] ] ;;* fka for Full Keyboard Access shortcut
+		[[:f :k :o][:shortcut "Full Keyboard Access ON"] ]     ;;* fko for Full Keyboard Access shortcut
 		
 		[[:k :b] :rayfetti]
-		[[:k :e :v][:run "open -a Karabiner-EventViewer"]] ;;* kev for karbainer event viewer
-		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
 		[[:k :r :b][:open "raycast://extensions/lucaschultz/karabiner-profile-switcher/index"]] ;;* krb switch Karabiner profile
 		
 		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* new for SideNotes "New" note
@@ -298,10 +298,11 @@
 
 		]}
 ;;? ASSORTED RULED
-	{:des "shift+space for _ and -":rules[ ;;*          shift+space for _ and -
-		[:!Rspacebar :hyphen]                           ;;• (r)⇧+␣ for "-"
-		[:!SRspacebar :!Shyphen]                        ;;• both shift + spacebar for underscore 
-		;; COMMENTS:
+	;;* right shift+space for "-" and "_"
+		{:des "shift+space for _ and -":rules[ ;;*          shift+space for _ and -
+			[:!Rspacebar :hyphen]                           ;;• (r)⇧+␣ for "-"
+			[:!SRspacebar :!Shyphen]                        ;;• both shift + spacebar for underscore 
+			;; COMMENTS:
 			;; modified to always require rightshift
 			;; was causing issues with UHK right control still need #todo
 				;; [:!Sspacebar :!Shyphen] ;;- left_shift+spacebar for underscore "_"
@@ -319,25 +320,21 @@
 		[:##semicolon :##fn nil {:alone :semicolon}] ]}
 		;;TODO fn is used with Contexts for quick witching
 	;;* UHK FN: F24 (fn hardware key on uhks) sends apple FN with all modifiers optional ONLY when sent from UHKs (🟢 works 2024-10-22)
-	{:des "FN from UHK" :rules [[:##f24 :fn [:uhks] ]]}
-	
-	{:des "iPad defaults" :rules [ ;;? iPad defaults ========== 
-		[:!Cperiod [[:🔈🔈🔈] :escape]] ;;• ⌘+period for escape
-	
+		{:des "FN from UHK" :rules [[:##f24 :fn [:uhks] ]]}
+	;;* iPad Default Shortcuts
+		{:des "iPad default Shortcuts" :rules [ ;;? iPad defaults ========== 
+			[:!Cperiod [[:🔈🔈🔈] :escape]] [:!Qperiod [[:🔈🔈🔈] :escape]] ;;• ⌘+period for escape
+			[:!!backslash [[:🔈🔈🔈] :!Ti]] ;;• 🌐+\ show/hide sideview
+			;;• 🌐+\ for cycle sidevview
+			;;• 🌐+q for Quick Note #todo
 	;;TODO (ASSORTED) A	;; [ ] decide on format (readability by line length or more on 1 line?)
-		[:!Cperiod [[:🔈🔈🔈] :escape]] ;;• 🌐+\ for cycle sidevview
-		;; [:!Cperiod [[:🔈🔈🔈] :escape]] ;;• 🌐+q for Quick Note #todo
-		[:!!backslash [[:🔈🔈🔈] :!Ti]] ;;• 🌐+\ show/hide sideview
-		;; [:!Treturn_or_enter [[:# 🔈🔈🔈] [:btt "Show Context Menu for Selected Item"]]] ;;• ⌃+return for context menu #??? did i add this before new Seqoia 
-		;; [:!Treturn_or_enter [[:🔈🔈🔈] :insert]] ;;• ⌃+return for context menu
-		;; [:m [[:🔈🔈🔈] [:btt "Show Context Menu for Selected Item"]] ] ;;• c+m for btt "Show Context Menu+ for Selected Item" ✨ NEW 12/01/23
 	]}
 
 
 ;;? © COMMON COMMANDS ======================================
-;; 🎓 RECAP left+right... can then just create an alias of existing km macro and name it
-;; to add : c+d, 
-{:des "Common Commands (left and right modifiers)" :rules [  
+	;; 🎓 RECAP left+right... can then just create an alias of existing km macro and name it
+	;; to add : c+d, 
+	{:des "Common Commands (left and right modifiers)" :rules [  
 	;; attempting 
 	;;! CONSIDERATIONS: what about right handed shortcuts, what about left hand?,  
 		;;! potential con is unable to trigger with 1 had on mouse...
@@ -399,17 +396,14 @@
 	[:!SRt [:open "raycast://confetti"]] ;; 🧪 works!!!
 	]}
 
-
 ;;todo † {:des "app mode" :rules [:APP
 	;; [:!SRt [:open "raycast://confetti"]] ;; 🧪
 	;; ]}
 
-;; 
-
 ;;* ============================================
 ;;* LAYERS =====================================
 {:des "escape-mode" :rules [:⎋µ ;;?========================= ESCAPE MODE (⎋µ)
-	[:!!t [:open "raycast://confetti"]] ;;* test -> works
+	;; [:!!t [:open "raycast://confetti"]] ;;• ⎋+t to test -> works
 	;; TODO (ESCAPE MODE)
 	]}
 ;; F1 MODE (empty) 
@@ -511,8 +505,8 @@
 		[:##9 :!TOCf19] ;;• backslash+9 slidepad 9
 		;; [:##s [:km "Focus Slidepad"]]
 		
-		[:##s [:open "/System/Volumes/Data/Applications/Setapp/Slidepad.app"]]
-		[:##s :!Ti :Slidepad]
+		;; [:##s [:open "/System/Volumes/Data/Applications/Setapp/Slidepad.app"]] ;;• \+s for slidepad
+		;; [:##s :!Ti :Slidepad]
 		;; [:##s :!Cgrave_accent_and_tilde :Slidepad]
 
 		              
@@ -862,11 +856,12 @@
 		;; 🪄 Keyboard Maestro stuff
 		[:spacebar :!CSOspacebar][:left_gui :!CSOspacebar] ;;• k+spacebar or k+l⌘ for Trigger Macro by Name
 		[:p :!SOCp]										   ;;• k+p for kyper key (⇧⌥⌘+p) to Keyboard Maestro app conflict palette
-		[:return_or_enter [:km "Keyboard Maestro Status Menu"]] ;;• k+p for kyper key (⇧⌥⌘+p) to Keyboard Maestro app conflict palette
 		[:slash :!SOCslash] 							   ;;• k+slash for KM Select Menu by Name app (⌥⇧⌘+/) 
+		[:return_or_enter [:km "Keyboard Maestro Status Menu"]] ;;• k+return for km status menu
 		[:v [:km "Activate Clipboard History Switcher"]]   ;;• k+v Activate Named Clipboard Switcher 
 		[:c [:km "Activate Named Clipboard Switcher"]] 	   ;;• k+c Activate Named Clipboard Switcher 
 		[:x [:km "Clipboard: Paste by Name"]] 			   ;;• k+x Activate Named Clipboard Switcher
+		[:w [:km "Activate Window Switcher"]] 			   ;;• k+w km window switcher
 		;; [:!Ca [:km "Activate App Launcher"]] 		   ;;x k+⌘ka Activate App Launcher
 		
 		; 🐿 KY STUFF: l for roam log, d for dashboard)
@@ -874,7 +869,7 @@
 		[:l [:open "https://roamresearch.com/#/app/myoldkyhome)"]] ;;• k+l ky house log roam graph
 		[:d [:open "https://www.notion.so/my-old-ky-home/My-Old-Kentucky-Notion-c9ffb2a6aa6540e1b3e80a34e5db2d72?p=226804d32b084480a53b9c5ec4bde45f&showMoveTo=true)"]] ;;• k+d for ky house dashboard Notion
 		[:j [:open "https://www.notion.so/my-old-ky-lakehouse/JOURNAL-666e38a11fc04a48b9893fc57bbd2c5e"]] ;;• k+j for 📓 KY RUNNING JOURNAL (Notion)
-		[:w [:open "kmtrigger://macro=08A820FF-1597-4884-A501-F57DF15D43D8"]] ;;• k+w for 🐿🧰 KY Workbench via marked
+		;; [:w [:open "kmtrigger://macro=08A820FF-1597-4884-A501-F57DF15D43D8"]] ;;• k+w for 🐿🧰 KY Workbench via marked
 		;;x [:v [:open ""]] ;;• k+w for 🐿🧰 KY Workbench via marked
 		;;TODO (K MODE)
 		]}
@@ -941,12 +936,22 @@
 	]}
 ;;? R MODE ================================================================
 	{:des "r-mode for r things" :rules [ :r&
-	; remote-mode (see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:431)
+	
+	;;* remote-mode (see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:431)
 		;; maybe should be #layer:
 		[:return_or_enter [:km "- Remote Modes Palette"]] ;;• r+return/enter for "- Remote Modes Palette"
 		[:y [:km "YouTube Remote"]] 		;;• y for YouTube Remote
 		[:x [:km "Deactivate Remote"]] 		;;• q for Deactivate Remote
-	[:v [:open "raycast://extensions/raycast/clipboard-history/clipboard-history"]] ;;* r+v for Raycast Clipboard History
+	;;* raycast built-in
+	[:v [:open "raycast://extensions/raycast/clipboard-history/clipboard-history"]] ;;• r+v for Raycast Clipboard History
+	[:w [:open "raycast://extensions/raycast/navigation/switch-windows"]] ;;• r+w for Raycast Switch Window
+	[:slash [:open "raycast://extensions/raycast/navigation/search-menu-items"]]    ;;• r+/ for Search Menu Items
+	[:period [:open "raycast://extensions/raycast/snippets/search-snippets"]] ;;• r+. for Raycast snippets
+	[:3 [:open "raycast://extensions/raycast/screenshots/search-screenshots"]] ;;• r+3 search screenshots
+	[:grave_accent_and_tilde [:open "raycast://extensions/raycast/file-search/search-files"]] ;;• r+~ File search
+	;; [:slash [:open ""]]    ;;• r+XXX for Raycast Clipboard History
+	;; Raycast Snippets
+
 
 	;;TODO (R MODE)
 	;; TODO remote mode
