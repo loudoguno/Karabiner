@@ -1,4 +1,22 @@
-2024-10-23 
+# new.edn (for quickly noting changes to review)
+
+# TODO
+[ ] work on Hyper mode vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:313
+[ ] take a look at /+s slidepad stuff vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:507
+[ ] visit slash mode and organize CRUD stuff
+
+2024-10-31
+		[[:b :e :a :r] [:open "/Applications/Bear.app"]]
+		[[:t :a :s :k :p] [:open "/Applications/Setapp/TaskPaper.app"]]
+		[[:t :e :i] [:open "/Applications/TextEdit.app"]]
+        [[:k :r :b][:open "raycast://extensions/lucaschultz/karabiner-profile-switcher/index"]] ;;* krb switch Karabiner profile
+
+
+2024-10-24
+[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+q to Search Quick Links via Raycast
+trying out moving simultanious keys to their modes
+
+92024-10-23 
 ✨ f+s to focus left sidebar (common command)
 - to add to other macro groups, create a command named "© Focus Left Sidebar"  and alias it to the actual command
 
