@@ -285,7 +285,6 @@
 		[[:b :e :a :r] [:open "/Applications/Bear.app"]]
 		[[:t :a :s :k :p] [:open "/Applications/Setapp/TaskPaper.app"]]
 		[[:t :e :i] [:open "/Applications/TextEdit.app"]]
-		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
 		;; utility
 		[[:k :e :v][:run "open -a Karabiner-EventViewer"]]     ;;* kev for karbainer event viewer
 		[[:f :k :0][:shortcut "Full Keyboard Access OFF"] ]    ;;* fka for Full Keyboard Access shortcut
@@ -299,9 +298,6 @@
 		[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
 		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant		
 		[[:w :d :c] [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
-
-		;;† new sim rule template
-		;; [[:KEY1 :KEY2 :KEY3][:open "URL"]] ;;* KEY1KEY2KEY3 for ACTION
 
 		]}
 ;;? ASSORTED RULED
