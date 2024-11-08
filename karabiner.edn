@@ -85,7 +85,7 @@
 	:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
 	:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
 	:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
-	:ray "open \"raycast://extensions/raycast/%s\""	
+	:ray "open \"raycast://extensions/%s\""	
 	:alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
 	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
 	;;? 🔉 Sound Effects and  audio feedback aliases
@@ -268,10 +268,20 @@
 	;; [:!!c [[:rayfetti] [:refocus]]] ;; worked 
 
 	]}
-;;? SIMULTANEOUS RULES (Sim Mode)
+;;? SIMULTANEOUS RULES (SIMULTANEOUS Mode)
 	{:des "Simultaneous Rules":rules [
-		
-		;; activate applications
+		;;† new sim rule template
+
+		[[:a :s :d :f :j :k :l :semicolon] [:open "raycast://confetti"]]	;;! example of conflict with subset of simulaneous key array 
+		;; -> going to change it to 
+		[[:left_shift :right_shift :4 :8] [:open "raycast://confetti"]] ;;• ⇧+⇧+4+8 for confetti
+		[[:f :l :n]			[:ray "raycast/raycast-notes/raycast-notes"]]	;;• fln for raycast notes
+		[[:s :f :l :n]		[:ray "raycast/raycast-notes/search-notes"]]	;;• sfln for raycast notes search
+		[[:n :e :w :f :l]	[:ray "raycast/raycast-notes/create-note"]] 	;;• newfl for new floating note
+		[[:n :o :w][:ray "raycast-notes/raycast-notes?context=%7B%22id%22:%22628EB8FA-1D86-4881-9154-21CB25F2F1AB%22%7D"]] ;;* now for raycast Now note
+		[[:f :n :o :w][:open "raycast://extensions/raycast/raycast-notes/raycast-notes?context=%7B%22id%22:%22628EB8FA-1D86-4881-9154-21CB25F2F1AB%22%7D"]] ;;* now for ACTION
+
+		;; activate applicationsw
 		[[:b :e :a :r] [:open "/Applications/Bear.app"]]
 		[[:t :a :s :k :p] [:open "/Applications/Setapp/TaskPaper.app"]]
 		[[:t :e :i] [:open "/Applications/TextEdit.app"]]
@@ -281,16 +291,13 @@
 		[[:f :k :0][:shortcut "Full Keyboard Access OFF"] ]    ;;* fka for Full Keyboard Access shortcut
 		[[:f :k :a][:shortcut "Full Keyboard Access TOGGLE"] ] ;;* fka for Full Keyboard Access shortcut
 		[[:f :k :o][:shortcut "Full Keyboard Access ON"] ]     ;;* fko for Full Keyboard Access shortcut
-		
+		[[:k :m] [:km "Activate Keyboard Maestro"] ] ;;* k|m activate Keyboard Maestro
 		[[:k :b] :rayfetti]
 		[[:k :r :b][:open "raycast://extensions/lucaschultz/karabiner-profile-switcher/index"]] ;;* krb switch Karabiner profile
-		
 		[[:n :e :w] [:open "sidenotes://open/3F52308E-C16E-40C2-8CBE-87BC0F8CC590"] ] ;;* new for SideNotes "New" note
 		[[:o :s :k] [:shortcut "Onscreen Keyboard Overlay"] ] ;;* osk for Onscreen Keyboard Overlay   ✅ 
-		
 		[[:s :n :l :a] [:km "SnippetLab: Toggle Assistant"]] ;;* SNL snippets lab toggle assistant
-		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant
-		
+		[[:s :n :l] [:km "SnippetLab: Show Main Window"]] ;;* SNL snippets lab toggle assistant		
 		[[:w :d :c] [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
 
 		;;† new sim rule template
@@ -527,7 +534,7 @@
 		]}
 ;;? PERIOD MODE .µ (enabled, to convert) ====================================================
 	{:des " period-mode for typinator and autocomplete":rules [ :.µ 
-		[:spacebar [[:🔈🔈🔈] :!STperiod] ] ;;• period+left_shift for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
+		[:spacebar [[:🔈🔈🔈] :!STperiod]] ;;• .+space for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
 		]}
 ;;? (FORWARD) SLASH MODE (fslashµ) ==============
 	{:des "slash-mode" :rules [ :fslashµ
@@ -633,7 +640,7 @@
 	;; spacebar+MISC for v clipboard history, m moom, c contexts, REMOVED w for contexts and tab for contexts
 		[:##v [[:🔈🔈🔈][:km "Clipboard History Switcher"]] :space-mode]  ;;• spacebar+v for "Clipboard History" (via KM macro)
 		[:##m [[:🔈🔈🔈]:!!f14] :space-mode] [:##m [[:🔈🔈]:!!f14] :Rctrl-mode] ;;• spacebar+m for activate moom (like this one better)
-		[:##c [[:🔈🔈🔈]:!CTOw] :space-mode] [:##c [[:🔈🔈]:!Ospacebar] :Rctrl-mode] ;;• spacebar+c to activate Contexts
+		[:##w [[:🔈🔈🔈]:!CTOw] :space-mode] [:##c [[:🔈🔈]:!Ospacebar] :Rctrl-mode] ;;• space+c to activate Contexts
 		[:##return_or_enter [[:🔈🔈🔈]:!Of12] :space-mode]  ;;• spacebar+return for Bartender Search menu bar items (via ⌥+F12 in Bartender) 🟢🔰new
 	;; todo something with tab, tilde ect.... [:##tab :#menu]
 	;;?🪟  Space Mode Window MGMT
@@ -671,9 +678,9 @@
 		[:semicolon 	[:!TSCb  [:📢]]] 			;;• b+; for activate Bear via global hotkey ⌃⇧⌘+b
 		[:equal_sign 	[:!TSOb  [:📢]]]  			;;• b+= for new bear note via ⌃⌥⇧+b
 		[:n 			[:km "New Bear Note"]]		;;• b+n for km New Bear Note
-		[:slash 		[:km "Jump to Bear"]] 		;;• b+/ for Jump to Bear insgrey
-		[:w 			[:km "Hover Bear ❗ NOW"]] 	;;• b+w for Jump to Bear insgrey
-		[:r 			[:km "Hover Bear ❗ NOW"]] 	;;• b+w for Jump to Bear insgrey
+		;; [:slash 		[:km "Jump to Bear"]] 		;;• b+/ for Jump to Bear insgrey
+		[:w 			[:km "Hover Bear ❗ NOW"]] 	;;• b+w for Hover Bear ❗ NOW
+		[:r 			[:km "Hover Bear ❗ NOW"]] 	;;• b+r Hover Bear ❗ NOW
 		;;* b+h hover bear now via URL BEARNOW new 2024-10-16
 		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]]
 		;;* b+n Bear Now
@@ -691,6 +698,8 @@
 		[:f [:km "BearShelf: float"]]
 		[:k [:km "BearShelf: add hook to current window"]]
 		[:m [:km "BearShelf: add hook to current window"]]
+		
+		[:period [:km "BetterTouchTool: Show Menu Bar in Context Menu"]] ;;• b+. for menu context menu 
 		;; todo make a "close window and save"
 		;; [:m [:!!m [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=no&clipboard=yes"] ]]
 			;; not working don't know why...
