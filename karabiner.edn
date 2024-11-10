@@ -24,16 +24,10 @@
 	:uhk-2 [{:product_id 24868 :vendor_id 7504}]
 	;;* 🖱 mice
 		:logiG600 [{:product_id 49738 :vendor_id 1133}] ;;* Logitech G600 (✅) logiG600
-		;; :utech 												;;* UtechSmart Venus (old-school gaming)
-		;; :logi-bt ;;* Logitech M585 (bluetooth mouse)
+		;; :utech 										;;* UtechSmart Venus (old-school gaming)
+		;; :logi-bt										;;* Logitech M585 (bluetooth mouse)
 		;; bluetooth 2
 	    
-    ;;* references
-		;; :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
-		;; :kybs [  ;; group
-		;;     {:vendor_id 1452}
-		;;     {:vendor_id 76}
-				;; ]
 
 	;; todos: add mice
 		;; 2024-10-16 👍 adding logitech worked! (used vendor id and product id () from previous config, not sure what new vedor id 4295704614 is on mx3)
@@ -83,10 +77,10 @@
 	:open-app "open -a \"%s\""
 	:wait "sleep 1" ; pause 250 ms	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 	:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
-	:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
 	:shortcut "osascript -e 'tell application \"Shortcuts Events\" to run the shortcut named \"%s\"'"
-	:ray "open \"raycast://extensions/%s\""	
 	:alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
+	:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
+	:ray "open \"raycast://extensions/%s\""	
 	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
 	;;? 🔉 Sound Effects and  audio feedback aliases
 	 		;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
@@ -508,10 +502,6 @@
 		[:##9 :!TOCf19] ;;• backslash+9 slidepad 9
 		;; [:##s [:km "Focus Slidepad"]]
 		
-		;; [:##s [:open "/System/Volumes/Data/Applications/Setapp/Slidepad.app"]] ;;• \+s for slidepad
-		;; [:##s :!Ti :Slidepad]
-		;; [:##s :!Cgrave_accent_and_tilde :Slidepad]
-
 		              
                     ;;   [:l [:open "/Applications/Google Chrome.app"]]]}]}
 
@@ -534,13 +524,11 @@
 		]}
 ;;? (FORWARD) SLASH MODE (fslashµ) ==============
 	{:des "slash-mode" :rules [ :fslashµ
-		[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+q to Search Quick Links via Raycast
-		
+		[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+k to open karabiner.edn in Marked		
 		
 		[:spacebar [:!CSslash [:🔈🔈🔈]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
 		[:q [:open "raycast://extensions/raycast/raycast/search-quicklinks"] ] ;;• /+q to Search Quick Links via Raycast
-		[:r [:open "raycast://extensions/roamresearch/roam-research/search"] ] ;;• /+r to search Roam notes vvis raycast 
-		[:o [:open "raycast://extensions/KevinBatdorf/obsidian/searchNoteCommand"] ] ;;• /+o to search obsidian via searchnote command (raycast)
+		;; [:r [:open "raycast://extensions/roamresearch/roam-research/search"] ] ;;• /+r to search Roam notes vvis raycast 
 		
 		[:t [:open "raycast://extensions/maggie/todo-list/index"]]
 		;;• Roam, Reminders and TODOs commands
@@ -557,12 +545,12 @@
 
 		;;• Obsidian
 
-		;;• APN
-			[:a [:open "raycast://extensions/raycast/apple-notes/index"] ] ;;• /+o to search obsidian via searchnote command (raycast)
-		    [:!Ra :!COTa] ;;• /+right shift⌘n for Apple Notes NOTE: start using /+right shift for bartender 
+		;;• /+a (Apple)
+			[:a [:open "raycast://extensions/raycast/apple-notes/index"] ] ;;• /+a to search Apple Notes via Raycast
+			;; [:!Ra :!COTa] ;;• /+(r)⇧a shift⌘a for Apple Notes NOTE: start using /+right shift for bartender 
 
 		;; • Notion Commands
-		    [:n [:open "raycast://extensions/notion/notion/search-page"]] ;;• /+⌘n for Search Notion via raycast
+		    [:n [:open "raycast://extensions/notion/notion/search-page"]] ;;• /+n for Search Notion via raycast
 			[:#Cn [ [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
 			[:#Sn [ [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
 			[:#Tn [ [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
@@ -872,7 +860,7 @@
 		
 		; 🐿 KY STUFF: l for roam log, d for dashboard)
 		[:y [:open "https://roamresearch.com/#/app/myoldkyhome"]] ;;• k+y for 🐿📓 KY House Log
-		[:l [:open "https://roamresearch.com/#/app/myoldkyhome)"]] ;;• k+l ky house log roam graph
+		[:l [:open "https://roamresearch.com/#/app/myoldkyhome)"]] ;;• k+l for 🐿📓 KY House Log
 		[:d [:open "https://www.notion.so/my-old-ky-home/My-Old-Kentucky-Notion-c9ffb2a6aa6540e1b3e80a34e5db2d72?p=226804d32b084480a53b9c5ec4bde45f&showMoveTo=true)"]] ;;• k+d for ky house dashboard Notion
 		[:j [:open "https://www.notion.so/my-old-ky-lakehouse/JOURNAL-666e38a11fc04a48b9893fc57bbd2c5e"]] ;;• k+j for 📓 KY RUNNING JOURNAL (Notion)
 		;; [:w [:open "kmtrigger://macro=08A820FF-1597-4884-A501-F57DF15D43D8"]] ;;• k+w for 🐿🧰 KY Workbench via marked
