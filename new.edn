@@ -5,6 +5,27 @@
 [ ] take a look at /+s slidepad stuff vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:507
 [ ] visit slash mode and organize CRUD stuff
 
+
+# 2024-11-10 
+adding xxx+tab for window commands
+- r+tab raycast://extensions/raycast/navigation/switch-windows
+- space+tab 
+xxx+p for search
+xxx+k 
+xxx+tab or ` for windows
+
+# 2024-11-07 
+- raycast notes url learning (passes uses json array object as "context" parameter value)
+- new raycast rules `fln`, sfln, fnow
+2024-11-07 
+raycast://extensions/raycast/raycast-notes/raycast-notes?context=%7B%22id%22:%22628EB8FA-1D86-4881-9154-21CB25F2F1AB%22%7D
+
+11/06/24
+[:period [:km "BetterTouchTool: Show Menu Bar in Context Menu"]] ;;• b+. for menu context menu 
+
+2024-11-05
+[:spacebar [:open "raycast://extensions/raycast/raycast/search-quicklinks"]]
+'3'3
 2024-10-31
 		[[:b :e :a :r] [:open "/Applications/Bear.app"]]
 		[[:t :a :s :k :p] [:open "/Applications/Setapp/TaskPaper.app"]]
