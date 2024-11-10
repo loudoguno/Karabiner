@@ -115,6 +115,7 @@
 		:condi [:!f& :!d& :!c& :!k& :!w&
 		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ]
 		} ; prevents space mode from overiding F and D modes 
+	
 	:Rctrl-mode {:key :right_control           ;;* Rctrl mode
 		:alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]
 		} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
@@ -206,6 +207,7 @@
 	}
 :main [ ;;? MAIN RULES ================================
 
+
 ;;? ✨ New/org
 ;;* Mouse Thumbpad System (logitech MOUSEPAD MODE) #TODO install logi software and...
 	{:des "mousepad keyboard mode" :rules [ :logiG600
@@ -228,6 +230,7 @@
 	[:##keypad_plus [[:🔈🔈🔈] :spacebar]] ;;• mousepad 3 for...
 	[:##keypad_hyphen [[:🔈🔈🔈] :return_or_enter]] ;;• mousepad 3 for...
 	]}
+
 
 {:des "TEST " :rules [ ;;? TEST MODE Rules
 	;; [[:t :r] [:t :e :s :t]] ;; test for TO array  ✔
@@ -260,6 +263,8 @@
 	;; [:!SRc :rayfetti] ;;! !!c works
 	;; [:!!c :refocus] ;; worked 
 	;; [:!!c [[:rayfetti] [:refocus]]] ;; worked 
+
+
 
 	]}
 ;;? SIMULTANEOUS RULES (SIMULTANEOUS Mode)
@@ -309,9 +314,9 @@
 		{:des "double press ⌘+q to quit " :rules[ [:!C#Pq [ :!Cq ["⌘q" 0]] ["⌘q" 1]] [:!C#Pq ["⌘q" 1] nil {:delayed {:invoked ["⌘q" 0] :canceled ["⌘q" 0]}}] ]}
 		;;= HYPER MODE and MODIFIERS ==============================
 	;;* capslock as hyper ;; 🚩 PIN
-		{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
-		[:##caps_lock :!!left_control nil {:alone :escape} ] 
-			]}
+		;; {:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
+		;; [:##caps_lock :!!left_control nil {:alone :escape} ] 
+			;; ]}
 	;;* Semicolon FN
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
 		[:##semicolon :##fn nil {:alone :semicolon}] ]}
