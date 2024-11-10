@@ -681,7 +681,6 @@
 		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]]
 		;;* b+n Bear Now
 		[:n [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB&header=NOW&new_window=yes&float=no&show_window=yes&open_note=yes&pin=no&edit=no"]]
-	
 		;; bear now (b+h for bear hover km that floats it front and center)
 		;; [:h [:km "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"] ]  ;;• b+h for simple URL by ID
 		
@@ -710,6 +709,7 @@
 			;; [:w        [:km "Hover Bear ❗ NOW"] ]   ;;• b+w for Jump to Bear insgrey
 		;; btt stuff
 		;;TODO add back btt named menus, save active window for recall
+				;;* b+/ for better touch tool
 		]}
 ;;? C MODE ================================================================
 	{:des "c-mode for c things" :rules [ :c& ;;* ––––––––––––––––––––––––––––––––––––
@@ -854,6 +854,7 @@
 		
 ;;? ======================== K MODE
 	{:des "k-mode" :rules [ :k&
+		[:l [:km "Keyboard Maestro: Local Trigger List Palette"]] ;;• k+l for 
 		[:e [:km "edit karabiner config"]] ;;• k+e pick config-files
 		;; [:e [:km "picklist config-files"]] ;;• 🗑
 		;; [:c [:open "file:///Users/loudog/vaults/obs-git-config/config.files/karabiner/karabiner-copy-for-MBX.edn"]] ;;• k+c to open this file
@@ -861,7 +862,7 @@
 		;; 🪄 Keyboard Maestro stuff
 		[:spacebar :!CSOspacebar][:left_gui :!CSOspacebar] ;;• k+spacebar or k+l⌘ for Trigger Macro by Name
 		[:p :!SOCp]										   ;;• k+p for kyper key (⇧⌥⌘+p) to Keyboard Maestro app conflict palette
-		[:slash :!SOCslash] 							   ;;• k+slash for KM Select Menu by Name app (⌥⇧⌘+/) 
+		[:slash :!SOCslash] 							   ;;• k+/ (k+slash) for KM Select Menu by Name app (⌥⇧⌘+/)
 		[:return_or_enter [:km "Keyboard Maestro Status Menu"]] ;;• k+return for km status menu
 		[:v [:km "Activate Clipboard History Switcher"]]   ;;• k+v Activate Named Clipboard Switcher 
 		[:c [:km "Activate Named Clipboard Switcher"]] 	   ;;• k+c Activate Named Clipboard Switcher 
@@ -888,6 +889,9 @@
 		[:4 [:open "https://roamresearch.com/#/app/myoldkyhome" ]] ;;• l+4 for myoldkyhome roam
 
 		[:d [:open "https://www.notion.so/loudog/LOU-DASHBOARD-2af984c519f8474a8632893fd5482eba"] ] ;;• l+d for  Lou's Dashboard (Notion) ✨ new
+		[:spacebar [:open "raycast://extensions/raycast/raycast/search-quicklinks"]]
+		
+		
 	;;TODO (L MODE)
 		;; [:p [ [:open "kmtrigger://macro=46019D37-B359-498F-B0E0-CD49B6373FB8"]] ] ;;• l+p Log Palette (via km uuid URL
 	]}
@@ -899,7 +903,8 @@
 	{:des "n-mode for n things" :rules [ :n&
 		[:i [[:tink] :!CTSo]] ;;• n+i New Omnifocus Quick Entry (via omf hotkey ⌃⇧⌘+o) 🟢 FIXED
 		[:q [:open "raycast://extensions/raycast/raycast/create-quicklink"]] ;;• n+q New Quick Link via Raycast
-		[:t [:km "New Typinator Item from Selection"]] ;;• n+t for Quick Add Typinator Item ❓ TODO
+		;; [:t [:km "New Typinator Item from Selection"]] ;;• n+t for Quick Add Typinator Item ❓ TODO
+		[:t :!STn] ;;• n+t for Quick Add Typinator Item ❓ TODO
 		;;todo [:x [:km "New Text Replacement From Selection"]] ;;• n+t for New Text Replacement from suggestion 
 		; new
 		[:w [:km "New Window"]] ;;• n+w for New Window © glo
@@ -929,24 +934,29 @@
 	]}
 ;;? Q MODE ⭐⭐⭐ (rework as #layer: ?)================================================================
 	{:des "q-mode for q things" :rules [ :q&
-		[:l [ [:🔈🔈🔈] [:open "drafts://open?uuid=00E137E9-0DB5-4824-8929-D330416244CE"]]] ;;• q+l open 🔗 QUICK LINKS
-
+	
+	;; [:l [ [:🔈🔈🔈] [:open "drafts://open?uuid=00E137E9-0DB5-4824-8929-D3_30416244CE"]]] ;;• q+l open 🔗 QUICK LINKS
+	[:l [:open "raycast://extensions/raycast/raycast/search-quicklinks"]]
+	
 	;;TODO (Q MODE)
-		;; rehome [:n [ [:🔈🔈🔈] [:open "drafts://open?uuid=6823BE09-6193-4D97-894A-5147B7285DD9"]]] ;;• q+n to open ⚡️ Quick Notes (Draft) #Drafts
+		[:n [ [:🔈🔈🔈] [:open "drafts://open?uuid=6823BE09-6193-4D97-894A-5147B7285DD9"]]] ;;• q+n to open ⚡️ Quick Notes (Draft) #Drafts
 		;; rehome [:b [ [:🔈🔈🔈] [:open "drafts://open?uuid=02B40CD6-2E52-444F-9689-9B8D7D859436"]]] ;;• q+b to open 🎛 QUICK DASHBOARD #Drafts
 		
 		[:d [ [:open "kmtrigger://macro=EAE91CED-C7F9-466E-9AE1-5614763DB869"]]  ] ;;•q+d for ❎ Add to main pick list
 		;; [:m [ [:open "kmtrigger://macro=4C54CAED-E4FA-47F3-9626-4E09B9E56BA6"]]  ] ;;•q+m for Quick Menu
 		;; [:c [ [:🔈🔈🔈]  [:open "obsidian://advanced-uri?vault=ldb&commandid=obsidian42-text-transporter%253Aobsidian42-text-transporter-QC"] ] ] ;;•q+c for quick capture to highly opinionated vault 	
+
 	]}
 ;;? R MODE ================================================================
 	{:des "r-mode for r things" :rules [ :r&
-	
+	[:tab [:ray "raycast/navigation/switch-windows"]] ;;• r+tab for raycast window searchrtr
+
 	;;* remote-mode (see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:431)
-		;; maybe should be #layer:
-		[:return_or_enter [:km "- Remote Modes Palette"]] ;;• r+return/enter for "- Remote Modes Palette"
-		[:y [:km "YouTube Remote"]] 		;;• y for YouTube Remote
-		[:x [:km "Deactivate Remote"]] 		;;• q for Deactivate Remote
+	;; maybe should be #layer:
+	[:return_or_enter [:km "- Remote Modes Palette"]] ;;• r+return/enter for "- Remote Modes Palette"
+	[:y [:km "YouTube Remote"]] 		;;• y for YouTube Remote
+	[:x [:km "Deactivate Remote"]] 		;;• q for Deactivate Remote
+	
 	;;* raycast built-in
 	[:v [:open "raycast://extensions/raycast/clipboard-history/clipboard-history"]] ;;• r+v for Raycast Clipboard History
 	[:w [:open "raycast://extensions/raycast/navigation/switch-windows"]] ;;• r+w for Raycast Switch Window
@@ -961,12 +971,12 @@
 	;;TODO (R MODE)
 	;; TODO remote mode
 	;; raycast reminders
-			[:slash [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]] ;;• r+/ raycast my reminders #Reminders
+			;; [:slash [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]] ;;• r+/ raycast my reminders #Reminders
 			;; [:equal_sign [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]] ;;• r+= raycast new reminder reminders #Reminders
 			;; [:delete_or_backspace [:!SCf12]] ;;• r+⌫ for raycast reminders menuapp ❓ BROKEN	
 			;; ❌ doesn't work from outside raycast
 				;; [:q [:open "raycast://extensions/raycast/apple-reminders/quick-add-reminder?arguments=%7B%22text%22%3A%22%22%2C%22notes%22%3A%22%22%7D"]] ;;• r+= raycast my reminders
-			[:0 [:open "btt://trigger_named/?trigger_name=rm1"]] ;;• r+0 raycast reminders menuapp ❓ BROKEN
+			;; [:0 [:open "btt://trigger_named/?trigger_name=rm1"]] ;;• r+0 raycast reminders menuapp ❓ BROKEN
 	]}
 {:des "s-mode" :rules [ :s& ;;? ----------------------------------S MODE
 	[:r [:open "/System/Applications/Siri.app"]] ;;• s+r for siri 🟢
@@ -999,15 +1009,6 @@
 			;; [:equal_sign [[:🔈🔈🔈] [:!STCf11] ]] ;;• t+= for open raycast todo-list 
 			;; [:equal_sign [:open "raycast://extensions/maggie/todo-list/index"] ] ;;• t+= for raycast todo-list via raycasut URL
 			;; [:return_or_enter [:open "raycast://extensions/maggie/todo-list/index"] ] ;;• t+= for open raycast todo-list
-			;; raycastbtt://trigger_named/?trigger_name=clickMenu ;; todo-list menubar
-		;; todo change to #shortcuts
-			[:1 [[:🔈🔈🔈] [:open "shortcuts://run-shortcut?name=Tot%201"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
-			[:2 [[:🔈🔈🔈] [:open "shortcuts://run-shortcut?name=Tot%202"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
-			[:3 [[:🔈🔈🔈] [:open "shortcuts://run-shortcut?name=Tot%203"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
-			[:4 [[:🔈🔈🔈] [:open "shortcuts://run-shortcut?name=Tot%204"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
-			[:5 [[:🔈🔈🔈] [:open "shortcuts://run-shortcut?name=Tot%205"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
-			[:6 [[:🔈🔈🔈] [:open "shortcuts://run-shortcut?name=Tot%206"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
-			[:7 [[:🔈🔈🔈] [:open "shortcuts://run-shortcut?name=Tot%207"]] ] ;;• t+s Open or Sidenotes td(via hotkey ⌥⇧⌘+s)
 	]}
 ;;? U MODE (empty)================================================================
 	;; {:des "u-mode for u things" :rules [ :u&
@@ -1031,7 +1032,7 @@
 	;;TODO (W MODE)
 		[:tab [:btt "Recall Saved Window"]] ;;• w+tab for Recall Saved Window (via BTT)
 		;; workbench
-			[:m [[:🔈🔈🔈] [:open "kmtrigger://macro=2B5C8666-4BD0-4FA7-B76F-A4F28DDB67AC"]]] ;;• w+m Workbench Menu
+			[:m [[:🔈🔈🔈] [:open "kmtrigger://macro=2B5C8666-4BD0-4FA7-B76F-A4F28DDB67AC"]]] ;;• w+m Workbench Menu "kmtrigger://macro=2B5C8666-4BD0-4FA7-B76F-A4F28DDB67AC"
 			[:b [[:🔈🔈🔈] [:km "Float Obsidian Workbench with Marked"]]] ;;• w+b Float Obsidian Workbench with Marked
 		; spaces (replace 🔈🔈🔈) see krb-purged.edn line 591 vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:579
 			[:a [[:🔈🔈🔈] :!STOcomma]] ;;• w+a for Switch Active Workspace Left (via System Hotkeys)
