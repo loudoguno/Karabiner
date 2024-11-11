@@ -141,7 +141,7 @@
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!↩µ]
 		}	
 	:bslashµ    {:key :backslash               ;;* backslash layer
-		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ :!⇪µ]
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
 	:fslashµ    {:key :slash                   ;;* slash layer (fslashµ)
 		:condi [:!space-mode :!tildeµ :!bslashµ :!fslashµ :!=µ]
@@ -159,18 +159,6 @@
 	;;row2 tildeµ, 1µ, -µ, =µ, deleteµ
 		;; :1µ {:key :1}
 			;; [ ] search and replace...
-	;;row3 tabµ, [/] (open_bracketµ), `\` (bslashµ)
-		; :tab-mode {:key :tab} ;; tab currently assigned to fn for left hand window focus switching via Context
-		;; should probably ad tab as a tuper mode bc then can make 	qwerty fn+character... or maybe theres a way to do it with spacebar+ capslock and 
-	;;row4 caps_lockµ, semicolonµ, quoteµ, returnµ
-		;; :quote-mode {:key :quote condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]}
-		;; :return-mode {:key :return_or_enter :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ :!space-mode]}
-	;;row5 left_shiftµ, zµ, xµ, `,` (commaµ), `.` (.µ), / (slashµ), right_shiftµ
-		;; [ ] 
-	;;row6 left_arrowµ, right_arrowµ, up_arrowµ, down_arrowµ
-	;; :=µ {:key :equal_sign ;;* equal sign layer (=µ
-		;; :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!↩µ]
-		;; }
 
 	;;todo † new layer definition template
 		;; :KEYµ {:key :KEY 
