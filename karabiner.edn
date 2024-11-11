@@ -522,6 +522,9 @@
 		]}
 ;;? (FORWARD) SLASH MODE (fslashµ) ==============
 	{:des "slash-mode" :rules [ :fslashµ
+		[:f [:ray "raycast/raycast-notes/search-notes"]]
+		
+		;; [:!Cf [:c :l :e :a :r]] ;;!works!
 		[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+k to open karabiner.edn in Marked		
 		
 		[:spacebar [:!CSslash [:🔈🔈🔈]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
