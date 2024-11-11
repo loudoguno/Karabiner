@@ -1,3 +1,10 @@
+# 2024-11-11 purged contexts because still hoe
+```
+		[:##v [[:🔈🔈🔈][:km "Clipboard History Switcher"]] :space-mode]  ;;• spacebar+v for "Clipboard History" (via KM macro)
+		[:##m [[:🔈🔈🔈]:!!f14] :space-mode] [:##m [[:🔈🔈]:!!f14] :Rctrl-mode] ;;• spacebar+m for activate moom (like this one better)
+		[:##w [[:🔈🔈🔈]:!CTOw] :space-mode] [:##c [[:🔈🔈]:!Ospacebar] :Rctrl-mode] ;;• space+w to activate Contexts
+```
+
 ;; pieces purged 
 		[:g [:shortcut "Hey GPT"]] ;;* h+g to run Shortcut Hey GPT ⭐
     

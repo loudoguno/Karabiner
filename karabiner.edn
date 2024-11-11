@@ -119,9 +119,12 @@
 		;; [:layer-conditions] ;;! tried to define in :templates but didn't work
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		} ; prevents space mode from overiding F and D modes 
-	:capsµ {:key :caps_lock :alone {:key :escape} ;;* caps lock layer (⇪µ)
+	;; :capsµ {:key :tab :alone {:key :tab} ;;* caps lock layer (⇪µ)
+		;; :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
+		;; }
+	:⇥µ {:key :tab ;;* tab mode (⇥µ)
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
-		} ; prevents caps lock mode from overriding F and D modes 
+		}
 
 	:Rctrl-mode {:key :right_control           ;;* Rctrl mode
 		:alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]
@@ -295,10 +298,10 @@
 	;;* double press ⌘+q to quit to prevent accidental
 		{:des "double press ⌘+q to quit " :rules[ [:!C#Pq [ :!Cq ["⌘q" 0]] ["⌘q" 1]] [:!C#Pq ["⌘q" 1] nil {:delayed {:invoked ["⌘q" 0] :canceled ["⌘q" 0]}}] ]}
 		;;= HYPER MODE and MODIFIERS ==============================
-	;;* capslock as hyper ;; 🚩 PIN
-		;; {:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
-		;; [:##caps_lock :!!left_control nil {:alone :escape} ] 
-			;; ]}
+	;;* capslock as hyper (original) ;; 🚩 PIN
+		{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
+		[:##caps_lock :!!left_control nil {:alone :escape} ] 
+			]}
 	;;* Semicolon FN
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
 		[:##semicolon :##fn nil {:alone :semicolon}] ]}
@@ -586,76 +589,7 @@
 		;; [:#SCs [[:🔈🔈🔈] [:open "file:///Users/loudog/Sync"]]] ;;• /+⌘n create Notion database page
 
 		]}
-;;? CAPSLOCK MODE (⇪µ)
-{:des "capslock mode" :rules [ :capsµ ;;*= CAPSLOCK MODE =======================
-        ;; capslock as hyper (⌃⌥⇧⌘)
-		[:escape :!TOSCescape];;• capslock+escape for ⌃⌥⇧⌘+escape
-		[:f1 :!TOSCf1];;• capslock+f1 for ⌃⌥⇧⌘+f1
-		[:f2 :!TOSCf2] ;;• capslock+f2 for ⌃⌥⇧⌘+f2
-		[:f3 :!TOSCf3] ;;• capslock+f3 for ⌃⌥⇧⌘+f3
-		[:f4 :!TOSCf4] ;;• capslock+f4 for ⌃⌥⇧⌘+f4
-		[:f5 :!TOSCf5] ;;• capslock+f5 for ⌃⌥⇧⌘+f5
-		[:f6 :!TOSCf6] ;;• capslock+f6 for ⌃⌥⇧⌘+f6
-		[:f7 :!TOSCf7] ;;• capslock+f7 for ⌃⌥⇧⌘+f7
-		[:f8 :!TOSCf8] ;;• capslock+f8 for ⌃⌥⇧⌘+f8
-		[:f9 :!TOSCf9] ;;• capslock+f9 for ⌃⌥⇧⌘+f9
-		[:f10 :!TOSCf10]  ;;• capslock+f10 for ⌃⌥⇧⌘+f10
-		[:f11 :!TOSCf11] ;;• capslock+f11 for ⌃⌥⇧⌘+f11
-		[:f12 :!TOSCf12] ;;• capslock+f12 for ⌃⌥⇧⌘+f12
-		[:grave_accent_and_tilde :!TOSCgrave_accent_and_tilde] ;;• capslock+~ for ⌃⌥⇧⌘+~        
-		[:1 :!TOSC1] ;;• capslock+1 for ⌃⌥⇧⌘+1
-		[:!C1 [:rayfetti]] ;;• capslock+1 for ⌃⌥⇧⌘+1
-        [:2 :!TOSC2] ;;• capslock+2 for ⌃⌥⇧⌘+2
-		[:3 :!TOSC3] ;;• capslock+3 for ⌃⌥⇧⌘+3
-		[:4 :!TOSC4] ;;• capslock+4 for ⌃⌥⇧⌘+4
-		[:5 :!TOSC5] ;;• capslock+5 for ⌃⌥⇧⌘+5
-		[:6 :!TOSC6] ;;• capslock+6 for ⌃⌥⇧⌘+6
-		[:7 :!TOSC7] ;;• capslock+7 for ⌃⌥⇧⌘+7
-		[:8 :!TOSC8] ;;• capslock+8 for ⌃⌥⇧⌘+8
-		[:9 :!TOSC9] ;;• capslock+9 for ⌃⌥⇧⌘+9
-		[:0 :!TOSC0] ;;• capslock+0 for ⌃⌥⇧⌘+0
-		[:hyphen :!TOSChyphen] ;;• capslock+- for ⌃⌥⇧⌘+-
-		[:equal_sign :!TOSCequal_sign] ;;• capslock+= for ⌃⌥⇧⌘+=
-		[:delete_or_backspace :!TOSCdelete_or_backspace] ;;• ✧+⌫ for ⌃⌥⇧⌘+⌫
-		[:tab :!TOSCtab] ;;• capslock+tab for ⌃⌥⇧⌘+tab		
-		[:q :!TOSCq] ;;• capslock+q for ⌃⌥⇧⌘+q
-		[:w :!TOSCw] ;;• capslock+w for ⌃⌥⇧⌘+w
-		[:e :!TOSCe] ;;• capslock+e for ⌃⌥⇧⌘+e
-		[:r :!TOSCr] ;;• capslock+r for ⌃⌥⇧⌘+r
-		[:t :!TOSCt] ;;• capslock+t for ⌃⌥⇧⌘+t
-		[:y :!TOSCy] ;;• capslock+y for ⌃⌥⇧⌘+y
-		[:u :!TOSCu] ;;• capslock+u for ⌃⌥⇧⌘+u
-		[:i :!TOSCi] ;;• capslock+i for ⌃⌥⇧⌘+i
-		[:o :!TOSCo] ;;• capslock+o for ⌃⌥⇧⌘+o
-		[:p :!TOSCp] ;;• capslock+p for ⌃⌥⇧⌘+p
-		[:open_bracket :!TOSCopen_bracket] ;;• capslock+[ for ⌃⌥⇧⌘+[
-		[:close_bracket :!TOSCclose_bracket] ;;• capslock+] for ⌃⌥⇧⌘+]
-		[:backslash :!TOSCbackslash] ;;• capslock+\ for ⌃⌥⇧⌘+\
 
-		[:a :!TOSCa] ;;• capslock+a for ⌃⌥⇧⌘+a
-		[:s :!TOSCs] ;;• capslock+s for ⌃⌥⇧⌘+s
-		[:d :!TOSCd] ;;• capslock+d for ⌃⌥⇧⌘+d
-		[:f :!TOSCf] ;;• capslock+f for ⌃⌥⇧⌘+f
-		[:g :!TOSCg] ;;• capslock+g for ⌃⌥⇧⌘+g
-		[:h :!TOSCh] ;;• capslock+h for ⌃⌥⇧⌘+h
-		[:j :!TOSCj] ;;• capslock+j for ⌃⌥⇧⌘+j
-		[:k :!TOSCk] ;;• capslock+k for ⌃⌥⇧⌘+k
-		[:l :!TOSCl] ;;• capslock+l for ⌃⌥⇧⌘+l
-		[:semicolon :!TOSCsemicolon] ;;• capslock+; for ⌃⌥⇧⌘+;
-		[:quote :!TOSCquote] ;;• capslock+' for ⌃⌥⇧⌘+'
-		[:return_or_enter :!TOSCreturn_or_enter] ;;• capslock+return for ⌃⌥⇧⌘+return
-		[:z :!TOSCz] ;;• capslock+z for ⌃⌥⇧⌘+z
-		[:x :!TOSCx] ;;• capslock+x for ⌃⌥⇧⌘+x
-		[:c :!TOSCc] ;;• capslock+c for ⌃⌥⇧⌘+c
-		[:v :!TOSCv] ;;• capslock+v for ⌃⌥⇧⌘+v
-		[:b :!TOSCb] ;;• capslock+b for ⌃⌥⇧⌘+b
-		[:n :!TOSCn] ;;• capslock+n for ⌃⌥⇧⌘+n
-		[:m :!TOSCm] ;;• capslock+m for ⌃⌥⇧⌘+m
-		[:comma :!TOSCcomma] ;;• capslock+, for ⌃⌥⇧⌘+,
-		[:period :!TOSCperiod] ;;• capslock+. for ⌃⌥⇧⌘+.
-		[:slash :!TOSCslash] ;;• capslock+/ for ⌃⌥⇧⌘+/
-		
-]}
 ;;? SPACE MODE (✅ full) ===============
 	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	;; COMMENTS:
@@ -687,7 +621,7 @@
 	;; spacebar+MISC for v clipboard history, m moom, c contexts, REMOVED w for contexts and tab for contexts
 		[:##v [[:🔈🔈🔈][:km "Clipboard History Switcher"]] :space-mode]  ;;• spacebar+v for "Clipboard History" (via KM macro)
 		[:##m [[:🔈🔈🔈]:!!f14] :space-mode] [:##m [[:🔈🔈]:!!f14] :Rctrl-mode] ;;• spacebar+m for activate moom (like this one better)
-		[:##w [[:🔈🔈🔈]:!CTOw] :space-mode] [:##c [[:🔈🔈]:!Ospacebar] :Rctrl-mode] ;;• space+c to activate Contexts
+		[:##w [[:🔈🔈🔈]:!CTOw] :space-mode] ;;• space+w to activate Contexts
 		[:##return_or_enter [[:🔈🔈🔈]:!Of12] :space-mode]  ;;• spacebar+return for Bartender Search menu bar items (via ⌥+F12 in Bartender) 🟢🔰new
 	;; todo something with tab, tilde ect.... [:##tab :#menu]
 	;;?🪟  Space Mode Window MGMT
@@ -702,6 +636,11 @@
 		;; [ ] +1/2/3/4 for...
 		;; [ ] F1/f2/f3/f4 for... F11 to F22
 		]}
+;;? TAB MODE (⇥µ) ===============
+	{:des "tab-mode (⇥µ)" :rules [ :⇥µ
+	[:w :!TOCw]
+    	]}
+
 ;;? UP_ARROW MODE ================================================================
 	;; {:des "up_arrow-mode for up arrow things" :rules [ :up_arrow&
 	;; TODO (UP_ARROW MODE)
@@ -804,7 +743,7 @@
 		;; rehome [:0 [:btt "raycast-todo-menuapp"] ] ;;• d+0 for Raycast todo works 
 		;; rehome [:delete_or_backspace [:btt "raycast-todo-menuapp"] ] ;;• d+0 for Raycast todo works	
 	]}
-;;? E MODE ================================================================
+;;? E MODE  ================================================================
 	;; {:des "e-mode for e things" :rules [ :e& ;;===== ============================
 		;; [:c [:km "Try Current Macro"] ] ;;•  e+c for "Try Current Macro" (via KM) -> 2024-11-10 move to t+c because j
  	;;TODO (E MODE)
@@ -1076,7 +1015,8 @@
 	]}
 ;;? W MODE ================================================================
 	{:des "w-mode for w things" :rules [ :w&
-		[:spacebar [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
+		[:spacebar [[:🔈🔈🔈] :!COTw] ] ;;• w+spacebar for Contexts via hotkey 2024-11-11 changed
+		;; [:spacebar [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
 		[:left_gui [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
 		[:right_control [[:🔈🔈🔈] :mission_control] [:uhks] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
 		[:c [:km "Center Window on Current Mouse Location"] ] ;;• w+c for km "Move Mouse to Focused Window" #core
