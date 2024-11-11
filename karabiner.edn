@@ -1,4 +1,4 @@
-{ ;; karabiner.edn 1.02 2024-21 dialing back, see Sync/notes/config.taskpaper 
+{ ;; karabiner.edn 1.03 2024-11-10 after trying to revamp capslock as hyper
 ;;? DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
 ;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
@@ -81,6 +81,7 @@
 	:alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
 	:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
 	:ray "open \"raycast://extensions/%s\""	
+	:layer-conditions ":condi [:!f& :!d& :!c& :!k& :!w&: !Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]"
 	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
 	;;? 🔉 Sound Effects and  audio feedback aliases
 	 		;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
@@ -111,11 +112,15 @@
 	;; :refocus [:!Tgrave_accent_and_tilde]
 	}
 :layers         { ;;? LAYERS 
+	;; :KEYµ {:key :KEY ;;todo † new layer definition template
+		;; :condi [:!space-mode]
+		;; }
 	:space-mode {:key :spacebar                ;;* space layer (space-mode)
-		:condi [:!f& :!d& :!c& :!k& :!w&:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
+		;; [:layer-conditions] ;;! tried to define in :templates but didn't work
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		} ; prevents space mode from overiding F and D modes 
 	:capsµ {:key :caps_lock                ;;* caps lock layer (⇪µ)
-		:condi [:!f& :!d& :!c& :!k& :!w&:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
+		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		} ; prevents caps lock mode from overriding F and D modes 
 
 	:Rctrl-mode {:key :right_control           ;;* Rctrl mode
@@ -152,19 +157,6 @@
 	:↩µ         {:key :return_or_enter         ;;* return layer (↩µ)
 		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
-	;;! :R⇧µ    {:key :right_shift            ;;* was trying something
-		;; :condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
-		;; }
-	;;row1 escapeµ, F1µ, F12µ,
-	;;row2 tildeµ, 1µ, -µ, =µ, deleteµ
-		;; :1µ {:key :1}
-			;; [ ] search and replace...
-
-	;;todo † new layer definition template
-		;; :KEYµ {:key :KEY 
-			;; :condi [:!space-mode]
-			;; }
-	;;todo [ ] figure out if arrows get triggered when space+jlik
 	}
 :simlayers      { ;;? SIMLAYERS
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
