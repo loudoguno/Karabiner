@@ -81,7 +81,7 @@
 	:alf "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
 	:btt "osascript -e 'tell application \"BetterTouchTool\" to  trigger_named \"%s\"'"
 	:ray "open \"raycast://extensions/%s\""	
-	:layer-conditions ":condi [:!f& :!d& :!c& :!k& :!w&: !Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]"
+	;; :layer-conditions ":condi [:!f& :!d& :!c& :!k& :!w&: !Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]"
 	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
 	;;? 🔉 Sound Effects and  audio feedback aliases
 	 		;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
@@ -164,17 +164,17 @@
 		:b& {:key :b}
 		:c& {:key :c}
 		:d& {:key :d} ;; 2024-11-10 removed ":condi :!spacemode" because wasn't sure what it was affecting
-		:e& {:key :e}
+		;; :e& {:key :e}
 		:f& {:key :f}
 		:g& {:key :g}
 		:h& {:key :h}
-		:i& {:key :i}
+		;; :i& {:key :i}
 		:j& {:key :j}
 		:k& {:key :k}
 		:l& {:key :l}
 		:m& {:key :m}
 		:n& {:key :n}
-		:o& {:key :o}
+		;; :o& {:key :o}
 		:p& {:key :p}
 		:q& {:key :q}
 		:r& {:key :r}
@@ -805,12 +805,12 @@
 		;; rehome [:delete_or_backspace [:btt "raycast-todo-menuapp"] ] ;;• d+0 for Raycast todo works	
 	]}
 ;;? E MODE ================================================================
-	{:des "e-mode for e things" :rules [ :e& ;;===== ============================
-		[:c [:km "Try Current Macro"] ] ;;•  e+c for "Try Current Macro" (via KM)
+	;; {:des "e-mode for e things" :rules [ :e& ;;===== ============================
+		;; [:c [:km "Try Current Macro"] ] ;;•  e+c for "Try Current Macro" (via KM) -> 2024-11-10 move to t+c because j
  	;;TODO (E MODE)
 		;; [:f [:open "kmtrigg er://macro=EFE846C8-9B93-47C5-9A9F-9EBA0D76D79F"] ] ;;• e+f for float notes for app 🔰 
 		;; Broken [:u [:open "file:///Users/loudog/Library/Application%20Support/KeyCue/KeyCue-URLs.txt"]] ;;• edit Key Cue URL's via
-	]}	
+	;; ]}	
 ;;? F MODE ================================================================
 	{:des "f-mode for f things" :rules [ :f&
 		[:k  [:open "shortcuts://run-shortcut?id=2D1A4FED-D5A1-4122-A125-7D5BF6C45E20"]] ;;• f+k Full Keyboard Access Toggle via shortcuts
