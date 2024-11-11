@@ -8,7 +8,13 @@ for things i look up frequently
 `b+m` hook to current window
 `b+k` add hook to current window
 
-howto...
+
+## :condi (conditionals)
+
+```clojure 
+;; example of usage in :simlayer definition
+:d& {:key :d :condi :!space-mode}
+```
 
 
 # raycast template

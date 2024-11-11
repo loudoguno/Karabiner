@@ -117,6 +117,14 @@
 
 
 ;;? TEMPLATES
+:templates { ;;= ........from... 2024-11-10 not ure
+	:set_letterToFind_var "osascript -e 'tell application \"Keyboard Maestro Engine\" to setvariable \"letterToFind\" to \"%s\"'"
+	:set_last_action_var "osascript -e 'tell application \"Keyboard Maestro Engine\" to setvariable \"last_action\" to \"%s\"'"
+			:show        "osascript -e 'set appName to \"%s\"\nset startIt to false\ntell application \"System Events\"\n  if not (exists process appName) then\n    set startIt to true\n  else\n    set frontmost of process appName to true\n  end if\nend tell\nif startIt then\n  tell application appName to activate\nend if'\n"
+		:toggle      "osascript -e 'set appName to \"%s\"\nset startIt to false\ntell application \"System Events\"\n  if not (exists process appName) then\n    set startIt to true\n  else if frontmost of process appName then\n    set visible of process appName to false\n  else\n    set frontmost of process appName to true\n  end if\nend tell\nif startIt then\n  tell application appName to activate\nend if'"
+		:type        "osascript -e 'tell application \"System Events\" to keystroke \"%s\" as text'"
+
+
  :templates {:launch "osascript -e 'tell application \"Alfred 3\" to run trigger \"launch%s\" in workflow \"yqrashawn.workflow.launcher\" with argument \"\"'"}
  ;; define alias for modifers
 :templates { ;;= ..................................................................................................................... aliases for shell commands including osascript (execute Applescript file), and afplay (plays sound file)
