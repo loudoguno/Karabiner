@@ -112,12 +112,10 @@
 	}
 :layers         { ;;? LAYERS 
 	:space-mode {:key :spacebar                ;;* space layer (space-mode)
-		:condi [:!f& :!d& :!c& :!k& :!w&
-		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ]
+		:condi [:!f& :!d& :!c& :!k& :!w&:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		} ; prevents space mode from overiding F and D modes 
-	:⇪µ {:key :caps_lock                ;;* caps lock layer (⇪µ)
-		:condi [:!f& :!d& :!c& :!k& :!w&
-		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ]
+	:capsµ {:key :caps_lock                ;;* caps lock layer (⇪µ)
+		:condi [:!f& :!d& :!c& :!k& :!w&:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		} ; prevents caps lock mode from overriding F and D modes 
 
 	:Rctrl-mode {:key :right_control           ;;* Rctrl mode
@@ -129,13 +127,13 @@
 	:tildeµ     {:key :grave_accent_and_tilde  ;;* tilde layer (tildeµ)
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
-	:1µ         {:key :1                       ;;* 1 layer (1µ)
-		:condi [:!space-mode :!bslashµ :!R⇧µ]
-		}
-	:2µ         {:key :2                       ;;* 2 layer (2µ)
-		:condi [:!space-mode :!bslashµ
-		:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ]
-		}
+	;; :1µ         {:key :F1                       ;;* 1 layer (1µ)
+		;; :condi [:!f& :!d& :!c& :!k& :!w&:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
+		;; }
+	;; :2µ         {:key :F2                       ;;* 2 layer (2µ)
+		;; :condi [:!space-mode :!bslashµ
+		;; :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ]
+		;; }
 	:-µ         {:key :hyphen                  ;;* hyper layer (-µ)
 		:condi [:!space-mode]
 		}
