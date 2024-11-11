@@ -119,7 +119,7 @@
 		;; [:layer-conditions] ;;! tried to define in :templates but didn't work
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		} ; prevents space mode from overiding F and D modes 
-	:capsµ {:key :caps_lock                ;;* caps lock layer (⇪µ)
+	:capsµ {:key :caps_lock :alone {:key :escape} ;;* caps lock layer (⇪µ)
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		} ; prevents caps lock mode from overriding F and D modes 
 
