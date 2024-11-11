@@ -639,6 +639,10 @@
 ;;? TAB MODE (⇥µ) ===============
 	{:des "tab-mode (⇥µ)" :rules [ :⇥µ
 	[:w :!TOCw]
+	[:r [:ray "raycast/raycast-notes/raycast-notes"]]
+	[:!Cr [:ray "raycast/raycast-notes/raycast-notes?context=%7B%22id%22:%225854A694-8EAC-4DEA-8297-72C17249A808%22%7D"]] ;;• Ray daily 
+	
+
     	]}
 
 ;;? UP_ARROW MODE ================================================================
