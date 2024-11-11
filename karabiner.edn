@@ -310,7 +310,7 @@
 	;;* Semicolon FN
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
 		[:##semicolon :##fn nil {:alone :semicolon}] ]}
-		;;TODO fn is used with Contexts for quick witching
+		;;TODO need to make lazy
 	;;* UHK FN: F24 (fn hardware key on uhks) sends apple FN with all modifiers optional ONLY when sent from UHKs (🟢 works 2024-10-22)
 		{:des "FN from UHK" :rules [[:##f24 :fn [:uhks] ]]}
 	;;* iPad Default Shortcuts
@@ -438,20 +438,19 @@
 		;; [:q [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+q 
 			;; [:a [[:🔈🔈🔈] [:open "raycast://extensions/ray`cast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
 		]}
-{:des "1-mode (1p, )" :rules [ :1µ ;;?============================= 1 MODE      (1µ)
+;; {:des "1-mode (1p, )" :rules [ :1µ ;;?============================= 1 MODE      (1µ)
 	;; 1Password
-	[:p :!TSCp]              				 ;;• 1+p for Show 1Password (⌃⇧⌘+p)
-	[:!Cp :!TOSp]            				 ;;• 1+⌘p for 1 PasswordShow Quick Access (⌃⌥⇧+p)
-	[:!Op :!TSp]             				 ;;• 1+⌥p for 1Password Autofill (⌃⌥⇧+p)
-	[:!Tp [:open "alfred://runtrigger/com.alfredapp.vitor.1password/alfred+search+1password"] ] ;;• 1+⌃p for alfred search 1Password
+	;; [:p :!TSCp]              				 ;;• 1+p for Show 1Password (⌃⇧⌘+p)
+	;; [:!Cp :!TOSp]            				 ;;• 1+⌘p for 1 PasswordShow Quick Access (⌃⌥⇧+p)
+	;; [:!Op :!TSp]             				 ;;• 1+⌥p for 1Password Autofill (⌃⌥⇧+p)
+	;; [:!Tp [:open "alfred://runtrigger/com.alfredapp.vitor.1password/alfred+search+1password"] ] ;;• 1+⌃p for alfred search 1Password
 	;; raycast://extensions/khasbilegt/1password/item-list
 	;; raycast://extensions/khasbilegt/1password/vault-list
-
-	]}
-{:des "2-mode" :rules [ :2µ ;;?============================= 2 MODE      (2µ)
-	[:!!t [:open "raycast://confetti"]]
-	;; TODO (2 LAYER)
-	]}
+	;; ]}
+;; {:des "2-mode" :rules [ :2µ ;;?============================= 2 MODE      (2µ)
+	;; 	[:!!t [:open "raycast://confetti"]]
+	;; 	;; TODO (2 LAYER)
+	;; 	]}
 {:des "hyphen-mode" :rules [:-µ ;;?==================== HYPHEN MODE (-µ)
 	[:##t [:open "raycast://confetti"]]
 	;;TODO (HYPHEN MODE)
