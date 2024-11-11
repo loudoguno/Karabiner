@@ -160,10 +160,10 @@
 	}
 :simlayers      { ;;? SIMLAYERS
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
-		:a& {:key :a}
+		;; :a& {:key :a}
 		:b& {:key :b}
 		:c& {:key :c}
-		:d& {:key :d :condi :!space-mode}
+		:d& {:key :d} ;; 2024-11-10 removed ":condi :!spacemode" because wasn't sure what it was affecting
 		:e& {:key :e}
 		:f& {:key :f}
 		:g& {:key :g}
