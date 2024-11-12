@@ -1,41 +1,40 @@
 { ;; karabiner.edn 1.03 2024-11-10 after trying to revamp capslock as hyper
-;;? DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
+;;§ DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
 ;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
 		;! seems to create obsene delay on  on key up
-:devices { ;;? DEVICES (todo org)
+;;§ DEVICES (todo org)
+	:devices {
 	;;† templates
 		;; :device [{:product_id XXX, :vendor_id XXX}] ;;* DeviceName
 		;; :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
-
-	;; 💻 mbps 
+		;; 💻 mbps 
 		:apple [ {:vendor_id 1452} {:vendor_id 76} {:is_built_in_keyboard true}] ;;* all apple internals works ✅
-		:mb0 [{:product_id 631 :vendor_id 1452}] ;;* 💻 origiinal 
-		:mx3 [{:product_id 4294970359 :vendor_id 1452}] ;;* 💻 mx3 ✅ works
-		:mbp0 [{:product_id 631 :vendor_id 1452}]
+		:mb0   [{:product_id 631 :vendor_id 1452}]                               ;;* 💻 original 
+		:mx3   [{:product_id 4294970359 :vendor_id 1452}]                        ;;* 💻 mx3 ✅ works
+		:mbp0  [{:product_id 631 :vendor_id 1452}]
 		;; mbx
 		;; mba
 		;; NeXT
 		;;todo what about 
-	;;* ⌨️ keyboards
-	;; uhks: {:vendor_id 7504} ;; UHKS
-	:uhks [{:vendor_id 7504}]
-	:uhk [{:product_id 24866 :vendor_id 7504}]
-	:uhk-2 [{:product_id 24868 :vendor_id 7504}]
-	;;* 🖱 miceres
-		:logiG600 [{:product_id 49738 :vendor_id 1133}] ;;* Logitech G600 (✅) logiG600
-		;; :utech 										;;* UtechSmart Venus (old-school gaming)
-		;; :logi-bt										;;* Logitech M585 (bluetooth mouse)
-		;; bluetooth 2
-	    
 
-	;; todos: add mice
+		;;* ⌨️ keyboards
+		:uhks  [{:vendor_id 7504}]                                               ;; UHKS
+		:uhk   [{:product_id 24866 :vendor_id 7504}]
+		:uhk-2 [{:product_id 24868 :vendor_id 7504}]
+
+		;;* 🖱 mice
+		:logiG600 [{:product_id 49738 :vendor_id 1133}] ;;* Logitech G600 (✅) logiG600
+		;; :utech ;;* UtechSmart Venus (old-school gaming)
+		;; :logi-bt ;;* Logitech M585 (bluetooth mouse)
+		;; bluetooth 2
+		;; todos: add mice
 		;; 2024-10-16 👍 adding logitech worked! (used vendor id and product id () from previous config, not sure what new vedor id 4295704614 is on mx3)
 		;; todo add uhks
-	;; comment:  i wonder if you can filter for universal control and fix some of those problems
-
+		;; comment: i wonder if you can filter for universal control and fix some of those problems
 	}
-:applications   { ;;? APPLICATIONS
+;;§ APPLICATIONS
+	:applications   {
 	;; usage: add here then create group at APP FILTERED vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:307
 	;; use Raycast command to get bundle raycast://ai-commands/create-ke-rule-from-app-name?arguments=
 	:Chromes       ["^com\\.google\\.Chrome$", "^org\\.chromium\\.Chromium$", "^com\\.google\\.Chrome\\.canary$"]
@@ -66,12 +65,12 @@
 		:MenubarX          ["^com\\.menubarx\\.MenubarX$"]
 		:Tot               ["^.*Tot.*$"]
 	}
-;; :input-sources  { ;;? INPUT SOURCES
+;; :input-sources  { ;;§ INPUT SOURCES
 	;; :us {:input_mode_id   ""
 		;; :input_source_id "com.apple.keylayout.US"
 		;; :language        "en"}
 	;; }
-:templates      { ;;? TEMPLATES
+:templates      { ;;§ TEMPLATES
 	:run "%s"
 	:open "open \"%s\""
 	:open-app "open -a \"%s\""
@@ -83,7 +82,7 @@
 	:ray "open \"raycast://extensions/%s\""	
 	;; :layer-conditions ":condi [:!f& :!d& :!c& :!k& :!w&: !Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]"
 	;; :alf "osascript -e 'tell application \"Alfred 5\" to run nputtrigger \"%s\" in workflow \"%s\" with argument \"%s\" ;; run Alfred workflow using workflow bundle ID as argument
-	;;? 🔉 Sound Effects and  audio feedback aliases
+	;;§ 🔉 Sound Effects and  audio feedback aliases
 	 		;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 		:🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Focus2.aiff" ;; high-pitched click
 		:🔈🔈 "afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/DrawerClosing.aiff"
@@ -107,11 +106,11 @@
 	}
 :froms          { ;; FROMS (todo empty)
 	}
-:tos            { ;;? TOS
+:tos            { ;;§ TOS
 	:rayfetti [{:shell "open raycast://confetti"}] ;; ✅ works when called 	
 	;; :refocus [:!Tgrave_accent_and_tilde]
 	}
-:layers         { ;;? LAYERS 
+:layers         { ;;§ LAYERS 
 	;; :KEYµ {:key :KEY ;;todo † new layer definition template
 		;; :condi [:!space-mode]
 		;; }
@@ -161,7 +160,7 @@
 		:condi [:!space-mode :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!bslashµ :!quote-mode :!fslashµ :!=µ :!↩µ]
 		}
 	}
-:simlayers      { ;;? SIMLAYERS
+:simlayers      { ;;§ SIMLAYERS
 		;; :semicolon-mode {:key :semicolon} :! taken out in preference to have semicolon mapped to `fn` for use with Context's quick search
 		;; :a& {:key :a}
 		:b& {:key :b}
@@ -190,10 +189,10 @@
 		:y& {:key :y}
 		:z& {:key :z}
 	}
-:main [ ;;? MAIN RULES ================================
+:main [ ;;§ MAIN RULES ================================
 
 
-;;? ✨ New/org
+;;§ ✨ New/org
 ;;* Mouse Thumbpad System (logitech MOUSEPAD MODE) #TODO install logi software and...
 	{:des "mousepad keyboard mode" :rules [ :logiG600
 	
@@ -217,7 +216,7 @@
 	]}
 
 
-{:des "TEST " :rules [ ;;? TEST MODE Rules
+{:des "TEST " :rules [ ;;§ TEST MODE Rules
 	;; [[:t :r] [:t :e :s :t]] ;; test for TO array  ✔
 	;;* test sound test
 	;; [ [:t :1][:🔈]][[:t :2][:🔉]][[:t :3][:🔊]][[:t :4][:📢]][[:t :5][:🛎]][[:t :6][:🔔]] 
@@ -252,7 +251,7 @@
 
 
 	]}
-;;? SIMULTANEOUS RULES (SIMULTANEOUS Mode)
+;;§ SIMULTANEOUS RULES (SIMULTANEOUS Mode)
 	{:des "Simultaneous Rules":rules [
 		;;† new sim rule template
 
@@ -284,7 +283,7 @@
 		[[:w :d :c] [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
 
 		]}
-;;? ASSORTED RULED
+;;§ ASSORTED RULED
 	;;* right shift+space for "-" and "_"
 		{:des "shift+space for _ and -":rules[ ;;*          shift+space for _ and -
 			[:!Rspacebar :hyphen]                           ;;• (r)⇧+␣ for "-"
@@ -300,7 +299,9 @@
 		;;= HYPER MODE and MODIFIERS ==============================
 	;;* capslock as hyper (original) ;; 🚩 PIN
 		{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
-		[:##caps_lock :!!left_control nil {:alone :escape} ] 
+		[:caps_lock [:!SOCleft_control] nil {:alone :escape :to_if_alone [{:key_code "escape"}] :to_if_held_down [{:key_code "left_control", :modifiers ["command", "shift", "option"]}]}]
+		
+		[:!COTSQj :rayfetti]
 			]}
 	;;* Semicolon FN
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
@@ -309,7 +310,7 @@
 	;;* UHK FN: F24 (fn hardware key on uhks) sends apple FN with all modifiers optional ONLY when sent from UHKs (🟢 works 2024-10-22)
 		{:des "FN from UHK" :rules [[:##f24 :fn [:uhks] ]]}
 	;;* iPad Default Shortcuts
-		{:des "iPad default Shortcuts" :rules [ ;;? iPad defaults ========== 
+		{:des "iPad default Shortcuts" :rules [ ;;§ iPad defaults ========== 
 			[:!Cperiod [[:🔈🔈🔈] :escape]] [:!Qperiod [[:🔈🔈🔈] :escape]] ;;• ⌘+period for escape
 			[:!!backslash [[:🔈🔈🔈] :!Ti]] ;;• 🌐+\ show/hide sideview
 			;;• 🌐+\ for cycle sidevview
@@ -318,7 +319,7 @@
 	]}
 
 
-;;? © COMMON COMMANDS ======================================
+;;§ © COMMON COMMANDS ======================================
 	;; 🎓 RECAP left+right... can then just create an alias of existing km macro and name it
 	;; to add : c+d, 
 	{:des "Common Commands (left and right modifiers)" :rules [  
@@ -347,16 +348,16 @@
 
 	]}
 {:des "Common Commands" :rules [ 
-		;;? Next/Previous Tab (left/right) - (⇧)⌃+tab - d+s and d+f
-		;;? Back/Forward (History Navigation) ⌘+[ and ⌘+] (d+a and d+g)
+		;;§ Next/Previous Tab (left/right) - (⇧)⌃+tab - d+s and d+f
+		;;§ Back/Forward (History Navigation) ⌘+[ and ⌘+] (d+a and d+g)
 			[:!Copen_bracket [:km "Back"]]
  
-		;;? ⌃⌘+w to Open in New Window
+		;;§ ⌃⌘+w to Open in New Window
 			[:!TCw [:km "Open In New Window"] :Bear]
 			;; [:!TCw [:!Treturn_or_enter :o] :Slidepad] ;;• ⌃⌘+w to "open in new window" common command
 			[:!TCw [:!Treturn_or_enter :!Odown_arrow :!Odown_arrow :o] :Slidepad] ;;• Slidepad via...
 			;; [:!TCw [:open "raycast://confetti"] :Bear] ;; works
-		;;? line up/ dow
+		;;§ line up/ dow
 		[:!TCdown_arrow [:rayfetti] :Bear] ;;• works
 		;; [:!TCdown_arrow [:!OCdown_arrow] :Bear] ;;•❌ only works if using arrow keys
 
@@ -389,7 +390,7 @@
 
 ;;* ============================================
 ;;* LAYERS =====================================
-{:des "escape-mode" :rules [:⎋µ ;;?========================= ESCAPE MODE (⎋µ)
+{:des "escape-mode" :rules [:⎋µ ;;§========================= ESCAPE MODE (⎋µ)
 	;; [:!!t [:open "raycast://confetti"]] ;;• ⎋+t to test -> works
 	;; TODO (ESCAPE MODE)
 	]}
@@ -397,7 +398,7 @@
 	;; {:des "f1-mode for f1 things" :rules [ :f1&
 	;;TODO (F1 MODE)
 	;; ]}
-{:des "tilde-mode"  :rules [:tildeµ ;;?===================== TILDE MODE  (tildeµ)
+{:des "tilde-mode"  :rules [:tildeµ ;;§===================== TILDE MODE  (tildeµ)
 		[:1 [[:🛎] :!TOCf11]] ;;• tilde+1 slidepad 1
 		[:2 [[:🛎] :!TOCf12]] ;;• tilde+2 slidepad 2
 		[:3 [[:🛎] :!TOCf13]] ;;• tilde+3 slidepad 3
@@ -433,7 +434,7 @@
 		;; [:q [[:🛎] [:km "Focus Slidepad"]]] ;;• grave+q 
 			;; [:a [[:🔈🔈🔈] [:open "raycast://extensions/ray`cast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
 		]}
-;; {:des "1-mode (1p, )" :rules [ :1µ ;;?============================= 1 MODE      (1µ)
+;; {:des "1-mode (1p, )" :rules [ :1µ ;;§============================= 1 MODE      (1µ)
 	;; 1Password
 	;; [:p :!TSCp]              				 ;;• 1+p for Show 1Password (⌃⇧⌘+p)
 	;; [:!Cp :!TOSp]            				 ;;• 1+⌘p for 1 PasswordShow Quick Access (⌃⌥⇧+p)
@@ -442,15 +443,15 @@
 	;; raycast://extensions/khasbilegt/1password/item-list
 	;; raycast://extensions/khasbilegt/1password/vault-list
 	;; ]}
-;; {:des "2-mode" :rules [ :2µ ;;?============================= 2 MODE      (2µ)
+;; {:des "2-mode" :rules [ :2µ ;;§============================= 2 MODE      (2µ)
 	;; 	[:!!t [:open "raycast://confetti"]]
 	;; 	;; TODO (2 LAYER)
 	;; 	]}
-{:des "hyphen-mode" :rules [:-µ ;;?==================== HYPHEN MODE (-µ)
+{:des "hyphen-mode" :rules [:-µ ;;§==================== HYPHEN MODE (-µ)
 	[:##t [:open "raycast://confetti"]]
 	;;TODO (HYPHEN MODE)
 	]}
-{:des "=-mode (new (a) apple note, (b)ear... d, o, r, ⌘r, )" :rules [ :=µ ;;?============================= EQUAL_SIGN MODE (=µ)
+{:des "=-mode (new (a) apple note, (b)ear... d, o, r, ⌘r, )" :rules [ :=µ ;;§============================= EQUAL_SIGN MODE (=µ)
 	; new CRUD
 		[:a [[:🔈🔈🔈] [:open "raycast://extensions/raycast/apple-notes/new?arguments=%7B%22text%22%3A%22%22%7D"]] ] ;;• =+a for new apple note (via raycast)
 		[:b [[:🔈🔈🔈] [:open "raycast://extensions/hmarr/bear/new-note"]] ] ;;• =+b for new bear 
@@ -477,7 +478,7 @@
 	;; {:des "left_bracket-mode for left bracket things" :rules [ :left_bracket&
 	;;TODO (LEFT_BRACKET MODE)
 	;; ]}
-;;? BSLASH MODE (bslashµ) backslash ========================
+;;§ BSLASH MODE (bslashµ) backslash ========================
 	{:des "bslash mode" :rules [ :bslashµ 
 		;; [:r [:open "raycast://extensions/roamresearch/roam-research/quick-capture"] ] ;;• \+r to capture Roam notes
 		[:##1 :!TOCf11] ;;• backslash+1 slidepad 1
@@ -505,17 +506,17 @@
 	;; ]}
 	
 	;; NOTE: quote is set as left control for emacs (no it's)
-;;? RETURN MODE ↩µ (enabled) ================================================================
+;;§ RETURN MODE ↩µ (enabled) ================================================================
 	{:des "return-mode for return things" :rules [ :↩µ
 		[:!!t [:open "raycast://confetti"]] ;;* works
 		[:##spacebar :!!COTSreturn_or_enter]
 		;; TODO (RETURN MODE)
 		]}
-;;? PERIOD MODE .µ (enabled, to convert) ====================================================
+;;§ PERIOD MODE .µ (enabled, to convert) ====================================================
 	{:des " period-mode for typinator and autocomplete":rules [ :.µ 
 		[:spacebar [[:🔈🔈🔈] :!STperiod]] ;;• .+space for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
 		]}
-;;? (FORWARD) SLASH MODE (fslashµ) ==============
+;;§ (FORWARD) SLASH MODE (fslashµ) ==============
 	{:des "slash-mode" :rules [ :fslashµ
 		[:f [:ray "raycast/raycast-notes/search-notes"]]
 		
@@ -590,7 +591,7 @@
 
 		]}
 
-;;? SPACE MODE (✅ full) ===============
+;;§ SPACE MODE (✅ full) ===============
 	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	;; COMMENTS:
 	;; homerow keyboard
@@ -624,7 +625,7 @@
 		[:##w [[:🔈🔈🔈]:!CTOw] :space-mode] ;;• space+w to activate Contexts
 		[:##return_or_enter [[:🔈🔈🔈]:!Of12] :space-mode]  ;;• spacebar+return for Bartender Search menu bar items (via ⌥+F12 in Bartender) 🟢🔰new
 	;; todo something with tab, tilde ect.... [:##tab :#menu]
-	;;?🪟  Space Mode Window MGMT
+	;;§🪟  Space Mode Window MGMT
 	;;* spacebar+w for window
 		;; [:!w ]
 	[:!Sb [:btt "prev-window"]] ;;* spacebar+b (left_shift) for btt prev-window
@@ -636,7 +637,7 @@
 		;; [ ] +1/2/3/4 for...
 		;; [ ] F1/f2/f3/f4 for... F11 to F22
 		]}
-;;? TAB MODE (⇥µ) ===============
+;;§ TAB MODE (⇥µ) ===============
 	{:des "tab-mode (⇥µ)" :rules [ :⇥µ
 	[:w :!TOCw]
 	[:r [:ray "raycast/raycast-notes/raycast-notes"]]
@@ -645,11 +646,11 @@
 
     	]}
 
-;;? UP_ARROW MODE ================================================================
+;;§ UP_ARROW MODE ================================================================
 	;; {:des "up_arrow-mode for up arrow things" :rules [ :up_arrow&
 	;; TODO (UP_ARROW MODE)
 	;; ]}t
-;;? RIGHT_SHIFT (:R⇧µ)
+;;§ RIGHT_SHIFT (:R⇧µ)
 ;; TODO † LAYER TEMPLATE
 	;; {:des "KEYKEY-mode for XXX things" :rules [ :NEWKEYµ
 	;; [:!!t [:open "raycast://confetti"]] ;;* test
@@ -659,7 +660,7 @@
 ;;* SIMLAYERS (a,b,c modes) ==================================================================
 ;; A MODE (EMPTY) ========================================================
 	;; leave empty and see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:144
-;;? B MODE =======================
+;;§ B MODE =======================
 	{:des "b-mode" :rules [ :b& 
 		[:i :vk_consumer_brightness_up] ;;• b+i for brightness up
 		[:d :vk_consumer_brightness_down] ;;• b+d for brightness
@@ -705,7 +706,7 @@
 		;;TODO add back btt named menus, save active window for recall
 				;;* b+/ for better touch tool
 		]}
-;;? C MODE ================================================================
+;;§ C MODE ================================================================
 	{:des "c-mode for c things" :rules [ :c& ;;* ––––––––––––––––––––––––––––––––––––
 		[:d :!Cquote] ;;• c+d for ⌘+quote (evernote default shortcut for "focus tag field")
 		[:w [:km "Move Mouse to Focused Window"] ] ;;• c+w for km "Move Mouse to Focused Window" ✨new 6/12/23
@@ -723,7 +724,7 @@
 		;; rehome [:o [:km "Query Contacts"] ] ;;• c+o for km "Query Contacts"
 
 	]}
-;;? D MODE ================================================================
+;;§ D MODE ================================================================
 	{:des "d-mode for d things" :rules [ :d& ;;================================== D MODE
 		;; d+asfg for tab manipulation..........................................
 			[:a :!Copen_bracket] 	;;• d+a for Page Back via ⌘[
@@ -747,14 +748,14 @@
 		;; rehome [:0 [:btt "raycast-todo-menuapp"] ] ;;• d+0 for Raycast todo works 
 		;; rehome [:delete_or_backspace [:btt "raycast-todo-menuapp"] ] ;;• d+0 for Raycast todo works	
 	]}
-;;? E MODE  ================================================================
+;;§ E MODE  ================================================================
 	;; {:des "e-mode for e things" :rules [ :e& ;;===== ============================
 		;; [:c [:km "Try Current Macro"] ] ;;•  e+c for "Try Current Macro" (via KM) -> 2024-11-10 move to t+c because j
  	;;TODO (E MODE)
 		;; [:f [:open "kmtrigg er://macro=EFE846C8-9B93-47C5-9A9F-9EBA0D76D79F"] ] ;;• e+f for float notes for app 🔰 
 		;; Broken [:u [:open "file:///Users/loudog/Library/Application%20Support/KeyCue/KeyCue-URLs.txt"]] ;;• edit Key Cue URL's via
 	;; ]}	
-;;? F MODE ================================================================
+;;§ F MODE ================================================================
 	{:des "f-mode for f things" :rules [ :f&
 		[:k  [:open "shortcuts://run-shortcut?id=2D1A4FED-D5A1-4122-A125-7D5BF6C45E20"]] ;;• f+k Full Keyboard Access Toggle via shortcuts
 
@@ -801,7 +802,7 @@
 		;; [:l [:open "raycast://extensions/raycast/floating-notes/toggle-floating-notes-window"] ] ;;• f+l for raycast floating notes (via URL)
 		
 	]}
-;;? G MODE ================================================================
+;;§ G MODE ================================================================
 	{:des "g-mode for g things" :rules [ :g&
 		[:spacebar [:km "Click GUI Button"]] ;;• g+spacebar for Click GUI Button
 		[:right_control [:km "Click GUI Button"]] ;;• g+right_control for Click GUI Button (for compatability with UHK split spacebar)
@@ -816,7 +817,7 @@
 		;; [ ] circleback to rabbit hole
 		;; think through test
 	]}
-;;? H MODE ================================================================
+;;§ H MODE ================================================================
 	{:des "h-mode for h things" :rules [ :h&
 		[:d [[:🔈🔈🔈] [:km "© Hide Application"] ]] ;;• h+d for © Hide Application
 		[:k [[:🔈🔈🔈] :!Th]] ;;• h+k for Hookmark (via ⌃h) 🔰 new 8/11/23
@@ -825,11 +826,11 @@
 		;; rehome 		[:w [[:🔈🔈🔈] [:km "Float Obsidian Workbench with Marked"]]] ;;• w+b Float Obsidian Workbench with Marked
 		;; rework 		[:p [[:🔈🔈🔈] [:open "/Applications/Setapp/MenubarX.app" ] ]] ;;• h+p for MenuBarX via :open (instead of ⌥+x hotkey)
 	]}
-;;? I MODE (EMPTY) ================================================================
+;;§ I MODE (EMPTY) ================================================================
 	;; {:des "i-mode for i things" :rules [ :i&
 	;; TODO (I MODE)
 	;; ]}
-;;? J MODE (filled) ================================================================
+;;§ J MODE (filled) ================================================================
 	{:des "j-mode for j things" :rules [ :j&
 		[:o [:km "Jump to OmniFocus Quick"]] ;;• j+o for Jump to OmniFocus 🟡 needs work > 🟢 better now
 		[:b [:km "Jump to Bear"]] ;;• j+b for Jump to Bear˛st (global)
@@ -846,7 +847,7 @@
 			;; [:right_gui [:km "© Jump To"]] ;;• j+right_gui for... AVAILABLE
 	]}
 		
-;;? ======================== K MODE
+;;§ ======================== K MODE
 	{:des "k-mode" :rules [ :k&
 		[:l [:km "Keyboard Maestro: Local Trigger List Palette"]] ;;• k+l for 
 		[:e [:km "edit karabiner config"]] ;;• k+e pick config-files
@@ -873,7 +874,7 @@
 		;;x [:v [:open ""]] ;;• k+w for 🐿🧰 KY Workbench via marked
 		;;TODO (K MODE)
 		]}
-;;? L MODE ================================================================
+;;§ L MODE ================================================================
 	{:des "l-mode for l things" :rules [ :l&
 		[:1 [:open "https://roamresearch.com/#/app/Lous-Greenhouse" ]] ;;• l+1 for Lous-Greenhouse
 			[:g [:open "https://roamresearch.com/#/app/Lous-Greenhouse" ]] ;;• l+g for Lous-Greenhouse
@@ -889,11 +890,11 @@
 	;;TODO (L MODE)
 		;; [:p [ [:open "kmtrigger://macro=46019D37-B359-498F-B0E0-CD49B6373FB8"]] ] ;;• l+p Log Palette (via km uuid URL
 	]}
-;;? M MODE (EMPTY)================================================================
+;;§ M MODE (EMPTY)================================================================
 	;; {:des "m-mode for m things" :rules [ :m&
 	;; TODO (M MODE)
 	;; ]}
-;;? N MODE (transfer to layer or +mode) ================================================================
+;;§ N MODE (transfer to layer or +mode) ================================================================
 	{:des "n-mode for n things" :rules [ :n&
 		[:i [[:tink] :!CTSo]] ;;• n+i New Omnifocus Quick Entry (via omf hotkey ⌃⇧⌘+o) 🟢 FIXED
 		[:q [:open "raycast://extensions/raycast/raycast/create-quicklink"]] ;;• n+q New Quick Link via Raycast
@@ -912,11 +913,11 @@
 		[:spacebar [:open "kmtrigger://macro=448A7D18-74A3-443E-919F-D230D5070EA2"]] ;;• n+spacebar for 🔫 New Trigger List 🔰
 	;;TODO (N MODE)
 	]}
-;;? O MODE (empty maybe leave) ================================================================
+;;§ O MODE (empty maybe leave) ================================================================
 	;; {:des "o-mode for o things" :rules [ :o&
 	;;TODO (O MODE)
 	;; ]}
-;;? P MODE ================================================================
+;;§ P MODE ================================================================
 	{:des "p-mode for p things" :rules [ :p&
 		[:w [[:🔈🔈🔈] [:km "Activate 1Password"] ]] ;;• p+w for search 1password... ;; edited12/05/23 > edited 3/15/24  
 		[:1 :!OSTp] ;;• 1passsword
@@ -926,7 +927,7 @@
 		;; [:l [:km "picklist master"] ] ;;•
 		;; [:u [:km "picklist urls"] ] ;;• p+u to edit url picklist
 	]}
-;;? Q MODE ⭐⭐⭐ (rework as #layer: ?)================================================================
+;;§ Q MODE ⭐⭐⭐ (rework as #layer: ?)================================================================
 	{:des "q-mode for q things" :rules [ :q&
 	
 	;; [:l [ [:🔈🔈🔈] [:open "drafts://open?uuid=00E137E9-0DB5-4824-8929-D3_30416244CE"]]] ;;• q+l open 🔗 QUICK LINKS
@@ -941,7 +942,7 @@
 		;; [:c [ [:🔈🔈🔈]  [:open "obsidian://advanced-uri?vault=ldb&commandid=obsidian42-text-transporter%253Aobsidian42-text-transporter-QC"] ] ] ;;•q+c for quick capture to highly opinionated vault 	
 
 	]}
-;;? R MODE ================================================================
+;;§ R MODE ================================================================
 	{:des "r-mode for r things" :rules [ :r&
 	[:tab [:ray "raycast/navigation/switch-windows"]] ;;• r+tab for raycast window searchrtr
 
@@ -972,7 +973,7 @@
 				;; [:q [:open "raycast://extensions/raycast/apple-reminders/quick-add-reminder?arguments=%7B%22text%22%3A%22%22%2C%22notes%22%3A%22%22%7D"]] ;;• r+= raycast my reminders
 			;; [:0 [:open "btt://trigger_named/?trigger_name=rm1"]] ;;• r+0 raycast reminders menuapp ❓ BROKEN
 	]}
-{:des "s-mode" :rules [ :s& ;;? ----------------------------------S MODE
+{:des "s-mode" :rules [ :s& ;;§ ----------------------------------S MODE
 	[:r [:open "/System/Applications/Siri.app"]] ;;• s+r for siri 🟢
 	[:t :!STCs] ;;• s+t for Speak Text via system hot key (⇧⌥⌃S) 🟢
 	[:c [:km "Paste Clipboard by Name"]] ;;• s+c for Paste Clipboard by Name 🔮
@@ -986,7 +987,7 @@
 		;; [:spacebar [[:🔈🔈🔈][:alf "Search OmniFocus Tasks via Alfred" "net.rhydlewis.alfred.searchomnifocus"]]] ;; o+spacebar for Jump to OmniFocus 🟡 NEEDTOFIX
 
 	]}
-;;? T MODE () ================================================================
+;;§ T MODE () ================================================================
 	{:des "t-mode for testing thing things" :rules [ :t&
 		;; 🧪 TEST
 		[:r [:soundOn]] ;;• TEST  t+r for test rule (🔈 worked) 🔉🔊🛎🔔📢📯
@@ -1005,11 +1006,11 @@
 			;; [:return_or_enter [:open "raycast://extensions/maggie/todo-list/index"] ] ;;• t+= for open raycast todo-list
 
 	]}
-;;? U MODE (empty)================================================================
+;;§ U MODE (empty)================================================================
 	;; {:des "u-mode for u things" :rules [ :u&
 	;;TODO (U MODE)
 	;; ]}
-;;? V MODE ================================================================
+;;§ V MODE ================================================================
 	{:des "v-mode for v things" :rules [ :v&
 		[:1 [:km "paste clipboard 1"] ] ;;• c+1 paste to clipboard 1
 		[:2 [:km "paste clipboard 2"] ] ;;• c+2 paste to clipboard 2
@@ -1017,7 +1018,7 @@
 	;;TODO (V MODE)
 		[:p [[:🔈🔈🔈] [:open "raycast://confetti"]]]  ;;• v+p AVAILABLE
 	]}
-;;? W MODE ================================================================
+;;§ W MODE ================================================================
 	{:des "w-mode for w things" :rules [ :w&
 		[:spacebar [[:🔈🔈🔈] :!COTw] ] ;;• w+spacebar for Contexts via hotkey 2024-11-11 changed
 		;; [:spacebar [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
@@ -1036,7 +1037,7 @@
 			;; [:f [[:🔈🔈🔈] [:btt "Move Window Space Right"] ] ] ;;• w+f  Move Window Space Right (via btt)
 			;; [:caps_lock [[:🔈🔈🔈] [:btt "Move Window Space Left"] ] ] ;;• w+capslock Move Window Space Left (via btt)		
 	]}
-;;? X MODE ================================================================
+;;§ X MODE ================================================================
 	{:des "x-mode for x things" :rules [ :x&
 	;;TODO (X MODE)
 		;; clear notification
@@ -1044,11 +1045,11 @@
 		;;  #common-command
 			;; 	[:u [:km "© Copy URL"]] ;;• x+u for © Copy URL (via KM global context)
 	]}
-;;? Y MODE (EMPTY) ================================================================
+;;§ Y MODE (EMPTY) ================================================================
 	;; {:des "y-mode for y things" :rules [ :y&
 	;;TODO (Y MODE)
 	;; ]}
-;;? Z MODE (rework to layer mode?)================================================================
+;;§ Z MODE (rework to layer mode?)================================================================
 	{:des "z-mode for z things" :rules [ :z&
 		[:i :volume_increment] ;;• z+i for volume up
 		[:k :volume_decrement] ;;•z+k for volume down
@@ -1056,7 +1057,7 @@
 		[:n :vk_consumer_brightness_down] ;;• z+n for brightness down
 		;; TODO (Z MODE)
 		]}
-] ;;? CLOSES main
+] ;;§ CLOSES main
 
 ;;TODO
 	;; 🌐 Marked URLS
@@ -1071,7 +1072,7 @@
 	;; :launchpad {:not-from true}
 	;; :dashboard {:not-from true}
 
-;;? 🛰 Universal Keybinding Wrapper
+;;§ 🛰 Universal Keybinding Wrapper
 	;; core
 		;; Command Palette
 			;; could be spacemode right command P...
@@ -1129,7 +1130,7 @@
 	;; meata/float: 
 		;; cheatsheet, log, todo, keybindings,
 	
-;;? EXAMPLES and Templates
+;;§ EXAMPLES and Templates
 	;; Lou
 	;; [:p [[:📢]:!CTSg] ] ;;• working sound + key 
 
@@ -1151,7 +1152,7 @@
 	;;•  :simlayers {:vi-mode {:key :d}}
 	;; •  :simlayer-threshold 250
 
-:cheatsheet {   ;;? 👿 CHEATSHEET 
+:cheatsheet {   ;;§ 👿 CHEATSHEET 
 ;; reference -> TOSC (left ⌃⌥⇧⌘+), WERQ(right ⌃⌥⇧⌘), 
 	}
-} ;;? CLOSES FILE
+} ;;§ CLOSES FILE
