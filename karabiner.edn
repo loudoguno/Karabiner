@@ -251,7 +251,6 @@
 	{:des "Simultaneous Rules":rules [
 		;;† new sim rule template
 
-		[[:a :s :d :f :j :k :l :semicolon] [:open "raycast://confetti"]]	;;! example of conflict with subset of simulaneous key array 
 		;; -> going to change it to 
 		[[:left_shift :right_shift :4 :8] [:open "raycast://confetti"]] ;;• ⇧+⇧+4+8 for confetti
 		[[:f :l :n]			[:ray "raycast/raycast-notes/raycast-notes"]]	;;• fln for raycast notes
@@ -297,8 +296,8 @@
 		{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
 		[:caps_lock [:!SOCleft_control] nil {:alone :escape :to_if_alone [{:key_code "escape"}] :to_if_held_down [{:key_code "left_control", :modifiers ["command", "shift", "option"]}]}]
 		
-		[:!COTSQj :rayfetti] ;; hyper+right cmd +j for rayfetti
-		[:!COTSQl :!Cspacebar]
+		[:!COTSQj :rayfetti] ;;🎉 hyper+right cmd +j for rayfetti
+		[:!COTSQl :!Cspacebar] ;;todo tes
 			]}
 	;;* Semicolon FN
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
@@ -516,8 +515,26 @@
 ;;§ (FORWARD) SLASH MODE (fslashµ) ==============
 	{:des "slash-mode" :rules [ :fslashµ
 
-		;; [:f [:ray "raycast/raycast-notes/search-notes"]]
-		[:f [:open "raycast://extensions/raycast/raycast-notes/search-notes"]]
+		;; 😎 raycast search
+		[:f [:km "Raycast: Raycast Notes Search"]] ;;• /+f to search Raycast notes
+			;; ✅ got working by using km macro instead of just URL
+			;; [:f [:open "raycast://extensions/raycast/raycast-notes/search-notes"]]
+			;; [:f [:ray "raycast/raycast-notes/search-notes"]] ;;! doesn't work because issues with Raycast so created below
+		
+		[:!CSn [:km "Raycast: Raycast Notes Search"]] ;;• /+⇧⌘f (pluse left shift, command then F to search Raycast notes
+		[:!CSq [:km "Raycast: Raycast Quicklinks Search"]] ;;• /+⇧⌘+q for Raycast Quicklinks Search
+		[:!CSs [:km "Raycast: Raycast Snippets Search"]] ;;• /+⇧⌘+s for Raycast Snippets Search
+		[:!CSw [:km "Raycast: Raycast Windows Search"]] ;;• /+⇧⌘+w for Raycast Windows Search
+		[:!CSa [:km "Raycast: Raycast AI Search"]] ;;• /+⇧⌘+a for Raycast AI Search
+		[:!CSf [:km "Raycast: Raycast Files Search"]] ;;• /+⇧⌘+f for Raycast Files Search
+		[:!CSe [:km "Raycast: Raycast Emoji Search"]] ;;• /+⇧⌘+e for Raycast Emoji Search
+		[:!CSm [:km "Raycast: Raycast Menu Search"]] ;;• /+⇧⌘+m for Raycast Menu Search
+		[:!CSspacebar [:open "raycast://extensions/raycast/raycast/confetti"]] ;;• /+⇧⌘+spacebar for Raycast Confetti
+
+		;;? comment: how is this better than my raycast fast search idea?
+		
+		
+		[:!CSs [:km "Raycast: Raycast Snippets Search"]] ;;• /+⇧⌘+q for Raycast Quicklinks Search
 		
 		;; [:!Cf [:c :l :e :a :r]] ;;!works!
 		[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+k to open karabiner.edn in Marked		
