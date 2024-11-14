@@ -1,39 +1,35 @@
-{ ;; karabiner.edn 1.03 2024-11-10 after trying to revamp capslock as hyper
+{ ;; karabiner.edn 1.04 2024-11-14
 ;;§ DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
 ;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
 		;! seems to create obsene delay on  on key up
 ;;§ DEVICES (todo org)
-	:devices {
+:devices {
 	;;† templates
-		;; :device [{:product_id XXX, :vendor_id XXX}] ;;* DeviceName
-		;; :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
-		;; 💻 mbps 
-		:apple [ {:vendor_id 1452} {:vendor_id 76} {:is_built_in_keyboard true}] ;;* all apple internals works ✅
-		:mb0   [{:product_id 631 :vendor_id 1452}]                               ;;* 💻 original 
-		:mx3   [{:product_id 4294970359 :vendor_id 1452}]                        ;;* 💻 mx3 ✅ works
-		:mbp0  [{:product_id 631 :vendor_id 1452}]
-		;; mbx
-		;; mba
-		;; NeXT
-		;;todo what about 
+	;; :device [{:product_id XXX, :vendor_id XXX}] ;;* DeviceName
+	;; :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
+	
+	;; 💻 mbps 
+	:apple [ {:vendor_id 1452} {:vendor_id 76} {:is_built_in_keyboard true}] ;;* all apple internals works ✅
+	:mb0   [{:product_id 631 :vendor_id 1452}]                               ;;* 💻 original 
+	:mx3   [{:product_id 4294970359 :vendor_id 1452}]                        ;;* 💻 mx3 ✅ works
+	:mbp0  [{:product_id 631 :vendor_id 1452}]
+	
+	;;* ⌨️ keyboards
+	:uhks  [{:vendor_id 7504}]                                               ;;* UHKS
+	:uhk   [{:product_id 24866 :vendor_id 7504}]
+	:uhk-2 [{:product_id 24868 :vendor_id 7504}]
 
-		;;* ⌨️ keyboards
-		:uhks  [{:vendor_id 7504}]                                               ;; UHKS
-		:uhk   [{:product_id 24866 :vendor_id 7504}]
-		:uhk-2 [{:product_id 24868 :vendor_id 7504}]
-
-		;;* 🖱 mice
-		:logiG600 [{:product_id 49738 :vendor_id 1133}] ;;* Logitech G600 (✅) logiG600
-		;; :utech ;;* UtechSmart Venus (old-school gaming)
-		;; :logi-bt ;;* Logitech M585 (bluetooth mouse)
-		;; bluetooth 2
-		;; todos: add mice
-		;; 2024-10-16 👍 adding logitech worked! (used vendor id and product id () from previous config, not sure what new vedor id 4295704614 is on mx3)
-		;; todo add uhks
-		;; comment: i wonder if you can filter for universal control and fix some of those problems
-	}
-;;§ APPLICATIONS
+	;;* 🖱 mice
+	:logiG600 [{:product_id 49738 :vendor_id 1133}]                          ;;* Logitech G600 (✅) logiG600
+	;; :utech ;;* UtechSmart Venus (old-school gaming)
+	;; :logi-bt ;;* Logitech M585 (bluetooth mouse)
+	
+	;; todos: add mice
+	;; 2024-10-16 👍 adding logitech worked! (used vendor id and product id () from previous config, not sure what new vedor id 4295704614 is on mx3)
+	;; todo add uhks
+	;; comment: i wonder if you can filter for universal control and fix some of those problems
+}
 	:applications   {
 	;; usage: add here then create group at APP FILTERED vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:307
 	;; use Raycast command to get bundle raycast://ai-commands/create-ke-rule-from-app-name?arguments=
@@ -519,7 +515,9 @@
 		]}
 ;;§ (FORWARD) SLASH MODE (fslashµ) ==============
 	{:des "slash-mode" :rules [ :fslashµ
-		[:f [:ray "raycast/raycast-notes/search-notes"]]
+
+		;; [:f [:ray "raycast/raycast-notes/search-notes"]]
+		[:f [:open "raycast://extensions/raycast/raycast-notes/search-notes"]]
 		
 		;; [:!Cf [:c :l :e :a :r]] ;;!works!
 		[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+k to open karabiner.edn in Marked		
