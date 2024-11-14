@@ -301,7 +301,8 @@
 		{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
 		[:caps_lock [:!SOCleft_control] nil {:alone :escape :to_if_alone [{:key_code "escape"}] :to_if_held_down [{:key_code "left_control", :modifiers ["command", "shift", "option"]}]}]
 		
-		[:!COTSQj :rayfetti]
+		[:!COTSQj :rayfetti] ;; hyper+right cmd +j for rayfetti
+		[:!COTSQl :!Cspacebar]
 			]}
 	;;* Semicolon FN
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
@@ -837,6 +838,7 @@
 		[:p [:open "kmtrigger://macro=66C07414-FE85-44A0-A5DC-2C2DAD502E26"]] ;;• j+p for Jump to Palette via KM
 		[:w [[:🔈🔈🔈] :!CTOw]] ;;• j+w for Jump to Window (via Context hotkey ⌥space) -> 2024-08-21 chaged from !Ospacebar to 
 		[:s [ [:🔈🔈🔈]  :!OSCj ] ] ;;• j+s Search (Jump to) SideNotes (via ⌥⇧⌘+j)
+		[:k [:km "Keyboard Maestro: Go to Macro By Name"]] ;;• j+k for Go to Macro By Name
 		;;TODO (J MODE)
 			;; rework Jump to.... (see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:273)
 			;; [:r [ [:🔈🔈🔈] [:open "kmtrigger://macro=047B91AB-DBCA-4976-BE79-C9A0603FA8B2"]]] ;;• j+r JUMP TO Apple Reminders (via km macro that uses GoodTask)
