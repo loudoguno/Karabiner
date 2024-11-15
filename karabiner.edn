@@ -299,10 +299,23 @@
 		[:!COTSQj :rayfetti] ;;🎉 hyper+right cmd +j for rayfetti
 		[:!COTSQl :!Cspacebar] ;;todo tes
 			]}
-	;;* Semicolon FN
+	;;* Semicolon as FN
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
 		[:##semicolon :##fn nil {:alone :semicolon}] ]}
+		;;* ✨ 2024-11-15 tring 
+		
 		;;TODO need to make lazy
+;;§ Semicolon as fn mode
+{:des "semicolon-mode" :rules [ 
+	[:!FCspacebar [:a :a :a]] ;;* testing
+	[:!FQspacebar [:rayfetti]] ;;* testing 
+	[:!TCspacebar [:rayfetti]] ;;* testing 
+	[:spacebar [:space-mode]] ;;* testing 
+	;; [:a [:open "https://example.com"]] ;; Example: semicolon+a to open a URL
+	;; [:b [:km "Example KM Macro"]] ;; Example: semicolon+b to trigger a Keyboard Maestro macro
+	;; [:c [:soundOn]] ;; Example: semicolon+c to play a sound
+	;; Add more rules as needed
+]}
 	;;* UHK FN: F24 (fn hardware key on uhks) sends apple FN with all modifiers optional ONLY when sent from UHKs (🟢 works 2024-10-22)
 		{:des "FN from UHK" :rules [[:##f24 :fn [:uhks] ]]}
 	;;* iPad Default Shortcuts
@@ -310,6 +323,7 @@
 			[:!Cperiod [[:🔈🔈🔈] :escape]] [:!Qperiod [[:🔈🔈🔈] :escape]] ;;• ⌘+period for escape
 			[:!!backslash [[:🔈🔈🔈] :!Ti]] ;;• 🌐+\ show/hide sideview
 			;;• 🌐+\ for cycle sidevview
+			
 			;;• 🌐+q for Quick Note #todo
 	;;TODO (ASSORTED) A	;; [ ] decide on format (readability by line length or more on 1 line?)
 	]}
@@ -512,73 +526,71 @@
 	{:des " period-mode for typinator and autocomplete":rules [ :.µ 
 		[:spacebar [[:🔈🔈🔈] :!STperiod]] ;;• .+space for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
 		]}
-;;§ (FORWARD) SLASH MODE (fslashµ) ==============
+;;§ (FORWARD) SLASH MODE (fslashµ) /+....==============
 	{:des "slash-mode" :rules [ :fslashµ
-
-		;; 😎 raycast search
-		[:f [:km "Raycast: Raycast Notes Search"]] ;;• /+f to search Raycast notes
+		;
+	;;* 😎 raycast search (/+⇧⌘+...)
+		;;? comment: how is this better than my raycast fast search idea?
+		[:!CSspacebar [:open "raycast://extensions/raycast/raycast/confetti"]] ;;• /+⇧⌘+spacebar for Raycast Confetti
+		[:!CSn [:km "Raycast: Raycast Notes Search"]]      ;;• /+⇧⌘+n Raycast Notes Search
+			[:f [:km "Raycast: Raycast Notes Search"]] ;;• /+f to search Raycast notes
 			;; ✅ got working by using km macro instead of just URL
 			;; [:f [:open "raycast://extensions/raycast/raycast-notes/search-notes"]]
 			;; [:f [:ray "raycast/raycast-notes/search-notes"]] ;;! doesn't work because issues with Raycast so created below
-		
-		[:!CSn [:km "Raycast: Raycast Notes Search"]] ;;• /+⇧⌘f (pluse left shift, command then F to search Raycast notes
-		[:!CSq [:km "Raycast: Raycast Quicklinks Search"]] ;;• /+⇧⌘+q for Raycast Quicklinks Search
-		[:!CSs [:km "Raycast: Raycast Snippets Search"]] ;;• /+⇧⌘+s for Raycast Snippets Search
-		[:!CSw [:km "Raycast: Raycast Windows Search"]] ;;• /+⇧⌘+w for Raycast Windows Search
-		[:!CSa [:km "Raycast: Raycast AI Search"]] ;;• /+⇧⌘+a for Raycast AI Search
-		[:!CSf [:km "Raycast: Raycast Files Search"]] ;;• /+⇧⌘+f for Raycast Files Search
-		[:!CSe [:km "Raycast: Raycast Emoji Search"]] ;;• /+⇧⌘+e for Raycast Emoji Search
-		[:!CSm [:km "Raycast: Raycast Menu Search"]] ;;• /+⇧⌘+m for Raycast Menu Search
-		[:!CSspacebar [:open "raycast://extensions/raycast/raycast/confetti"]] ;;• /+⇧⌘+spacebar for Raycast Confetti
-
-		;;? comment: how is this better than my raycast fast search idea?
-		
-		
-		[:!CSs [:km "Raycast: Raycast Snippets Search"]] ;;• /+⇧⌘+q for Raycast Quicklinks Search
-		
-		;; [:!Cf [:c :l :e :a :r]] ;;!works!
-		[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+k to open karabiner.edn in Marked		
-		
-		[:spacebar [:!CSslash [:🔈🔈🔈]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
+		[:!CSq [:km "Raycast: Raycast Quicklinks Search"]] ;;• /+⇧⌘+q Raycast Quicklinks Search
+		[:!CSs [:km "Raycast: Raycast Snippets Search"]]   ;;• /+⇧⌘+s Raycast Snippets Search
+		[:!CSw [:km "Raycast: Raycast Windows Search"]]    ;;• /+⇧⌘+w Raycast Windows Search
+		[:!CSa [:km "Raycast: Raycast AI Search"]]         ;;• /+⇧⌘+a Raycast AI Search
+		[:!CSf [:km "Raycast: Raycast Files Search"]]      ;;• /+⇧⌘+f Raycast Files Search
+		[:!CSe [:km "Raycast: Raycast Emoji Search"]]      ;;• /+⇧⌘+e Raycast Emoji Search
+		[:!CSm [:km "Raycast: Raycast Menu Search"]]       ;;• /+⇧⌘+m Raycast Menu Search
+	;;* /+b (Bear)
+		[:b [:open "raycast://extensions/hmarr/bear/index"] ] ;;• /+b to search Bear (raycast)
+		[:!Cb :!TOSb] ;;• /+⌘b New Bear
+		[:!Ob :!TSCb] ;;• /+⌥b Activate Bear
+	
+	;;* /+r (Roam, Reminders and TODOs commands)
+		[:r [ [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam 🟢
+		[:!Cr [ [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• /+r to capture to Roam 🟢
+		[:#Sr [ [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+		[:#Tr [ [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]]] ;;• /+⌘n create Notion database page 
+		[:#TCr [ [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]]] ;;• /+⌘n create Notion database page 
+	;;* /+q
 		[:q [:open "raycast://extensions/raycast/raycast/search-quicklinks"] ] ;;• /+q to Search Quick Links via Raycast
-		;; [:r [:open "raycast://extensions/roamresearch/roam-research/search"] ] ;;• /+r to search Roam notes vvis raycast 
+	;;* /+t
+		[:t [:open "raycast://extensions/maggie/todo-list/index"]] ;;• /+t for todolist 
+	;;* /+k
+		[:k [:run "open -a Marked /Users/loudog/Sync/config.files/Karabiner/karabiner.edn"] ] ;;• /+k to open karabiner.edn in Marked		
+	;;* /+spacebar
+		;; [:spacebar [:!CSslash [:🔈🔈🔈]] ] ;;• slash+spacebar for Help Menu Search (via System hotkey ⌘⇧+/) 🟢
+		[:spacebar [:km " Global Action Trigger List"] ] ;;• /++spacebar for 🔫 Global Action Trigger List
 		
-		[:t [:open "raycast://extensions/maggie/todo-list/index"]]
-		;;• Roam, Reminders and TODOs commands
-			[:r [ [:open "raycast://extensions/roamresearch/roam-research/search"]] ] ;;• /+r to search Roam 🟢
-			[:!Cr [ [:open "raycast://extensions/roamresearch/roam-research/quick-capture"]] ] ;;• /+r to capture to Roam 🟢
-			[:#Sr [ [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
-			[:#Tr [ [:open "raycast://extensions/raycast/apple-reminders/my-reminders"]]] ;;• /+⌘n create Notion database page 
-			[:#TCr [ [:open "raycast://extensions/raycast/apple-reminders/create-reminder"]]] ;;• /+⌘n create Notion database page 
-		;;• Bear
-			[:b [:open "raycast://extensions/hmarr/bear/index"] ] ;;• /+b to search Bear (raycast)
-			[:!Cb :!TOSb] ;;• /+⌘b New Bear
-			[:!Ob :!TSCb] ;;• /+⌥b Activate Bear
+	;;* /+a... (Apple)
+		[:a [:open "raycast://extensions/raycast/apple-notes/index"] ] ;;• /+a Search Apple Notes via Raycast
+		;; [:!Ra :!COTa] ;;• /+a+⇧ for Apple Notes NOTE
 
-
-		;;• Obsidian
-
-		;;• /+a (Apple)
-			[:a [:open "raycast://extensions/raycast/apple-notes/index"] ] ;;• /+a to search Apple Notes via Raycast
-			;; [:!Ra :!COTa] ;;• /+(r)⇧a shift⌘a for Apple Notes NOTE: start using /+right shift for bartender 
-
-		;; • Notion Commands
-		    [:n [:open "raycast://extensions/notion/notion/search-page"]] ;;• /+n for Search Notion via raycast
-			[:#Cn [ [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
-			[:#Sn [ [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
-			[:#Tn [ [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
-			[:#On [ [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
-			
-			;; [:#SCn :rayfetti];;• /+⇧⌘n
-			;; [:#TCn ] ;;• /+⌃⌘n
-			;; [:#OCn ] ;;• /+⌥⌘n 
-			;; [:#TOn ] ;;• /+⌃⌥n  k
-			;; [:#STn ] ;;• /+⌃⇧n 
-			;; [:#SOn ] ;;• /+⇧⌥n 
-			;; [:#SOCn] ;;• /+⌥⇧⌘n 
-			;; [:#TOCn [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n create Notion database page
-			;; [:#STOn [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
-			;; [:#STCn [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+	;;*+n (Notion Commands)
+		[:n [:open "raycast://extensions/notion/notion/search-page"]] ;;• /+n for Search Notion via raycast 💠
+		[:#Cn [ [:open "raycast://extensions/notion/notion/create-database-page"]]] ;;• /+⌘n create Notion database page 
+		[:#Sn [ [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page 
+		[:#Tn [ [:open "raycast://extensions/notion/notion/quick-capture"]]] ;;• /+⌘n create Notion database page 
+		[:#On [ [:open "https://notion.new"]]] ;;• /+⌘n create Notion database page 
+	;;† ç+... template for :layer mode keys
+		;; [:spacebar :rayfetti] ;;• /+spacebar for testing
+		;; [:¥ :action]] ;;• ¢+¥ 
+		;; [:!C¥ :action]] ;;• ç+⌘¥+⌘KeyB
+		;;• /+⌃⌘KEY
+		;; [:#TCKeyB : ] ;;• KeyA+⌃KeyB
+		;; [:#SCn :rayfetti];;• /+⇧⌘n
+		;; [:#TCn ] ;;• /+⌃⌘n
+		;; [:#OCn ] ;;• /+⌥⌘n 
+		;; [:#TOn ] ;;• /+⌃⌥n 
+		;; [:#STn ] ;;• /+⌃⇧n 
+		;; [:#SOn ] ;;• /+⇧⌥n 
+		;; [:#SOCn] ;;• /+⌥⇧⌘n 
+		;; [:#TOCn [:open "raycast://extensions/notion/notion/search-page"]]] ;;• /+⌘n create Notion database page
+		;; [:#STOn [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
+		;; [:#STCn [:open "raycast://extensions/notion/notion/add-text-to-page?arguments=%7B%22text%22%3A%22%22%7D"]]] ;;• /+⌘n create Notion database page
 			
 			[:!Qn [:km "Notion: Notion AI"]] ;;• /+⌘n
 			[:!SQn [:km "Notion: Command Search"]] ;;• /+⌘n
@@ -611,7 +623,7 @@
 	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	;; COMMENTS:
 	;; homerow keyboard
-		[:#TOWERQb :spacebar :space-mode]        ;;• spacebar+b for space
+		;; [:#TOWERQb :spacebar :space-mode]        ;;• spacebar+b for space
 		[:!Fb :rayfetti :space-mode]        ;;• spacebar+b for space
 		; jlik for ←↑→↓ (left/right/up/down arrows)
 			[:##j :left_arrow  :space-mode]  ;;• spacebar+j for ←
@@ -864,9 +876,10 @@
 			;; [:right_gui [:km "© Jump To"]] ;;• j+right_gui for... AVAILABLE
 	]}
 		
-;;§ ======================== K MODE
+;;§ ======================== K MODE 
 	{:des "k-mode" :rules [ :k&
-		[:l [:km "Keyboard Maestro: Local Trigger List Palette"]] ;;• k+l for 
+		[:l [:km "+ Local Trigger List"]] ;;• k+l Local Trigger List
+		;; [:l [:km "Keyboard Maestro: Local Trigger List Palette"]] ;;• k+l for 
 		[:e [:km "edit karabiner config"]] ;;• k+e pick config-files
 		;; [:e [:km "picklist config-files"]] ;;• 🗑
 		;; [:c [:open "file:///Users/loudog/vaults/obs-git-config/config.files/karabiner/karabiner-copy-for-MBX.edn"]] ;;• k+c to open this file
@@ -1056,11 +1069,13 @@
 	]}
 ;;§ X MODE ================================================================
 	{:des "x-mode for x things" :rules [ :x&
+		[:c [:km "Try Current Macro"]] ;;• x+c for "Try Current Macro"
+	
 	;;TODO (X MODE)
 		;; clear notification
 		;; rehome 		[:l [:!Ta :!TSe :!Sright_arrow [:🔈🔈🔈] [:km "Extract URL from Selection"]]  ] ;;• compiled >>> did keyboard sequence, DID sound, DID KM 😀😀😀😀😀😀😀
 		;;  #common-command
-			;; 	[:u [:km "© Copy URL"]] ;;• x+u for © Copy URL (via KM global context)
+		;; 	[:u [:km "© Copy URL"]] ;;• x+u for © Copy URL (via KM global context)
 	]}
 ;;§ Y MODE (EMPTY) ================================================================
 	;; {:des "y-mode for y things" :rules [ :y&
