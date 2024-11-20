@@ -1,4 +1,4 @@
-{ ;; karabiner.edn 1.04 2024-11-14
+{ ;; karabiner.edn 1.05 2024-11-18
 ;;§ DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
 ;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
@@ -120,7 +120,6 @@
 	:⇥µ {:key :tab ;;* tab mode (⇥µ)
 		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		}
-
 	:Rctrl-mode {:key :right_control           ;;* Rctrl mode
 		:alone {:key :spacebar} :condi [:!f& :!d& :!c& :!k& :!w& :!space-mode]
 		} ; :Rctrl-mode {:key :right_control :condi [:!f& :!d& :!c& :!k& :!w&]}			
@@ -133,7 +132,7 @@
 	;; :1µ         {:key :F1                       ;;* 1 layer (1µ)
 		;; :condi [:!f& :!d& :!c& :!k& :!w&:!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		;; }
-	;; :2µ         {:key :F2                       ;;* 2 layer (2µ)
+	;; :2µ         {:key :F2             t          ;;* 2 layer (2µ)
 		;; :condi [:!space-mode :!bslashµ
 		;; :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ]
 		;; }
@@ -299,7 +298,6 @@
 		[:!COTSQj :rayfetti] ;;🎉 hyper+right cmd +j for rayfetti
 		[:!COTSQl :!Cspacebar] ;;todo tes
 			]}
-	;;* Semicolon as FN
 		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
 		[:##semicolon :##fn nil {:alone :semicolon}] ]}
 		;;* ✨ 2024-11-15 tring 
@@ -315,7 +313,7 @@
 	;; [:a [:open "https://example.com"]] ;; Example: semicolon+a to open a URL
 	;; [:b [:km "Example KM Macro"]] ;; Example: semicolon+b to trigger a Keyboard Maestro macro
 	;; [:c [:soundOn]] ;; Example: semicolon+c to play a sound
-	;; Add more rules as needed
+	;; Add more rules as needed_____
 ]}
 	;;* UHK FN: F24 (fn hardware key on uhks) sends apple FN with all modifiers optional ONLY when sent from UHKs (🟢 works 2024-10-22)
 		{:des "FN from UHK" :rules [[:##f24 :fn [:uhks] ]]}
@@ -402,8 +400,8 @@
 ;;* ============================================
 ;;* LAYERS =====================================
 {:des "escape-mode" :rules [:⎋µ ;;§========================= ESCAPE MODE (⎋µ)
-	;; [:!!t [:open "raycast://confetti"]] ;;• ⎋+t to test -> works
-	;; TODO (ESCAPE MODE)
+
+	 
 	]}
 ;; F1 MODE (empty) 
 	;; {:des "f1-mode for f1 things" :rules [ :f1&
@@ -623,6 +621,8 @@
 ;;§ SPACE MODE (✅ full) ===============
 	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
 	;; COMMENTS:
+	[:##tab :return_or_enter :space-mode] ;;* spacebar+tab for return
+
 	;; homerow keyboard
 		;; [:#TOWERQb :spacebar :space-mode]        ;;• spacebar+b for space
 		[:!Fb :rayfetti :space-mode]        ;;• spacebar+b for space
@@ -691,16 +691,16 @@
 	;; leave empty and see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:144
 ;;§ B MODE =======================
 	{:des "b-mode" :rules [ :b& 
-		[:i :vk_consumer_brightness_up] ;;• b+i for brightness up
-		[:d :vk_consumer_brightness_down] ;;• b+d for brightness
+	[:i :vk_consumer_brightness_up] ;;• b+i for brightness up
+	[:d :vk_consumer_brightness_down] ;;• b+d for brightness
+	; Bear
+	[:semicolon 	[:!TSCb  [:📢]]] 			;;• b+; for activate Bear via global hotkey ⌃⇧⌘+b
+	[:equal_sign 	[:!TSOb  [:📢]]]  			;;• b+= for new bear note via ⌃⌥⇧+b
+	[:n 			[:km "New Bear Note"]]		;;• b+n for km New Bear Note
+	;; [:slash 		[:km "Jump to Bear"]] 		;;• b+/ for Jump to Bear insgrey
+	[:w 			[:km "Hover Bear ❗ NOW"]] 	;;• b+w for Hover Bear ❗ NOW
+	[:r 			[:km "Hover Bear ❗ NOW"]] 	;;• b+r Hover Bear ❗ NOW
 		
-		; Bear stuff
-		[:semicolon 	[:!TSCb  [:📢]]] 			;;• b+; for activate Bear via global hotkey ⌃⇧⌘+b
-		[:equal_sign 	[:!TSOb  [:📢]]]  			;;• b+= for new bear note via ⌃⌥⇧+b
-		[:n 			[:km "New Bear Note"]]		;;• b+n for km New Bear Note
-		;; [:slash 		[:km "Jump to Bear"]] 		;;• b+/ for Jump to Bear insgrey
-		[:w 			[:km "Hover Bear ❗ NOW"]] 	;;• b+w for Hover Bear ❗ NOW
-		[:r 			[:km "Hover Bear ❗ NOW"]] 	;;• b+r Hover Bear ❗ NOW
 		;;* b+h hover bear now via URL BEARNOW new 2024-10-16
 		[:h [:open "bear://x-callback-url/open-note?id=AEC12198-1ED0-40A4-8696-C9701215D8BB"]]
 		;;* b+n Bear Now
@@ -818,7 +818,7 @@
 		[:##s [:km "© Focus Left Sidebar"]] ;;• f+s Move focus to status menus ^F8 ❌
 
 	;; overlays
-	;;• Show contextual menu
+	;;• Show contextual menu+.
 	
 	[:period [[:🔈🔈🔈] [:btt "Show Menu Bar in Context Menu"]] ] ;;• f+. for btt "Show Context Menu for Selected Item" 🟢
 	
@@ -833,12 +833,12 @@
 	]}
 ;;§ G MODE ================================================================
 	{:des "g-mode for g things" :rules [ :g&
-		[:spacebar [:km "Click GUI Button"]] ;;• g+spacebar for Click GUI Button
-		[:right_control [:km "Click GUI Button"]] ;;• g+right_control for Click GUI Button (for compatability with UHK split spacebar)
-		[:k [[:run "goku"] [:tink]] ] ;;• g+k to run goku #1... works!
-		[:j [:t :e :s :t]] ;;• g+j to run test		
-		[:p [[:📢]:!CTSg] ] ;;• g+p ChatGPT bar ✨ new 2024-10-16
-		[:o [:shortcut "!-GO-ULTRA"]];;• g+o for go ultra 
+		[:spacebar       [:km "Click GUI Button"]]               ;;• g+spacebar for Click GUI Button
+		[:right_control  [:km "Click GUI Button"]]               ;;• g+right_control for Click GUI Button (for compatability with UHK split spacebar)
+		[:k              [[:run "goku"] [:tink]]]                ;;• g+k to run goku #1... works!
+		[:j              [:t :e :s :t]]                         ;;• g+j to run test
+		[:p              [[:📢] :!CTSg]]                         ;;• g+p ChatGPT bar ✨ new 2024-10-16
+		[:o              [:shortcut "!-GO-ULTRA"]]               ;;• g+o for go ultra 
 
 	;;TODO (G MODE)
 		;; change below to use shortcuts template (after replacing)
@@ -861,6 +861,7 @@
 	;; ]}
 ;;§ J MODE (filled) ================================================================
 	{:des "j-mode for j things" :rules [ :j&
+		[:e [:km "Evernote: Jump to Evernote"]]
 		[:o [:km "Jump to OmniFocus Quick"]] ;;• j+o for Jump to OmniFocus 🟡 needs work > 🟢 better now
 		[:b [:km "Jump to Bear"]] ;;• j+b for Jump to Bear˛st (global)
 		[:p [:open "kmtrigger://macro=66C07414-FE85-44A0-A5DC-2C2DAD502E26"]] ;;• j+p for Jump to Palette via KM
@@ -1051,14 +1052,16 @@
 	]}
 ;;§ W MODE ================================================================
 	{:des "w-mode for w things" :rules [ :w&
-		[:spacebar [[:🔈🔈🔈] :!COTw] ] ;;• w+spacebar for Contexts via hotkey 2024-11-11 changed
-		;; [:spacebar [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
-		[:left_gui [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
-		[:right_control [[:🔈🔈🔈] :mission_control] [:uhks] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
-		[:c [:km "Center Window on Current Mouse Location"] ] ;;• w+c for km "Move Mouse to Focused Window" #core
-		;; [:left_gui [[:🔈🔈🔈] :!!f14 ]] ;;* w+left_gui for moom via ⌃⌥⇧⌘F14 (accessable with left hand)
+	[:spacebar [[:🔈🔈🔈] :!COTw] ] ;;• w+spacebar for Contexts via hotkey 2024-11-11 changed
+	[:left_gui [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
+	[:right_control [[:🔈🔈🔈] :mission_control] [:uhks] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
+	[:c [:km "Center Window on Current Mouse Location"] ] ;;• w+c for km "Move Mouse to Focused Window" #core
+	[:tab [:btt "Recall Saved Window"]] ;;• w+tab for Recall Saved Window (via BTT)
+	
+	[:t [:km "macOS: Writing Tools"]] ;;• w+t for Writing Tools
+	
+	
 	;;TODO (W MODE)
-		[:tab [:btt "Recall Saved Window"]] ;;• w+tab for Recall Saved Window (via BTT)
 		;; workbench
 			[:m [[:🔈🔈🔈] [:open "kmtrigger://macro=2B5C8666-4BD0-4FA7-B76F-A4F28DDB67AC"]]] ;;• w+m Workbench Menu "kmtrigger://macro=2B5C8666-4BD0-4FA7-B76F-A4F28DDB67AC"
 			[:b [[:🔈🔈🔈] [:km "Float Obsidian Workbench with Marked"]]] ;;• w+b Float Obsidian Workbench with Marked
@@ -1091,14 +1094,6 @@
 		;; TODO (Z MODE)
 		]}
 ] ;;§ CLOSES main
-
-;;TODO
-	;; 🌐 Marked URLS
-		;; x-marked://paste (clipboad)
-		;; "x-marked://refresh?file=filename.md&raise=true"
-		;; open -g 'x-marked://open?file=filename.md&raise=true'
-		;; open 'x-marked://open?file=filename.md'
-		;; open 'x-marked://refresh?file=filename.md'
 
 
 	;; :mission_control {:not-from true}
