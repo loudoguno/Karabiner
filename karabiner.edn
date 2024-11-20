@@ -308,9 +308,9 @@
 ;;§ Semicolon as fn mode
 {:des "semicolon-mode" :rules [ 
 	[:!Fspacebar [:km "+ Local Trigger List"]] ;;* testing
-	[:!FCspacebar [:a :a :a]] ;;* testing
-	[:!FQspacebar [:rayfetti]] ;;* testing 
-	[:!TCspacebar [:rayfetti]] ;;* testing 
+	;; [:!FCspacebar [:a :a :a]] ;;* testing
+	;; [:!FQspacebar [:rayfetti]] ;;* testing 
+	;; [:!TCspacebar [:rayfetti]] ;;* testing 
 	;; [:spacebar [:space-mode]] ;;* testing 
 	;; [:a [:open "https://example.com"]] ;; Example: semicolon+a to open a URL
 	;; [:b [:km "Example KM Macro"]] ;; Example: semicolon+b to trigger a Keyboard Maestro macro
