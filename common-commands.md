@@ -22,10 +22,13 @@ vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:329
 
 # Ways to approach
 
-## (1) do what i have a in the past and find unique simkey modes (e.g. n+w for New Window )
-- have macros in each apps km group that share the same name
-    - not ideal because no 
+## previous strategy of finding unique simkey modes (e.g. n+w for New Window) and applying that to a common km name...
+- works fine enough but does't
+- have macros in each apps km group that share the same name so enabled/disabled by KM
+- issues with Km's ability recognize overlay app as having focues (can't tell if ray notes is active..)
 
+
+globe 🌐 with the letter a
 # ❗  Consideratiis
 ## LR⌘ doesn't help with d+f d+s ect... 
 ## iPad considerations
