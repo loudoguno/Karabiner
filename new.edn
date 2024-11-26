@@ -1,4 +1,10 @@
 # new.edn (for quickly noting changes to review)
+2024-11-24 
+removed: ;; rehome [:delete_or_backspace [:btt "raycast-todo-menuapp"] ] ;;• d+0 for Raycast todo works	
+;;! disabled tab mode but had to switch ⇥µ to F13 to avoid changing the name everywhere else...
+;;todo checking to see if 
+    [[:k :e :b] [:open "sidenotes://open/3E171B3A-03F6-4C24-A5C7-4053172BC106"]]
+    [:!SCspacebar [:open "raycast://extensions/raycast/snippets/search-snippets"]] ;;• .+⇧⌘+space for Raycast Snippet Search
 
 # TODO
 [ ] work on Hyper mode vscode://file/Users/loudog/Sync/config.files/Karabiner/karabiner.edn:313

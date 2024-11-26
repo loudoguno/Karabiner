@@ -101,18 +101,21 @@
 :modifiers      { ;; MODIFIERS (todo empty)
 	}
 :froms          { ;; FROMS (todo empty)
+	:any_key {:any :key_code}
+	:any_consumer {:any :consumer_key_code }
+	:any_button {:any :pointing_button}
 	}
 :tos            { ;;§ TOS
 	:rayfetti [{:shell "open raycast://confetti"}] ;; ✅ works when called 	
 	;; :refocus [:!Tgrave_accent_and_tilde]
 	}
-:layers         { ;;§ LAYERS 
+:layers         { ;;§ LAYERS _ __ __ __ __ _
 	;; :KEYµ {:key :KEY ;;todo † new layer definition template
 		;; :condi [:!space-mode]
 		;; }
 	:space-mode {:key :spacebar                ;;* space layer (space-mode)
 		;; [:layer-conditions] ;;! tried to define in :templates but didn't work
-		:condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
+		:condi [:!apprun :!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
 		} ; prevents space mode from overiding F and D modes 
 	;; :capsµ {:key :tab :alone {:key :tab} ;;* caps lock layer (⇪µ)
 		;; :condi [:!f& :!d& :!c& :!k& :!w& :!Rctrl-mode :!LCMD :!tildeµ :!quote-mode :!fslashµ :!.µ :!↩µ :!R⇧µ :!space-mode]
@@ -186,6 +189,49 @@
 	}
 :main [ ;;§ MAIN RULES ================================
 
+	;; {:des "Rotate between Game Layer, QWERTY w/ layers and Karabiner Toggle w/ FN+LeftShift"
+	;; 	:rules [
+	;; 		[:!F#Pleft_shift [["blocked" 0]["qwerty" 0]["colemak_unshifted" 1]["layer" 1]["wm_off" 0][:noti :layers "Unshifted Colemak [Fn+LCtrl]"]]["layer" 0]]
+	;; 		[:!F#Pleft_shift [["blocked" 0]["qwerty" 1]["colemak_unshifted" 0]["layer" 2]["wm_off" 0][:noti :layers "QWERTY w/ layers [Fn+LCtrl]"]]["layer" 1]]
+	;; 		[:!F#Pleft_shift [["blocked" 1]["qwerty" 1]["colemak_unshifted" 0]["layer" 3]["wm_off" 1][:noti :layers "QWERTY w/ IJKL locked to arrows [Fn+LCtrl]"]]["layer" 2]]
+	;; 		[:!F#Pleft_shift [["blocked" 1]["qwerty" 1]["colemak_unshifted" 0]["layer" 4]["wm_off" 1][:noti :layers "Karabiner Disabled [Fn+LCtrl]"]]["layer" 3]]
+	;; 		[:!F#Pleft_shift [["blocked" 0]["qwerty" 0]["colemak_unshifted" 0]["layer" 0]["wm_off" 0][:noti :layers ""]]["layer" 4]]
+	;; 	]}
+        {
+            :des "AppRun Layer - hold Tab key to activate"
+            :rules [
+                [:tab ["apprun" 1] [:!space-mode :!fn_base :!fn_ctrl :!fn_optn :!fn_cmnd :!extend :!blocked :!qwerty] {:alone :tab :afterup ["apprun" 0]}]
+                :apprun
+                    ;; switch desktops
+                    [:y :!!1]
+                    [:u :!!2]
+                    [:i :!!3]
+                    [:o :!!4]
+                    [:p :!!5]
+                    [:open_bracket :!!6]
+                    [:return_or_enter :!Fspacebar]
+                    ;; swap active browser
+                    [:right_option ["browser" 0] ["browser" 1]]
+                    [:right_option ["browser" 1] ["browser" 0]]
+                    [:spacebar ["cc-mode" 1] ["cc-mode" 0]]
+                    [:spacebar ["cc-mode" 0] ["cc-mode" 1]]
+                    ;; [:spacebar [:open "Safari"] ["browser" 0]]
+                    ;; [:spacebar [:open "Vivaldi"] ["browser" 1]]
+					;;! adding "cc-mode"
+                    ;; [:right_command [:open "Vivaldi"] ["browser" 0]]
+                    ;; [:right_command [:open "Safari"] ["browser" 1]]
+                    ;; swap shift combos between tiled/stacked
+                    ;; [:left_option ["yabai_stack" 0] ["yabai_stack" 1]]
+                    ;; [:left_option ["yabai_stack" 1] ["yabai_stack" 0]]
+                    ;; keys acting on single apps
+                    [:j [:open "Visual Studio Code"]]
+                    [:n [:open "Kitty"]]
+                    [:m [:open "Mailmate"]]
+                    ;; final cleanup
+                    ;; [:any_key :vk_none]
+                    [:any_consumer :vk_none]
+            ]
+        }
 
 ;;§ ✨ New/org
 ;;* Mouse Thumbpad System (logitech MOUSEPAD MODE) #TODO install logi software and...
@@ -250,7 +296,8 @@
 	{:des "Simultaneous Rules":rules [
 		;;† new sim rule template
 
-		;; -> going to change it to 
+		[[:k :e :b] [:open "sidenotes://open/3E171B3A-03F6-4C24-A5C7-4053172BC106"]] ;;• keb and nkew for KE Bindings Cheatsheet 
+		[[:n :k :e :w] [:open "sidenotes://open/3E171B3A-03F6-4C24-A5C7-4053172BC106"]] ;;• keb and nkew for KE Bindings Cheatsheet 
 		[[:left_shift :right_shift :4 :8] [:open "raycast://confetti"]] ;;• ⇧+⇧+4+8 for confetti
 		[[:f :l :n]			[:ray "raycast/raycast-notes/raycast-notes"]]	;;• fln for raycast notes
 		[[:s :f :l :n]		[:ray "raycast/raycast-notes/search-notes"]]	;;• sfln for raycast notes search
@@ -524,6 +571,8 @@
 ;;§ PERIOD MODE .µ (enabled, to convert) ====================================================
 	{:des " period-mode for typinator and autocomplete":rules [ :.µ 
 		[:spacebar [[:🔈🔈🔈] :!STperiod]] ;;• .+space for Typinator Suggest Abbreviation (via ⌃⇧+. hotkey set in app pref)
+		[:!SCspacebar [:open "raycast://extensions/raycast/snippets/search-snippets"]] ;;• .+⇧⌘+space for Raycast Snippet Search
+		
 		]}
 ;;§ (FORWARD) SLASH MODE (fslashµ) /+....==============
 	{:des "slash-mode" :rules [ :fslashµ
@@ -620,12 +669,10 @@
 
 ;;§ SPACE MODE (✅ full) ===============
 	{:des "spacebar mode" :rules [ ;;*= SPACE MODE =======================
-	;; COMMENTS:
-	[:##tab :return_or_enter :space-mode] ;;* spacebar+tab for return
+	;; [:!SCv [:open "raycast://extensions/raycast/clipboard-history/clipboard-history"]] ;;• space+⇧⌘+v for Raycast Clipboard History
+
 
 	;; homerow keyboard
-		;; [:#TOWERQb :spacebar :space-mode]        ;;• spacebar+b for space
-		[:!Fb :rayfetti :space-mode]        ;;• spacebar+b for space
 		; jlik for ←↑→↓ (left/right/up/down arrows)
 			[:##j :left_arrow  :space-mode]  ;;• spacebar+j for ←
 			[:##l :right_arrow :space-mode] ;;• spacebar+l for →
@@ -653,27 +700,23 @@
 		[:##m [[:🔈🔈🔈]:!!f14] :space-mode] [:##m [[:🔈🔈]:!!f14] :Rctrl-mode] ;;• spacebar+m for activate moom (like this one better)
 		[:##w [[:🔈🔈🔈]:!CTOw] :space-mode] ;;• space+w to activate Contexts
 		[:##return_or_enter [[:🔈🔈🔈]:!Of12] :space-mode]  ;;• spacebar+return for Bartender Search menu bar items (via ⌥+F12 in Bartender) 🟢🔰new
+
 	;; todo something with tab, tilde ect.... [:##tab :#menu]
 	;;§🪟  Space Mode Window MGMT
 	;;* spacebar+w for window
 		;; [:!w ]
 	[:!Sb [:btt "prev-window"]] ;;* spacebar+b (left_shift) for btt prev-window
-	;; context
-	;; :!grave_accent_and_tilde
-	;; btt://trigger_named/?trigger_name=prev-window
 	;; TODO
 		;; use with
 		;; [ ] +1/2/3/4 for...
 		;; [ ] F1/f2/f3/f4 for... F11 to F22
 		]}
 ;;§ TAB MODE (⇥µ) ===============
-	{:des "tab-mode (⇥µ)" :rules [ :⇥µ
-	[:w :!TOCw]
-	[:r [:ray "raycast/raycast-notes/raycast-notes"]]
-	[:!Cr [:ray "raycast/raycast-notes/raycast-notes?context=%7B%22id%22:%225854A694-8EAC-4DEA-8297-72C17249A808%22%7D"]] ;;• Ray daily 
-	
-
-    	]}
+	;; {:des "tab-mode (⇥µ)" :rules [ :⇥µ
+	;; [:w :!TOCw]
+	;; [:r [:ray "raycast/raycast-notes/raycast-notes"]]
+	;; [:!Cr [:ray "raycast/raycast-notes/raycast-notes?context=%7B%22id%22:%225854A694-8EAC-4DEA-8297-72C17249A808%22%7D"]] ;;• Ray daily 
+	;; ]}
 
 ;;§ UP_ARROW MODE ================================================================
 	;; {:des "up_arrow-mode for up arrow things" :rules [ :up_arrow&
@@ -716,9 +759,10 @@
 			;; [:c [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=yes&clipboard=yes"]] ;;* b+s to prepend 
 		[:f [:km "BearShelf: float"]]
 		[:k [:km "BearShelf: add hook to current window"]]
-		[:m [:km "BearShelf: add hook to current window"]]
+		;; [:m [:km "BearShelf: add hook to current window"]]
 		
 		[:period [:km "BetterTouchTool: Show Menu Bar in Context Menu"]] ;;• b+. for menu context menu 
+		[:m [:open "btt://trigger_named/?trigger_name=Show%20Context%20Menu%20for%20Selected%20Item"]] ;;• b+m for menu context menu 
 		;; todo make a "close window and save"
 		;; [:m [:!!m [:open "bear://x-callback-url/add-text?title=BearShelf&header=INBOX&mode=prepend&new_line=no&open_note=no&show_window=no&timestamp=no&clipboard=yes"] ]]
 			;; not working don't know why...
@@ -755,27 +799,19 @@
 	]}
 ;;§ D MODE ================================================================
 	{:des "d-mode for d things" :rules [ :d& ;;================================== D MODE
-		;; d+asfg for tab manipulation..........................................
-			[:a :!Copen_bracket] 	;;• d+a for Page Back via ⌘[
-			[:s :!TStab] 			;;• d+s for tab left via ⌃⇥
-			[:f :!Ttab] 			;;• d+f for tab right via ⇧⌃⇥
-			[:g :!Cclose_bracket] 	;;• d+g for Forward Page via ⌘]
-		[:t [[:🔈🔈🔈] :dictation] ] ;;* d+t for Dictate Text (via ⇧⌃⌘d hotkey set in System Preferencees > Keyboard > Dictation)
-		[:c :!Cquote] 				;;* d+c for ⌘+quote (edit tags in omnifocus, evernote ect...)
-		[:h [:open "/Users/loudog"] ] ;;• d+h home folder 
-		[:k [:open "/Users/loudog/Desktop"] ] ;;• d+k desktop
-		[:l [:open "/Users/loudog/Downloads"] ] ;;• d+l downloads
-		[:y [:open "/Users/loudog/Sync"] ] ;;• d+y Sync
-		[:p [:open "/Users/loudog/Pictures"] ] ;;• d+p Pictures
-
-		
-	;;TODO (D MODE)
-		;; [:q [:right_gui :right_gui ]] ;;* d+q for ask siri via double press
-		;; #common-commands
-			;; [:w [:km "Item Up ©"]] ;;• d+w for Item Up (global KM context "Item Up ©")
-			;; [:v [:km "Item Down ©"]] ;;• d+v for Item Down (global KM context "Item Down ©")
-		;; rehome [:0 [:btt "raycast-todo-menuapp"] ] ;;• d+0 for Raycast todo works 
-		;; rehome [:delete_or_backspace [:btt "raycast-todo-menuapp"] ] ;;• d+0 for Raycast todo works	
+	;; d+asfg for tab manipulation..........................................
+	[:a :!Copen_bracket] 	;;• d+a for Page Back via ⌘[
+	[:s :!TStab] 			;;• d+s for tab left via ⌃⇥
+	[:f :!Ttab] 			;;• d+f for tab right via ⇧⌃⇥
+	[:g :!Cclose_bracket] 	;;• d+g for Forward Page via ⌘]
+	[:t [[:🔈🔈🔈] :dictation] ] ;;* d+t for Dictate Text (via ⇧⌃⌘d hotkey set in System Preferencees > Keyboard > Dictation)
+	[:c :!Cquote] 				;;* d+c for ⌘+quote (edit tags in omnifocus, evernote ect...)
+	;; home sub-folders
+	[:h [:open "/Users/loudog"] ] ;;• d+h home folder 
+	[:k [:open "/Users/loudog/Desktop"] ] ;;• d+k desktop
+	[:l [:open "/Users/loudog/Downloads"] ] ;;• d+l downloads
+	[:y [:open "/Users/loudog/Sync"] ] ;;• d+y Sync
+	[:p [:open "/Users/loudog/Pictures"] ] ;;• d+p Pictures
 	]}
 ;;§ E MODE  ================================================================
 	;; {:des "e-mode for e things" :rules [ :e& ;;===== ============================
@@ -1021,7 +1057,7 @@
 	]}
 ;;§ T MODE () ================================================================
 	{:des "t-mode for testing thing things" :rules [ :t&
-		;; 🧪 TEST
+		;; 🧪 TEST_ _
 		[:r [:soundOn]] ;;• TEST  t+r for test rule (🔈 worked) 🔉🔊🛎🔔📢📯
 		[:m [:km "TEST Macro"]] ;;• t_m for test macro3
 		[:p [:km "TEST Palette"]] ;;• t+p test palette 
