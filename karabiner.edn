@@ -446,14 +446,6 @@
 
 ;;* ============================================
 ;;* LAYERS =====================================
-{:des "escape-mode" :rules [:⎋µ ;;§========================= ESCAPE MODE (⎋µ)
-
-	 
-	]}
-;; F1 MODE (empty) 
-	;; {:des "f1-mode for f1 things" :rules [ :f1&
-	;;TODO (F1 MODE)
-	;; ]}
 {:des "tilde-mode"  :rules [:tildeµ ;;§===================== TILDE MODE  (tildeµ)
 		[:1 [[:🛎] :!TOCf11]] ;;• tilde+1 slidepad 1
 		[:2 [[:🛎] :!TOCf12]] ;;• tilde+2 slidepad 2
