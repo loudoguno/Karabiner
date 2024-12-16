@@ -68,7 +68,8 @@
 	;; }
 :templates      { ;;§ TEMPLATES
 	:run "%s"
-	:open "open \"%s\""
+	:openbg "open -g \"%s\"" ;;need to set to open in background 
+	:open "open \"%s\"" ;;need to set to open in background 
 	:open-app "open -a \"%s\""
 	:wait "sleep 1" ; pause 250 ms	;; Sounds and Audio Feedback invokded by calling `afplay`, use of emojis to make itmore readable but sometimes causes issues
 	:km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
@@ -895,7 +896,7 @@
 		[:p [:open "kmtrigger://macro=66C07414-FE85-44A0-A5DC-2C2DAD502E26"]] ;;• j+p for Jump to Palette via KM
 		[:w [[:🔈🔈🔈] :!CTOw]] ;;• j+w for Jump to Window (via Context hotkey ⌥space) -> 2024-08-21 chaged from !Ospacebar to 
 		[:s [ [:🔈🔈🔈]  :!OSCj ] ] ;;• j+s Search (Jump to) SideNotes (via ⌥⇧⌘+j)
-		[:k [:km "Keyboard Maestro: Go to Macro By Name"]] ;;• j+k for Go to Macro By Name
+		[:k [:km "Keyboard Maestro: Jump to Macro By Name Global"]] ;;• j+k for Go to Macro By Name
 		;;TODO (J MODE)
 			;; rework Jump to.... (see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:273)
 			;; [:r [ [:🔈🔈🔈] [:open "kmtrigger://macro=047B91AB-DBCA-4976-BE79-C9A0603FA8B2"]]] ;;• j+r JUMP TO Apple Reminders (via km macro that uses GoodTask)
@@ -1004,6 +1005,14 @@
 	]}
 ;;§ R MODE ================================================================
 	{:des "r-mode for r things" :rules [ :r&
+	[:1 [:km "Raycast: go to pinned note 1"]] ;;• r+1 Raycast: go to pinned note 1
+	[:2 [:km "Raycast: go to pinned note 2"]] ;;• r+2 Raycast: go to pinned note 2
+	[:3 [:km "Raycast: go to pinned note 3"]] ;;• r+3 Raycast: go to pinned note 3
+	[:4 [:km "Raycast: go to pinned note 4"]] ;;• r+4 Raycast: go to pinned note 4
+
+	;; [:1 [ :escape [:openbg "raycast://extensions/raycast/raycast-notes/raycast-notes"] :!C1] ] ;;* r+1 to open pinned note ❌sending cmd+1 to front app not what i wanted, needs to be done
+	;; [:2 [ :escape [:openbg "raycast://extensions/raycast/raycast-notes/raycast-notes"] :!C2] ] ;;* r+1 to open pinned note
+	[:tab [:ray "raycast/navigation/switch-windows"]] ;;• r+tab for raycast window searchrtr
 	[:tab [:ray "raycast/navigation/switch-windows"]] ;;• r+tab for raycast window searchrtr
 
 	;;* remote-mode (see vscode://file/Users/loudog/Sync/config.files/Karabiner/krb-purged.edn:431)
@@ -1017,7 +1026,7 @@
 	[:w [:open "raycast://extensions/raycast/navigation/switch-windows"]] ;;• r+w for Raycast Switch Window
 	[:slash [:open "raycast://extensions/raycast/navigation/search-menu-items"]]    ;;• r+/ for Search Menu Items
 	[:period [:open "raycast://extensions/raycast/snippets/search-snippets"]] ;;• r+. for Raycast snippets
-	[:3 [:open "raycast://extensions/raycast/screenshots/search-screenshots"]] ;;• r+3 search screenshots
+	;; [:3 [:open "raycast://extensions/raycast/screenshots/search-screenshots"]] ;;• r+3 search screenshots
 	[:grave_accent_and_tilde [:open "raycast://extensions/raycast/file-search/search-files"]] ;;• r+~ File search
 	;; [:slash [:open ""]]    ;;• r+XXX for Raycast Clipboard History
 	;; Raycast Snippets
@@ -1080,9 +1089,11 @@
 	]}
 ;;§ W MODE ================================================================
 	{:des "w-mode for w things" :rules [ :w&
+	
 	[:spacebar [[:🔈🔈🔈] :!COTw] ] ;;• w+spacebar for Contexts via hotkey 2024-11-11 changed
 	[:left_gui [[:🔈🔈🔈] :mission_control] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
 	[:right_control [[:🔈🔈🔈] :mission_control] [:uhks] ] ;;• w+spacebar for Expose  (INSTEAD  of via ⌃⌥⌘+f3) ->
+	[:r [:openbg "raycast://extensions/raycast/window-management/reasonable-size"] ] ;;• w+r for Raycast Reasonable size
 	[:c [:km "Center Window on Current Mouse Location"] ] ;;• w+c for km "Move Mouse to Focused Window" #core
 	[:tab [:btt "Recall Saved Window"]] ;;• w+tab for Recall Saved Window (via BTT)
 	
