@@ -1,4 +1,4 @@
-{ ;; karabiner.edn 1.05 2024-11-18
+{ ;; karabiner.edn 1.06 2024-11-19 from mxb
 ;;§ DEFINITIONS (profiles, devices, applications, io-sources, templates, modifiers froms, tos, layers, simlayers)
 ;; PROFILES (todo empty)
 	;; :simlayer-threshold 210 ;def = 50 ;! when set to 1000 there is very noticable delay and 50 isnt enough time, 300 too much
@@ -190,109 +190,7 @@
 	}
 :main [ ;;§ MAIN RULES ================================
 
-	;; {:des "Rotate between Game Layer, QWERTY w/ layers and Karabiner Toggle w/ FN+LeftShift"
-	;; 	:rules [
-	;; 		[:!F#Pleft_shift [["blocked" 0]["qwerty" 0]["colemak_unshifted" 1]["layer" 1]["wm_off" 0][:noti :layers "Unshifted Colemak [Fn+LCtrl]"]]["layer" 0]]
-	;; 		[:!F#Pleft_shift [["blocked" 0]["qwerty" 1]["colemak_unshifted" 0]["layer" 2]["wm_off" 0][:noti :layers "QWERTY w/ layers [Fn+LCtrl]"]]["layer" 1]]
-	;; 		[:!F#Pleft_shift [["blocked" 1]["qwerty" 1]["colemak_unshifted" 0]["layer" 3]["wm_off" 1][:noti :layers "QWERTY w/ IJKL locked to arrows [Fn+LCtrl]"]]["layer" 2]]
-	;; 		[:!F#Pleft_shift [["blocked" 1]["qwerty" 1]["colemak_unshifted" 0]["layer" 4]["wm_off" 1][:noti :layers "Karabiner Disabled [Fn+LCtrl]"]]["layer" 3]]
-	;; 		[:!F#Pleft_shift [["blocked" 0]["qwerty" 0]["colemak_unshifted" 0]["layer" 0]["wm_off" 0][:noti :layers ""]]["layer" 4]]
-	;; 	]}
-        {
-            :des "AppRun Layer - hold Tab key to activate"
-            :rules [
-                [:tab ["apprun" 1] [:!space-mode :!fn_base :!fn_ctrl :!fn_optn :!fn_cmnd :!extend :!blocked :!qwerty] {:alone :tab :afterup ["apprun" 0]}]
-                :apprun
-                    ;; switch desktops
-                    [:y :!!1]
-                    [:u :!!2]
-                    [:i :!!3]
-                    [:o :!!4]
-                    [:p :!!5]
-                    [:open_bracket :!!6]
-                    [:return_or_enter :!Fspacebar]
-                    ;; swap active browser
-                    [:right_option ["browser" 0] ["browser" 1]]
-                    [:right_option ["browser" 1] ["browser" 0]]
-                    [:spacebar ["cc-mode" 1] ["cc-mode" 0]]
-                    [:spacebar ["cc-mode" 0] ["cc-mode" 1]]
-                    ;; [:spacebar [:open "Safari"] ["browser" 0]]
-                    ;; [:spacebar [:open "Vivaldi"] ["browser" 1]]
-					;;! adding "cc-mode"
-                    ;; [:right_command [:open "Vivaldi"] ["browser" 0]]
-                    ;; [:right_command [:open "Safari"] ["browser" 1]]
-                    ;; swap shift combos between tiled/stacked
-                    ;; [:left_option ["yabai_stack" 0] ["yabai_stack" 1]]
-                    ;; [:left_option ["yabai_stack" 1] ["yabai_stack" 0]]
-                    ;; keys acting on single apps
-                    [:j [:open "Visual Studio Code"]]
-                    [:n [:open "Kitty"]]
-                    [:m [:open "Mailmate"]]
-                    ;; final cleanup
-                    ;; [:any_key :vk_none]
-                    [:any_consumer :vk_none]
-            ]
-        }
 
-;;§ ✨ New/org
-;;* Mouse Thumbpad System (logitech MOUSEPAD MODE) #TODO install logi software and...
-	{:des "mousepad keyboard mode" :rules [ :logiG600
-	
-	;; modifiers 
-	;; [:##left_control [[:🔈] :left_command]] ;;• ring finger button as command
-	;; [:##left_control [[:🔈🔈🔈] :left_command]] ;;• mousepad 3 for...
-	
-	;; thumbpad
-	[:##keypad_1 [[:🔈🔈🔈] :escape]] ;;• mousepad 1 for escape
-	[:##keypad_2 [[:🔈🔈🔈] :delete_or_backspace]] ;;• mousepad 2 for...
-	[:##keypad_3 [[:🔈🔈🔈] :delete_or_backspace]] ;;• mousepad 3 for...
-	[:##keypad_4 [[:🔈🔈🔈] :!Stab]] ;;• mousepad 3 for...
-	[:##keypad_5 [[:🔈🔈🔈] :up_arrow]] ;;• mousepad 3 for...
-	[:##keypad_6 [[:🔈🔈🔈] :tab]] ;;• mousepad 3 for...
-	[:##keypad_7 [[:🔈🔈🔈] :left_arrow]] ;;• mousepad 3 for...
-	[:##keypad_8 [[:🔈🔈🔈] :down_arrow]] ;;• mousepad 3 for...
-	[:##keypad_9 [[:🔈🔈🔈] :right_arrow]] ;;• mousepad 3 for...
-	[:##keypad_0 [[:🔈🔈🔈] :end]] ;;• mousepad 3 for...
-	[:##keypad_plus [[:🔈🔈🔈] :spacebar]] ;;• mousepad 3 for...
-	[:##keypad_hyphen [[:🔈🔈🔈] :return_or_enter]] ;;• mousepad 3 for...
-	]}
-
-
-{:des "TEST " :rules [ ;;§ TEST MODE Rules
-	;; [[:t :r] [:t :e :s :t]] ;; test for TO array  ✔
-	;;* test sound test
-	;; [ [:t :1][:🔈]][[:t :2][:🔉]][[:t :3][:🔊]][[:t :4][:📢]][[:t :5][:🛎]][[:t :6][:🔔]] 
-	
-	;;* test oskb
-	;; [ [:o :s :k] [:open "raycast://confetti"] ];; ✅ 
-	
-	;; ⚡
-	
-	;; [ [:o :s :k :b] [:open "raycast://confetti"] ]
-				;; ✅ worked
-		;; [[:o :s :k :b] :rayfetti] ;;! ❌ does not work
-		;; [[:o :s :k :b] [:rayfetti]] ;;! ❌ does not work
-	; test shift+fn
-	;; [:!Rt :rayfetti] ;;; Q and R work but W †
-	;; [:!QOt :rayfetti] ;;; lef+t rightworks
-	;; [:!RTCw :km ""] ;;; 
-	;;* test :device for apple internal NOW⚡
-	;; [:!QCt :rayfetti] ;;• right shift+t to test confetti 🎉
-	;; [:!QCt :rayfetti :apple] ;;• :apple device group works ✔
-	;; [:!QCt :rayfetti :mx3] ;;• :apple device group works ✔    
-	;; [:!St :rayfetti :mbpx] ;; worked 
-	;;• caps+right command + c to copy url 
-	;; [:!CQa :rayfetti :refocus] seems to trigger select all first
-	;; [:!CQt :rayfetti] ;;! [:!CQt :rayfetti] WORKS 
-	;; [:!Cc :rayfetti] ;;! !Cc works
-	;; [:!CQc :rayfetti] ;;! !CQc DOES NOT WORK maybe overridden
-	;; [:!SRc :rayfetti] ;;! !!c works
-	;; [:!!c :refocus] ;; worked 
-	;; [:!!c [[:rayfetti] [:refocus]]] ;; worked 
-
-
-
-	]}
 ;;§ SIMULTANEOUS RULES (SIMULTANEOUS Mode)
 	{:des "Simultaneous Rules":rules [
 		;;† new sim rule template
@@ -338,35 +236,11 @@
 		]}
 	;;* double press ⌘+q to quit to prevent accidental
 		{:des "double press ⌘+q to quit " :rules[ [:!C#Pq [ :!Cq ["⌘q" 0]] ["⌘q" 1]] [:!C#Pq ["⌘q" 1] nil {:delayed {:invoked ["⌘q" 0] :canceled ["⌘q" 0]}}] ]}
-		;;= HYPER MODE and MODIFIERS ==============================
-	;;* capslock as hyper (original) ;; 🚩 PIN
-		{:des "Capslock as hyper" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Capslock as hyper (command+shift+option+control)
-		[:caps_lock [:!SOCleft_control] nil {:alone :escape :to_if_alone [{:key_code "escape"}] :to_if_held_down [{:key_code "left_control", :modifiers ["command", "shift", "option"]}]}]
-		
-		[:!COTSQj :rayfetti] ;;🎉 hyper+right cmd +j for rayfetti
-		[:!COTSQl :!Cspacebar] ;;todo tes
-			]}
-		{:des "Semicolon as fn" :rules [ [:condi :!space-mode :!Rctrl-mode] ;;* Semicolon as FN for use with Contexts quicksearch
-		[:##semicolon :##fn nil {:alone :semicolon}] ]}
-		;;* ✨ 2024-11-15 tring 
-		
-		;;TODO need to make lazy
-;;§ Semicolon as fn mode
-{:des "semicolon-mode" :rules [ 
-	[:!Fspacebar [:km "+ Local Trigger List"]] ;;* testing
-	;; [:!FCspacebar [:a :a :a]] ;;* testing
-	;; [:!FQspacebar [:rayfetti]] ;;* testing 
-	;; [:!TCspacebar [:rayfetti]] ;;* testing 
-	;; [:spacebar [:space-mode]] ;;* testing 
-	;; [:a [:open "https://example.com"]] ;; Example: semicolon+a to open a URL
-	;; [:b [:km "Example KM Macro"]] ;; Example: semicolon+b to trigger a Keyboard Maestro macro
-	;; [:c [:soundOn]] ;; Example: semicolon+c to play a sound
-	;; Add more rules as needed_____
-]}
+
 	;;* UHK FN: F24 (fn hardware key on uhks) sends apple FN with all modifiers optional ONLY when sent from UHKs (🟢 works 2024-10-22)
 		{:des "FN from UHK" :rules [[:##f24 :fn [:uhks] ]]}
-	;;* iPad Default Shortcuts
-		{:des "iPad default Shortcuts" :rules [ ;;§ iPad defaults ========== 
+	;;§ iPad Default Shortcuts
+		{:des "iPad default Shortcuts" :rules [
 			[:!Cperiod [[:🔈🔈🔈] :escape]] [:!Qperiod [[:🔈🔈🔈] :escape]] ;;• ⌘+period for escape
 			[:!!backslash [[:🔈🔈🔈] :!Ti]] ;;• 🌐+\ show/hide sideview
 			;;• 🌐+\ for cycle sidevview
